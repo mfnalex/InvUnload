@@ -1,0 +1,9 @@
+main: de.jeff_media.ChestSortAPIExample.ExamplePlugin
+name: ChestSortAPIExample
+version: 0.0.1-SNAPSHOT
+api-version: 1.13
+description: An example plugin to show how to use the ChestSortAPI
+author: mfnalex
+website: https://www.chestsort.de
+database: false
+softdepend: [ChestSort]
