@@ -32,9 +32,9 @@ public class UpdateChecker {
 
 	// This text file always contains a string with the latest version, e.g. 3.7.1
 	final static String latestVersionLink = "https://api.jeff-media.de/invunload/invunload-latest-version.txt";
-	final static String downloadLink = "https://invunload.de/download";
-	final static String changelogLink = "https://invunload.de/changelog";
-	final static String donateLink = "https://invunload.de/donate";
+	final static String downloadLink = "https://www.spigotmc.org/resources/1-13-invunload-worldguard-integration.60095/";
+	final static String changelogLink = "https://github.com/JEFF-Media-GbR/InvUnloadPlus/blob/KeepOrder/CHANGELOG.md";
+	final static String donateLink = "https://www.paypal.me/mfnalex";
 	
 	private String currentVersion = "undefined";
 	private String latestVersion = "undefined";
