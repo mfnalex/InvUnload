@@ -70,8 +70,15 @@ public class CommandUnload implements CommandExecutor {
 		for(Block block : chests) {
 			if(!PlayerUtils.canPlayerUseChest(block, p)) continue;
 			Inventory inv = ((Container) block.getState()).getInventory();
-			if(InvUtils.stuffInventoryIntoAnother(p.getInventory(), inv, onlyMatchingStuff,startSlot,endSlot)) {
-				affectedChests.add(block);
+			if(onlyMatchingStuff) {
+				if(InvUtils.stuffInventoryIntoAnother(p.getInventory(), inv, onlyMatchingStuff,startSlot,endSlot)) {
+					affectedChests.add(block);
+				}
+			} else {
+				if(InvUtils.stuffInventoryIntoAnother(p.getInventory(), inv, false,startSlot,endSlot)
+						|| InvUtils.stuffInventoryIntoAnother(p.getInventory(), inv, true,startSlot,endSlot)) {
+					affectedChests.add(block);
+				}
 			}
 		}
 		
@@ -81,7 +88,7 @@ public class CommandUnload implements CommandExecutor {
 		} 
 			
 		for(Block block : affectedChests) {
-			BlockUtils.chestAnimation(block);
+			BlockUtils.chestAnimation(block,p);
 			if(main.chestSortAPI != null) {
 				// TODO: Sort chest
 			}

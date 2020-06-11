@@ -18,7 +18,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 3;
+	private int currentConfigVersion = 5;
 
 	protected Messages messages;
 
@@ -78,8 +78,15 @@ public class Main extends JavaPlugin implements Listener {
 		// for every missing option.
 		getConfig().addDefault("max-chest-radius", 20);
 		maxChestRadius = getConfig().getInt("max-chest-radius");
+		
 		getConfig().addDefault("default-chest-radius", 10);
 		defaultChestRadius = getConfig().getInt("default-chest-radius");
+		
+		getConfig().addDefault("unload-before-dumping", true);
+		
+		getConfig().addDefault("check-interval", 4);
+		updateCheckInterval = (int) (getConfig().getDouble("check-interval")*60*60);
+		System.out.println("UpdateCheckInterval: "+updateCheckInterval);
 	}
 
 	private void showOldConfigWarning() {

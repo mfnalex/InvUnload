@@ -20,14 +20,21 @@ max-chest-radius: 20
 # a radius
 default-chest-radius: 10
 
-# should we check for updates?
-# when enabled, a message is printed in the console if a new
-# version has been found, and OPs will be notified when they
-# join the server
-# When set to true, we will check for updates on startup and every 24 hours
-# When set to on-startup, we will only check on startup
+##########################
+##### Update Checker #####
+##########################
+
+# Checks for updates (asynchronously).
+# When enabled, a message is printed in the console if a new
+# version has been found, and OPs will be notified when they join the server 
+# When set to true, check for updates on startup and every X hours (see "check-interval" below)
+# When set to on-startup, only check on server startup
 # When set to false, don't check for updates
 check-for-updates: true
+
+# When you set "check-for-updates" to true, you can define the amount
+# of hours inbetween each update check.
+check-interval: 4
 
 #########################
 ##### localization ######
@@ -86,5 +93,8 @@ message-error-not-a-number: "&cError:&7 '%s' is not a valid number."
 #####     Done!     #####
 #########################
 
+# Enable for debug mode (you don't want this!)
+debug: false
+
 # please do not change the following line manually!
-config-version: 3
+config-version: 5

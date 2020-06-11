@@ -7,10 +7,12 @@ import java.util.Comparator;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Container;
 import org.bukkit.block.DoubleChest;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.DoubleChestInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -76,11 +78,16 @@ public class BlockUtils {
 		});
 	}
 	
-	static void chestAnimation(Block block) {
+	static void chestAnimation(Block block, Player player) {
 		final int particleCount = 100;
 		final Particle particle = Particle.SPELL_WITCH;
 		final Location loc = getCenterOfBlock(block);
+		
+		final Sound sound = Sound.BLOCK_CHEST_CLOSE;
+		
 		block.getWorld().spawnParticle(particle, loc, particleCount, 0.0, 0.0, 0.0);
+		player.playSound(loc, sound, 1, 1);
+		
 	}
 	
 	static Location getCenterOfBlock(Block block) {

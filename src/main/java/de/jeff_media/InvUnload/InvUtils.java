@@ -6,6 +6,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class InvUtils {
+	// TODO: When using /dump, first use /unload and then /dump
 	static boolean stuffInventoryIntoAnother(Inventory source, Inventory destination, boolean onlyMatchingStuff, int startSlot, int endSlot) {
 		int start = countInventoryContents(source);
 		for(int i = startSlot; i<=endSlot; i++) {
@@ -14,7 +15,6 @@ public class InvUtils {
 			source.clear(i);
 			if(!onlyMatchingStuff || BlockUtils.doesChestContain(destination,item.getType())) {
 				for(ItemStack leftover : destination.addItem(item).values()) {
-					//leftovers.add(leftover);
 					source.setItem(i,leftover);
 				}	
 			} else {
