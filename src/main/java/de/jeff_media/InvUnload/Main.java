@@ -50,7 +50,7 @@ public class Main extends JavaPlugin implements Listener {
 			chestSortAPI = chestSort.getAPI();
 		}
 		registerCommands();
-		// registerListener();
+		initUpdateChecker();
 	}
 
 	private void createConfig() {
@@ -69,9 +69,6 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 		setDefaultConfigValues();
-
-		initUpdateChecker();
-		
 
 	}
 
