@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
-	<artifactId>ChestSortAPIExample</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>ChestSortAPIExample</name>
-	<description>An example plugin to show how to use the ChestSortAPI</description>
+	<artifactId>InvUnloadPlus</artifactId>
+	<version>0.0.3-SNAPSHOT</version>
+	<name>InvUnloadPlus</name>
+	<description>Automatically puts your stuff into the right chests!</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,10 +30,19 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.1.0</version>
 				<configuration>
-					<finalName>ChestSortAPIExample</finalName>
+					<finalName>InvUnloadPlus</finalName>
 				</configuration>
 			</plugin>
 		</plugins>
+		
+				<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>3.4.1</version>
+			</extension>
+		</extensions>
+		
 	</build>
 
 	<repositories>
@@ -60,4 +69,12 @@
 			<version>8.9</version>
 		</dependency>
 	</dependencies>
+	
+		<distributionManagement>
+		<repository>
+			<id>jeff-ftp</id>
+			<url>ftps://ftp.jeff-media.de/maven2</url>
+		</repository>
+	</distributionManagement>
+	
 </project>

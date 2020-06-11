@@ -1,9 +1,23 @@
-main: de.jeff_media.ChestSortAPIExample.ExamplePlugin
-name: ChestSortAPIExample
-version: 0.0.1-SNAPSHOT
+main: de.jeff_media.InvUnload.Main
+name: InvUnload
+version: 0.0.3-SNAPSHOT
 api-version: 1.13
-description: An example plugin to show how to use the ChestSortAPI
+description: Unloads inventory in nearby matching chests
 author: mfnalex
-website: https://www.chestsort.de
+prefix: InvUnload
 database: false
-softdepend: [ChestSort]
+softdepend: [WorldGuard, ChestSort]
+commands:
+  unload:
+    description: Unloads inventory in nearby matching chests
+    usage: /<command> [radius]
+    permission: invunload.unload
+  dump:
+    description: Unloads inventory in nearby chests
+    usage: /<command> [radius]
+    permission: invunload.dump
+permissions:
+  invunload.unload:
+    description: Allows usage of command /unload
+  invunload.dump:
+    description: Allows usage of command /dump
