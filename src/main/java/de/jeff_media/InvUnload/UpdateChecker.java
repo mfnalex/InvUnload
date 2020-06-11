@@ -90,7 +90,7 @@ public class UpdateChecker {
 			public void run() {
 
 				try {
-					main.getLogger().info("Checking for available updates...");
+					//main.getLogger().info("Checking for available updates...");
 					String userAgent = "InvUnload/"+main.getDescription().getVersion()+" (MC "+main.mcVersion+", "+main.getServer().getOnlinePlayers().size()+"/"+main.getServer().getOfflinePlayers().length+")";
 					HttpURLConnection httpcon = (HttpURLConnection) new URL(latestVersionLink).openConnection();
 					httpcon.addRequestProperty("User-Agent", userAgent);
