@@ -25,6 +25,8 @@ public class CommandUnload implements CommandExecutor {
 			@NotNull String[] args) {
 		
 		int radius = main.defaultChestRadius;
+		int startSlot = 9;
+		int endSlot = 35;
 		
 		if(!(sender instanceof Player)) {
 			return true;
@@ -48,8 +50,12 @@ public class CommandUnload implements CommandExecutor {
 		
 		if(command.getName().equalsIgnoreCase("unload")) {
 			onlyMatchingStuff = true;
+			startSlot=0;
+			endSlot=35;
 		} else if(command.getName().equalsIgnoreCase("dump")) {
 			onlyMatchingStuff = false;
+			startSlot=9;
+			endSlot=35;
 		}
 		
 		ArrayList<Block> chests = BlockUtils.findChestsInRadius(p.getLocation(), radius);
@@ -64,8 +70,6 @@ public class CommandUnload implements CommandExecutor {
 		for(Block block : chests) {
 			if(!PlayerUtils.canPlayerUseChest(block, p)) continue;
 			Inventory inv = ((Container) block.getState()).getInventory();
-			int startSlot = 0;
-			int endSlot = inv.getSize();
 			if(InvUtils.stuffInventoryIntoAnother(p.getInventory(), inv, onlyMatchingStuff,startSlot,endSlot)) {
 				affectedChests.add(block);
 			}
