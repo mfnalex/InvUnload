@@ -1,5 +1,6 @@
 package de.jeff_media.InvUnload;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
@@ -26,6 +27,10 @@ public class Main extends JavaPlugin implements Listener {
 
 	public boolean usingMatchingConfig = true;
 
+	protected UpdateChecker updateChecker;
+
+	private int updateCheckInterval = 86400;
+
 	public void onEnable() {
 
 		String tmpVersion = getServer().getClass().getPackage().getName();
@@ -36,6 +41,7 @@ public class Main extends JavaPlugin implements Listener {
 		createConfig();
 
 		messages = new Messages(this);
+		updateChecker = new UpdateChecker(this);
 
 		ChestSortPlugin chestSort = (ChestSortPlugin) getServer().getPluginManager().getPlugin("ChestSort");
 		if (chestSort == null || !(chestSort instanceof ChestSortPlugin)) {
@@ -64,7 +70,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		setDefaultConfigValues();
 
-		
+		initUpdateChecker();
 		
 
 	}
@@ -91,6 +97,24 @@ public class Main extends JavaPlugin implements Listener {
 		CommandUnload commandUnload = new CommandUnload(this);
 		getCommand("unload").setExecutor(commandUnload);
 		getCommand("dump").setExecutor(commandUnload);
+	}
+	
+	private void initUpdateChecker() {
+		// Check for updates (async, of course)
+		// When set to true, we check for updates right now, and every X hours (see
+		// updateCheckInterval)
+		if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("true")) {
+			Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+				@Override
+				public void run() {
+					updateChecker.checkForUpdate();
+				}
+			}, 0L, updateCheckInterval  * 20);
+
+		} // When set to on-startup, we check right now (delay 0)
+		else if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("on-startup")) {
+			updateChecker.checkForUpdate();
+		}
 	}
 
 }
