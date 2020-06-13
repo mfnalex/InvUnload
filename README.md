@@ -16,4 +16,4 @@ When you enter /unload, it checks if there are chests nearby. For each chest, th
 When you enter /dump, it will put all items from the player's inventory (except hotbar) into nearby chests. If possible, they will be put into chests already containing matching items.
 ## Build
 
-You will need to maven to build InvUnload. Just clone this repo and run ``mvn install``
+You will need maven to build InvUnload. Just clone this repo and run ``mvn install``
