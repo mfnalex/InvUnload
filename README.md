@@ -6,7 +6,7 @@ You don't have time to open every chest in your storage room to tidy up your inv
 Fear no more! You have no more excuses for having chests full of random garbage!
 
 <p align="center">
-  <img src="https://api.jeff-media.de/invunload/spigotmc/invunload128.png"/>
+  <img src="https://api.jeff-media.de/invunload/spigotmc/img/invunload128.png"/>
 </p>
 
 InvUnload does two brilliant things:
