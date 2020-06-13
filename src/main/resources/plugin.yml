@@ -11,13 +11,11 @@ commands:
   unload:
     description: Unloads inventory in nearby matching chests
     usage: /<command> [radius]
-    permission: invunload.unload
+    permission: invunload.use
   dump:
     description: Unloads inventory in nearby chests
     usage: /<command> [radius]
-    permission: invunload.dump
+    permission: invunload.use
 permissions:
   invunload.unload:
-    description: Allows usage of command /unload
-  invunload.dump:
-    description: Allows usage of command /dump
+    description: Allows usage of command /unload and /dump
