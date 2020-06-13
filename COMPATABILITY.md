@@ -1,3 +1,3 @@
-This version is compatible with all Spigot versions > 1.12.0
+This version is compatible with all Spigot versions >= 1.12.1
 
-Prior to 1.12, Container was not implemented
+Prior to 1.12.1, Container was not implemented
