@@ -19,6 +19,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 public class BlockUtils {
+	
+	Main main;
+	
+	BlockUtils(Main main) {
+		this.main=main;
+	}
+	
 	static ArrayList<Block> findBlocksInRadius(Location loc, int radius) {
 		ArrayList<Block> blocks = new ArrayList<Block>();
 		for (int x = loc.getBlockX()-radius; x<= loc.getBlockX()+radius;x++) {
@@ -42,7 +49,7 @@ public class BlockUtils {
 		return chests;
 	}
 	
-	static boolean isChestLikeBlock(Block block) {
+	public static boolean isChestLikeBlock(Block block) {
 		if(!(block.getState() instanceof Container)) return false;
 		switch(block.getType()) {
 		case BLAST_FURNACE:
@@ -78,16 +85,28 @@ public class BlockUtils {
 		});
 	}
 	
-	static void chestAnimation(Block block, Player player) {
-		final int particleCount = 100;
-		final Particle particle = Particle.SPELL_WITCH;
+	void chestAnimation(Block block, Player player) {
 		final Location loc = getCenterOfBlock(block);
 		
-		final Sound sound = Sound.BLOCK_CHEST_CLOSE;
+		if(main.getConfig().getBoolean("spawn-particles")) {
+			if(main.getConfig().getBoolean("error-particles")) {
+				main.getLogger().warning("Cannot spawn particles, because particle type \""+main.getConfig().getString("particle-type")+"\" does not exist! Please check your config.yml");
+			} else {
+				final int particleCount = main.getConfig().getInt("particle-count");
+				final Particle particle = Particle.valueOf(main.getConfig().getString("particle-type").toUpperCase());
+				block.getWorld().spawnParticle(particle, loc, particleCount, 0.0, 0.0, 0.0);
+			}
+		}
 		
-		block.getWorld().spawnParticle(particle, loc, particleCount, 0.0, 0.0, 0.0);
-		player.playSound(loc, sound, 1, 1);
-		
+		if(main.getConfig().getBoolean("play-sound")) {
+			if(main.getConfig().getBoolean("error-sound")) {
+				main.getLogger().warning("Cannot play sound, because sound effect \""+main.getConfig().getString("sound-effect")+"\" does not exist! Please check your config.yml");
+			}
+			else {
+				final Sound sound = Sound.valueOf(main.getConfig().getString("sound-effect").toUpperCase());
+				player.playSound(loc, sound, 1, 1);
+			}
+		}
 	}
 	
 	static Location getCenterOfBlock(Block block) {

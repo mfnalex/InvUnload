@@ -7,20 +7,22 @@ import org.jetbrains.annotations.Nullable;
 
 import de.jeff_media.ChestSort.ChestSortAPI;
 import de.jeff_media.ChestSort.ChestSortPlugin;
+import de.jeff_media.InvUnload.Hooks.ChestSortHook;
 
 public class Main extends JavaPlugin implements Listener {
 
 	@Nullable
-	ChestSortAPI chestSortAPI;
+	public ChestSortAPI chestSortAPI;
 
 	String mcVersion; // 1.13.2 = 1_13_R2
 						// 1.14.4 = 1_14_R1
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 5;
+	private int currentConfigVersion = 9;
 
 	protected Messages messages;
+	protected BlockUtils blockUtils;
 
 	protected int defaultChestRadius = 10;
 	protected int maxChestRadius = 20;
@@ -28,6 +30,7 @@ public class Main extends JavaPlugin implements Listener {
 	public boolean usingMatchingConfig = true;
 
 	protected UpdateChecker updateChecker;
+	protected ChestSortHook chestSortHook;
 
 	private int updateCheckInterval = 86400;
 
@@ -42,13 +45,18 @@ public class Main extends JavaPlugin implements Listener {
 
 		messages = new Messages(this);
 		updateChecker = new UpdateChecker(this);
+		blockUtils = new BlockUtils(this);
 
 		ChestSortPlugin chestSort = (ChestSortPlugin) getServer().getPluginManager().getPlugin("ChestSort");
-		if (chestSort == null || !(chestSort instanceof ChestSortPlugin)) {
-			getLogger().warning("Warning: ChestSort is not installed.");
+		if (getConfig().getBoolean("use-chestsort") == false ||chestSort == null || !(chestSort instanceof ChestSortPlugin)) {
+			//getLogger().warning("Warning: ChestSort is not installed.");
 		} else {
 			chestSortAPI = chestSort.getAPI();
+			getLogger().info("Succesfully hooked into ChestSort");
 		}
+		
+		chestSortHook = new ChestSortHook(this);
+		
 		registerCommands();
 		initUpdateChecker();
 	}
@@ -86,7 +94,22 @@ public class Main extends JavaPlugin implements Listener {
 		
 		getConfig().addDefault("check-interval", 4);
 		updateCheckInterval = (int) (getConfig().getDouble("check-interval")*60*60);
-		System.out.println("UpdateCheckInterval: "+updateCheckInterval);
+		
+		getConfig().addDefault("use-chestsort", true);
+		
+		getConfig().addDefault("spawn-particles", true); 
+		getConfig().addDefault("particle-type", "SPELL_WITCH");
+		getConfig().addDefault("particle-count", 100);
+		
+		if(!EnumUtils.particleExists(getConfig().getString("particle-type"))) {
+			getLogger().warning("Specified particle type \"" + getConfig().getString("particle-type") + "\" does not exist! Please check your config.yml");
+			getConfig().set("error-particles",true);
+		}
+		if(!EnumUtils.soundExists(getConfig().getString("sound-effect"))) {
+			getLogger().warning("Specified sound effect \"" + getConfig().getString("sound-effect") + "\" does not exist! Please check your config.yml");
+			getConfig().set("error-sound", true);
+		}
+	
 	}
 
 	private void showOldConfigWarning() {

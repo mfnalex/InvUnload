@@ -88,9 +88,9 @@ public class CommandUnload implements CommandExecutor {
 		} 
 			
 		for(Block block : affectedChests) {
-			BlockUtils.chestAnimation(block,p);
-			if(main.chestSortAPI != null) {
-				// TODO: Sort chest
+			main.blockUtils.chestAnimation(block,p);
+			if(main.chestSortHook.shouldSort(p)) {
+				main.chestSortHook.sort(block);
 			}
 		}
 		

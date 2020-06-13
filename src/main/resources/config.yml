@@ -5,8 +5,8 @@
 #
 # InvUnload allows players to use the commands /unload and /dump.
 #
-# /unload will check if nearby chests contain items you are carrying.
-# If yes, those will be put into the chest. 
+# /unload will check if nearby chests contain items you are carrying
+# outside of your hotbar. If yes, those will be put into the chest. 
 #
 # /dump will dump all your inventory contents except your hotbar into
 # nearby chests, regardless of what is inside.
@@ -19,6 +19,34 @@ max-chest-radius: 20
 # The default radius is used when players use /unload without specifying
 # a radius
 default-chest-radius: 10
+
+#########################
+##### Animations   ######
+#########################
+
+# InvUnload can spawn particles and play sounds at each affected chest
+# so that you can see where your items went.
+
+# List of particle types: https://minecraft.gamepedia.com/Particles#Types_of_particles
+# You must check that the specified particle type is valid in your specific Minecraft version!
+spawn-particles: true
+particle-type: SPELL_WITCH
+particle-count: 100
+
+# List of sound effects: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+# You must check that the specified sound effect is valid in your specific Minecraft version!
+play-sound: true
+sound-effect: ENTITY_PLAYER_LEVELUP
+
+#########################
+##### ChestSort    ######
+#########################
+
+# When enabled, InvUnload will automatically use ChestSort
+# to sort every chest that has been affected by unloading/dumping
+# if the player has automatic sorting enabled.
+# This will only work if ChestSort (www.chestsort.de) is installed.
+use-chestsort: true
 
 ##########################
 ##### Update Checker #####
@@ -53,41 +81,55 @@ check-interval: 4
 # &l Bold         &o Italic
 # &n Underline    &r Reset
 
+# By default, every message sent by InvUnload has a [InvUnload] prefix.
+# You can change this if you want or set it to an empty string to disable it.
+message-prefix: "&6[InvUnload] &r"
+
 ##### English
-message-could-not-unload: "&7There was nothing to unload. Maybe you have no chests for the remaining items?"
+message-could-not-unload: "&7Nothing to unload: There are no chests for the remaining items."
 message-radius-too-high: "&cError:&7 The radius cannot be higher than %d blocks."
-message-no-chests-nearby: "&7There are no chests nearby. Adjust the radius or walk closer to your chests."
+message-no-chests-nearby: "&7Nothing to unload: There are no chests nearby. Adjust the radius or walk closer to your chests."
 message-error-not-a-number: "&cError:&7 '%s' is not a valid number."
+message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 
 ##### Chinese (Simplified)
+##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7没有东西可以卸下，也许你没有给其余物品的箱子？"
 #message-radius-too-high: "&c错误:&7 范围不得高于 %d 个方块。"
 #message-no-chests-nearby: "&7附近没有箱子，调整范围或靠近箱子一点。"
 #message-error-not-a-number: "&c错误:&7 '%s' 不是一个有效的数字。"
+#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 
 ##### Chinese (Traditional)
+##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7沒有東西可以卸下，也許你沒有給其餘物品的箱子？"
 #message-radius-too-high: "&c錯誤:&7 範圍不得高於 %d 個方塊。"
 #message-no-chests-nearby: "&7附近沒有箱子，調整範圍或靠近箱子一點。"
 #message-error-not-a-number: "&c錯誤:&7 '%s' 不是一個有效的數字。"
+#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 
 ##### French
+##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7Il n'y avait rien à décharger. Peut-être qu'il n'y a pas de coffres pour les objets restants?"
 #message-radius-too-high: "&cErreur:&7 Le rayon ne peut pas être plus grand que &d blocs."
 #message-no-chests-nearby: "&7Il n'y a aucun coffres à proximité. Ajustez le rayon ou approchez-vous de vos coffres."
 #message-error-not-a-number: "&cErreur:&7 '%s' n'est pas un nombre valide."
+#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 
 ##### German
-#message-could-not-unload: "&7Konnte nichts abladen. Hast du keine Kisten für die verbleibenden Sachen?"
+#message-could-not-unload: "&7Konnte nichts abladen: Hier sind keine Kisten für die verbleibenden Items."
 #message-radius-too-high: "&cFehler:&7 Der Radius kann nicht größer als %d Blöcke sein."
-#message-no-chests-nearby: "&7Es sind keine Kisten in der Nähe. Vergrößer den Radius oder gehe näher zu deinen Kisten."
+#message-no-chests-nearby: "&7Konnte nichts abladen: Keine Kisten in Reichweite. Ändere den Radius oder näher dich deinen Kisten."
 #message-error-not-a-number: "&cFehler:&7 '%s' ist keine gültige Zahl."
+#message-inventory-empty: "&7Konnte nichts abladen: Dein Inventar ist bereits leer."
 
 ##### Japanese
+##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7荷物が下ろせません。目印になるアイテムがチェストにありますか？"
 #message-radius-too-high: "&cError:&7 半径は %d個のブロックより大きくすることは出来ません。"
 #message-no-chests-nearby: "&7近くにチェストがありません。半径を調整するかチェストに近づいて下さい。"
 #message-error-not-a-number: "&cError:&7 '%s'は有効な数字ではありません。"
+#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 
 #########################
 #####     Done!     #####
@@ -97,4 +139,4 @@ message-error-not-a-number: "&cError:&7 '%s' is not a valid number."
 debug: false
 
 # please do not change the following line manually!
-config-version: 5
+config-version: 9

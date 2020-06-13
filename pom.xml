@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnloadPlus</artifactId>
-	<version>3.0-SNAPSHOT2</version>
+	<version>3.0-SNAPSHOT6</version>
 	<name>InvUnloadPlus</name>
 	<description>Automatically puts your stuff into the right chests!</description>
 
@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>de.jeff_media</groupId>
 			<artifactId>ChestSort</artifactId>
-			<version>8.9</version>
+			<version>8.10.1</version>
 		</dependency>
 	</dependencies>
 	
