@@ -1,5 +1,10 @@
 # Changelog
-## 3.0-SNAPSHOT6
+## 3.0.1
+- Fixed: /unload now properly ignores the hotbar
+- Fixed: Prevents Minepacks bagpacks from being put into chests
+- Added (almost complete) Spanish translation
+
+## 3.0.0
 - Rewrote plugin from scratch. Source code is now muuuuch cleaner and faster
 - Unload/dump now works with chests, double chests, shulkerboxes and barrels
 - InvUnload should now work with every protection plugin like WorldGuard, GriefPrevention, etc. by calling an InventoryOpenEvent. InvUnload will only put items into chests if that event is not cancelled by other plugins.

@@ -47,15 +47,12 @@ public class CommandUnload implements CommandExecutor {
 		}
 		
 		boolean onlyMatchingStuff = false;
-		
+		startSlot=9;
+		endSlot=35;
 		if(command.getName().equalsIgnoreCase("unload")) {
 			onlyMatchingStuff = true;
-			startSlot=0;
-			endSlot=35;
 		} else if(command.getName().equalsIgnoreCase("dump")) {
 			onlyMatchingStuff = false;
-			startSlot=9;
-			endSlot=35;
 		}
 		
 		ArrayList<Block> chests = BlockUtils.findChestsInRadius(p.getLocation(), radius);

@@ -11,6 +11,7 @@ public class InvUtils {
 		int start = countInventoryContents(source);
 		for(int i = startSlot; i<=endSlot; i++) {
 			ItemStack item = source.getItem(i);
+			if(MinepacksHook.isMinepacksBackpack(item)) continue;
 			if(item == null) continue;
 			source.clear(i);
 			if(!onlyMatchingStuff || BlockUtils.doesChestContain(destination,item.getType())) {
