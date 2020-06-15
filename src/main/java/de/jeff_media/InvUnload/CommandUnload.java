@@ -87,15 +87,19 @@ public class CommandUnload implements CommandExecutor {
 			return true;
 		} 
 		
-		// Sort
+		main.visualizer.save(p, affectedChests);
+		
 		for(Block block : affectedChests) {
-			main.blockUtils.chestAnimation(block,p);
+			main.visualizer.chestAnimation(block,p);
+			if(main.getConfig().getBoolean("laser-animation")) {
+				main.visualizer.playLaser(affectedChests, p, main.getConfig().getInt("laser-default-duration"));
+			}
 			if(main.chestSortHook.shouldSort(p)) {
 				main.chestSortHook.sort(block);
 			}
 		}
 		
-		main.visualizer.save(p, affectedChests);
+		
 		
 		
 		return true;

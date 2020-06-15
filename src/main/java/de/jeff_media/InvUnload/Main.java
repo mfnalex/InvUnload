@@ -24,7 +24,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 9;
+	private int currentConfigVersion = 10;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -107,6 +107,12 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("spawn-particles", true); 
 		getConfig().addDefault("particle-type", "SPELL_WITCH");
 		getConfig().addDefault("particle-count", 100);
+		
+		getConfig().addDefault("laser-animation", true);
+		getConfig().addDefault("laser-default-duration", 5);
+		getConfig().addDefault("laser-max-distance", 30);
+		getConfig().addDefault("laser-max-distance", 50);
+		getConfig().addDefault("laser-moves-with-player", false);
 		
 		if(!EnumUtils.particleExists(getConfig().getString("particle-type"))) {
 			getLogger().warning("Specified particle type \"" + getConfig().getString("particle-type") + "\" does not exist! Please check your config.yml");
