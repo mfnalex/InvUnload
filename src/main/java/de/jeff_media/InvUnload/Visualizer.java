@@ -41,9 +41,12 @@ public class Visualizer {
 			short timer=0;
 			@Override
 			public void run() {
-				timer++;
+				
 				if(activeLasers==null) return;
 				if(activeLasers.size()==0) return;
+				
+				
+				timer++;
 				
 				for(Entry<UUID,ArrayList<Laser>> entry : activeLasers.entrySet()) {
 					Player p = main.getServer().getPlayer(entry.getKey());
@@ -55,6 +58,10 @@ public class Visualizer {
 					//ArrayList<Block> lastUnload = lastUnloads.get(entry.getKey());
 					for(Laser laser : entry.getValue()) {
 						try {
+							if(!laser.isStarted()) {
+								stopLaser(p.getUniqueId());
+								break;
+							}
 							laser.moveStart(p.getLocation().add(0, 0.75, 0));
 							if(timer>50) {
 								laser.callColorChange();
