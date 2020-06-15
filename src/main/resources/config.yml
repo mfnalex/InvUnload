@@ -38,6 +38,24 @@ particle-count: 100
 play-sound: true
 sound-effect: ENTITY_PLAYER_LEVELUP
 
+# ChestSort can draw a guardian-like laser between the location from where the player used
+# /unload or /dump and every affected chest for a specific amount of seconds. You can also
+# run /unloadinfo later to see the laser again if you want to know where your items went.
+laser-animation: true
+laser-default-duration: 5
+
+# When you use /unloadinfo to enable the laser again, you can specify how many seconds
+# it should be displayed, but not more than what is defined below.
+laser-max-duration: 30
+
+# Disable the laser once the player is this many blocks away
+laser-max-distance: 50
+
+### EXPERIMENTAL ###
+# You can have the laser move with the player, but this is experimental and I reccomend
+# you leave this off for now or only use it on a test server.
+laser-moves-with-player: false
+
 #########################
 ##### ChestSort    ######
 #########################
@@ -146,4 +164,4 @@ message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 debug: false
 
 # please do not change the following line manually!
-config-version: 9
+config-version: 10

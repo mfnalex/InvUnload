@@ -85,30 +85,6 @@ public class BlockUtils {
 		});
 	}
 	
-	void chestAnimation(Block block, Player player) {
-		final Location loc = getCenterOfBlock(block);
-		
-		if(main.getConfig().getBoolean("spawn-particles")) {
-			if(main.getConfig().getBoolean("error-particles")) {
-				main.getLogger().warning("Cannot spawn particles, because particle type \""+main.getConfig().getString("particle-type")+"\" does not exist! Please check your config.yml");
-			} else {
-				final int particleCount = main.getConfig().getInt("particle-count");
-				final Particle particle = Particle.valueOf(main.getConfig().getString("particle-type").toUpperCase());
-				block.getWorld().spawnParticle(particle, loc, particleCount, 0.0, 0.0, 0.0);
-			}
-		}
-		
-		if(main.getConfig().getBoolean("play-sound")) {
-			if(main.getConfig().getBoolean("error-sound")) {
-				main.getLogger().warning("Cannot play sound, because sound effect \""+main.getConfig().getString("sound-effect")+"\" does not exist! Please check your config.yml");
-			}
-			else {
-				final Sound sound = Sound.valueOf(main.getConfig().getString("sound-effect").toUpperCase());
-				player.playSound(loc, sound, 1, 1);
-			}
-		}
-	}
-	
 	static Location getCenterOfBlock(Block block) {
 		Location loc = block.getLocation();
 		if(block.getState() instanceof Chest
