@@ -2,26 +2,40 @@ package de.jeff_media.InvUnload;
 
 import java.util.ArrayList;
 
+import org.bukkit.block.Container;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
+
 public class InvUtils {
 	// TODO: When using /dump, first use /unload and then /dump
-	static boolean stuffInventoryIntoAnother(Inventory source, Inventory destination, boolean onlyMatchingStuff, int startSlot, int endSlot) {
+	static boolean stuffInventoryIntoAnother(Player p, Inventory destination, boolean onlyMatchingStuff, int startSlot, int endSlot) {
+		
+		Inventory source = p.getInventory();
+		
+		UnloadSummary summary = new UnloadSummary((Player) source.getHolder());
+		Container holder = (Container) destination.getHolder();
+		
 		int start = countInventoryContents(source);
 		for(int i = startSlot; i<=endSlot; i++) {
 			ItemStack item = source.getItem(i);
 			if(MinepacksHook.isMinepacksBackpack(item)) continue;
 			if(item == null) continue;
 			source.clear(i);
+			int amount = item.getAmount();
 			if(!onlyMatchingStuff || BlockUtils.doesChestContain(destination,item.getType())) {
 				for(ItemStack leftover : destination.addItem(item).values()) {
+					amount = amount - leftover.getAmount();			
 					source.setItem(i,leftover);
 				}	
+			summary.unloaded(holder.getLocation(), item.getType(), amount);
 			} else {
 				source.setItem(i,item);
 			}
 		}
+		summary.print(PrintRecipient.PLAYER,p);
 		return start != countInventoryContents(source);
 	}
 	

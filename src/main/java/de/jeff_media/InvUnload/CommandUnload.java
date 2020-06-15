@@ -71,12 +71,12 @@ public class CommandUnload implements CommandExecutor {
 			if(!PlayerUtils.canPlayerUseChest(block, p)) continue;
 			Inventory inv = ((Container) block.getState()).getInventory();
 			if(onlyMatchingStuff) {
-				if(InvUtils.stuffInventoryIntoAnother(p.getInventory(), inv, onlyMatchingStuff,startSlot,endSlot)) {
+				if(InvUtils.stuffInventoryIntoAnother(p, inv, onlyMatchingStuff,startSlot,endSlot)) {
 					affectedChests.add(block);
 				}
 			} else {
-				if(InvUtils.stuffInventoryIntoAnother(p.getInventory(), inv, false,startSlot,endSlot)
-						|| InvUtils.stuffInventoryIntoAnother(p.getInventory(), inv, true,startSlot,endSlot)) {
+				if(InvUtils.stuffInventoryIntoAnother(p, inv, false,startSlot,endSlot)
+						|| InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot)) {
 					affectedChests.add(block);
 				}
 			}
