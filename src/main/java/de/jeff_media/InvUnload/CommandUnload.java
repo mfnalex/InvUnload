@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.command.Command;
@@ -94,21 +95,9 @@ public class CommandUnload implements CommandExecutor {
 			}
 		}
 		
-		// Visualize
-		int task = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
-		    public void run() {
-		    	Visualizer.play(affectedChests, p);
-		    }
-		}, 0, 2);
-		
-		new BukkitRunnable() {
-			public void run() {
-				Bukkit.getServer().getScheduler().cancelTask(task);
-			}
-		}.runTaskLater(main, 100);
+		main.visualizer.save(p, affectedChests);
 		
 		
 		return true;
 	}
-
 }
