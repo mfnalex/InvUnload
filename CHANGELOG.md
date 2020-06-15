@@ -1,4 +1,12 @@
 # Changelog
+## 3.1.0
+Because some people wondered in which chests their stuff went into, I have added this:
+- Added a "laser" beam that will point to the affected chests for a few second.
+- The laser beam can be disabled in the config.yml and the duration can be set.
+- You can view the laser later again by running /unloadinfo or /dumpinfo.
+- You can also overwrite the default laser default duration with /unloadinfo [duration] or /dumpinfo [duration]
+- You can also set laser-moves-with-player to true to have the lasers move when the player moves
+
 ## 3.0.1
 - Fixed: /unload now properly ignores the hotbar
 - Fixed: Prevents Minepacks bagpacks from being put into chests
