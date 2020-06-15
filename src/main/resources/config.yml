@@ -51,9 +51,8 @@ laser-max-duration: 30
 # Disable the laser once the player is this many blocks away
 laser-max-distance: 50
 
-### EXPERIMENTAL ###
-# You can have the laser move with the player, but this is experimental and I reccomend
-# you leave this off for now or only use it on a test server.
+# You can have the laser move with the player to get even better information on
+# where your stuff went to.
 laser-moves-with-player: false
 
 #########################
