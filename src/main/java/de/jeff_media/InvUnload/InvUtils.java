@@ -15,7 +15,7 @@ public class InvUtils {
 		
 		Inventory source = p.getInventory();
 		
-		UnloadSummary summary = new UnloadSummary((Player) source.getHolder());
+		UnloadSummary summary = new UnloadSummary();
 		Container holder = (Container) destination.getHolder();
 		
 		int start = countInventoryContents(source);

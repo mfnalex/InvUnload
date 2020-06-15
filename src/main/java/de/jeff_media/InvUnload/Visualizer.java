@@ -14,13 +14,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
+
 public class Visualizer {
 	
 	private Main main;
 	HashMap<UUID,ArrayList<Block>> lastUnloads;
 	HashMap<UUID,Location> lastUnloadPositions;
-	HashMap<UUID,Integer> activeVisualizations;
+	//HashMap<UUID,Integer> activeVisualizations;
 	HashMap<UUID,ArrayList<Laser>> activeLasers;
+	HashMap<UUID,UnloadSummary> unloadSummaries;
 
 	//ArrayList<Location> destinations;
 	//Player p;
@@ -34,6 +37,7 @@ public class Visualizer {
 		lastUnloadPositions = new HashMap<UUID,Location>();
 		//activeVisualizations = new HashMap<UUID,Integer>();
 		activeLasers = new HashMap<UUID,ArrayList<Laser>>();
+		unloadSummaries = new HashMap<UUID,UnloadSummary>();
 		
 		if(main.getConfig().getBoolean("laser-moves-with-player")) {
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
@@ -79,7 +83,12 @@ public class Visualizer {
 			
 		}, 0, 2);
 		}
-		
+	}
+	
+	void printSummaryToPlayer(Player p) {
+		UnloadSummary summary = unloadSummaries.get(p.getUniqueId());
+		if(summary==null) return;
+		summary.print(PrintRecipient.PLAYER, p);
 		
 	}
 	

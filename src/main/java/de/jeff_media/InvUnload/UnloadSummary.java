@@ -13,11 +13,9 @@ import org.bukkit.inventory.ItemStack;
 
 public class UnloadSummary {
 	
-	Player p;
 	HashMap<Location,EnumMap<Material,Integer>> unloads;
 	
-	UnloadSummary(Player p) {
-		this.p=p;
+	UnloadSummary() {
 		unloads = new HashMap<Location,EnumMap<Material,Integer>>();
 	}
 	
@@ -39,7 +37,7 @@ public class UnloadSummary {
 		int y = loc.getBlockY();
 		int z = loc.getBlockZ();
 		Material type = loc.getBlock().getType();
-		return String.format(ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "%s @ §aX: §f%d §aY: §f%d §aZ: §f%d", type.name(),x,y,z);
+		return String.format(ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "%s §f@ §aX: §f%d §aY: §f%d §aZ: §f%d", type.name(),x,y,z);
 	}
 	
 	String amount2str(int amount) {
@@ -47,6 +45,8 @@ public class UnloadSummary {
 	}
 	
 	void print(PrintRecipient recipient, Player p) {
+		if(unloads.size()>0) printTo(recipient,p," ");
+		
 		for(Entry<Location,EnumMap<Material,Integer>> entry : unloads.entrySet()) {
 			printTo(recipient,p,loc2str(entry.getKey()));
 			EnumMap<Material,Integer> map = entry.getValue();
@@ -54,6 +54,7 @@ public class UnloadSummary {
 				printTo(recipient,p,
 						ChatColor.DARK_GRAY + amount2str(entry2.getValue()) + ChatColor.GRAY + entry2.getKey().name());
 			}
+			printTo(recipient,p," ");
 		}
 	}
 	
