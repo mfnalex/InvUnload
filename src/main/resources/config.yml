@@ -132,12 +132,11 @@ message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 #message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 
 ##### Spanish
-##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
-#message-could-not-unload: "&7No hay nada para vaciar. ¿talvez no tienes espacio en los cofres?"
-#message-radius-too-high: "&cError:&7El radio no puede ser mas alto de %d bloques."
-#message-no-chests-nearby: "&7No hay cofres cerca. Ajusta el radio o ponte cerca de algun cofre."
-#message-error-not-a-number: "&cError:&7 '%s' este no es un numero valido."
-#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
+#message-could-not-unload: "&7Nada que descargar: No hay cofres para los artículos restantes."
+#message-radius-too-high: "&cError:&7 El radio no puede ser mayor a %d bloques."
+#message-no-chests-nearby: "&7Nada que descargar: No hay cofres cerca. Ajusta el radio o ponte más cerca de tus cofres."
+#message-error-not-a-number: "&cError:&7 '%s no es un número válido."
+#message-inventory-empty: "&7Nada que descargar: Tu inventario ya está vacío."
 
 #########################
 #####     Done!     #####

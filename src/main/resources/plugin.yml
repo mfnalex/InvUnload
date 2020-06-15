@@ -16,6 +16,10 @@ commands:
     description: Unloads inventory in nearby chests
     usage: /<command> [radius]
     permission: invunload.use
+  unloadinfo:
+    description: Shows into which chests your last /unload or /dump went into
+    usage: /<command>
+    permission: invunload.use
 permissions:
   invunload.unload:
     description: Allows usage of command /unload and /dump

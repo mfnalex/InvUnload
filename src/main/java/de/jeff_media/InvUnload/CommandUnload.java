@@ -3,6 +3,8 @@ package de.jeff_media.InvUnload;
 import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.command.Command;
@@ -10,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandUnload implements CommandExecutor {
@@ -83,7 +86,8 @@ public class CommandUnload implements CommandExecutor {
 			p.sendMessage(main.messages.MSG_COULD_NOT_UNLOAD);
 			return true;
 		} 
-			
+		
+		// Sort
 		for(Block block : affectedChests) {
 			main.blockUtils.chestAnimation(block,p);
 			if(main.chestSortHook.shouldSort(p)) {
@@ -91,7 +95,9 @@ public class CommandUnload implements CommandExecutor {
 			}
 		}
 		
+		main.visualizer.save(p, affectedChests);
+		
+		
 		return true;
 	}
-
 }
