@@ -25,3 +25,5 @@ commands:
 permissions:
   invunload.unload:
     description: Allows usage of command /unload and /dump
+  invunload.reload:
+    description: Allows to reload the config using /unload reload

@@ -179,4 +179,4 @@ message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 debug: false
 
 # please do not change the following line manually!
-config-version: 11
+config-version: 12

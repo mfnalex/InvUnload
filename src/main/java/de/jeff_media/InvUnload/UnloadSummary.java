@@ -46,7 +46,7 @@ public class UnloadSummary {
 	}
 	
 	void print(PrintRecipient recipient, Player p) {
-		
+		if(unloads.size()>0) printTo(recipient,p," ");
 		for(Entry<Location,EnumMap<Material,Integer>> entry : unloads.entrySet()) {
 			printTo(recipient,p," ");
 			printTo(recipient,p,loc2str(entry.getKey()));
