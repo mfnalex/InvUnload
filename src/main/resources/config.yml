@@ -94,12 +94,17 @@ laser-moves-with-player: true
 use-chestsort: true
 
 ##### PlotSquared #####
-# When enabled, InvUnload will not affect chests that are in a plot
-# if the player does not own this plot
-plotsquared-forbid-foreign-plots: true
+# When enabled, InvUnload will check if you are using PlotSquared.
+# Players will then only be able to unload into chests that are
+# in their own plots and in plots that match the settings below
+use-plotsquared: true
 
-# When enabled, InvUnload will not affect chests that don't belong to any plot
-plotsquared-forbid-outside-of-plots: true
+# Allows players to unload into chests that are in foreign Plots if
+# the players is a trusted member of that plot
+plotsquared-allow-when-trusted: true
+
+# Allows players to unload into chests that do not belong to any Plot
+plotsquared-allow-outside-plots: true
 
 ##########################
 ##### Update Checker #####
@@ -199,4 +204,4 @@ message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 debug: false
 
 # please do not change the following line manually!
-config-version: 14
+config-version: 16

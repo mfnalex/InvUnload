@@ -28,7 +28,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 14;
+	private int currentConfigVersion = 16;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -108,8 +108,9 @@ public class Main extends JavaPlugin implements Listener {
 		
 		getConfig().addDefault("use-chestsort", true);
 		
-		getConfig().addDefault("plotsquared-forbid-foreign-plots", true);
-		getConfig().addDefault("plotsquared-forbid-outside-of-plots", true);
+		getConfig().addDefault("use-plotsquared", true);
+		getConfig().addDefault("plotsquared-allow-when-trusted", true);
+		getConfig().addDefault("plotsquared-allow-outside-plots", true);
 		
 		getConfig().addDefault("spawn-particles", true); 
 		getConfig().addDefault("particle-type", "SPELL_WITCH");

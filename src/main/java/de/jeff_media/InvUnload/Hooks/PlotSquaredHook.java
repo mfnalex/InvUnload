@@ -22,6 +22,8 @@ public class PlotSquaredHook {
 	
 	public boolean isBlockedByPlotSquared(Block block, Player player) {
 		
+		if(!main.getConfig().getBoolean("use-plotsquared")) return false;
+		
 		if(!(Bukkit.getPluginManager().getPlugin("PlotSquared") instanceof PlotSquared)) {
 			//System.out.println("PlotSquared not installed");
 			return false;
@@ -31,13 +33,13 @@ public class PlotSquaredHook {
 		
 		Plot plot = BukkitUtil.getLocation(block.getLocation()).getPlotAbs();
 		
-		// Do not allow outside of Plots
-		if(main.getConfig().getBoolean("plotsquared-forbid-outside-of-plots")
+		if(!main.getConfig().getBoolean("plotsquared-allow-outside-plots")
 				&& plot == null) return true;
 		
-		// Do not allow in foreign Plots
-		if(main.getConfig().getBoolean("plotsquared-forbid-foreign-plots")
-				&& !plot.isOwner(player.getUniqueId())) return true;
+		if(plot.getTrusted().contains(player.getUniqueId())
+				&& main.getConfig().getBoolean("plotsquared-allow-when-trusted")) return false;
+		
+		if(!plot.isOwner(player.getUniqueId())) return true;
 		
 		return false;
 	}
