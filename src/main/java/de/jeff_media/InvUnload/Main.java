@@ -1,10 +1,13 @@
 package de.jeff_media.InvUnload;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import de.jeff_media.ChestSort.ChestSortAPI;
 import de.jeff_media.ChestSort.ChestSortPlugin;
 import de.jeff_media.InvUnload.Hooks.ChestSortHook;
+import de.jeff_media.InvUnload.Hooks.PlotSquaredHook;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -24,7 +28,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 12;
+	private int currentConfigVersion = 14;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -36,7 +40,9 @@ public class Main extends JavaPlugin implements Listener {
 
 	protected UpdateChecker updateChecker;
 	protected ChestSortHook chestSortHook;
+	protected PlotSquaredHook plotSquaredHook;
 	protected Visualizer visualizer;
+	protected GroupUtils groupUtils;
 
 	private int updateCheckInterval = 86400;
 
@@ -47,12 +53,7 @@ public class Main extends JavaPlugin implements Listener {
 		tmpVersion = mcVersion.substring(mcVersion.indexOf("_") + 1);
 		mcMinorVersion = Integer.parseInt(tmpVersion.substring(0, tmpVersion.indexOf("_")));
 
-		createConfig();
-
-		messages = new Messages(this);
-		updateChecker = new UpdateChecker(this);
-		blockUtils = new BlockUtils(this);
-		visualizer = new Visualizer(this);
+		reloadCompleteConfig();
 
 		ChestSortPlugin chestSort = (ChestSortPlugin) getServer().getPluginManager().getPlugin("ChestSort");
 		if (getConfig().getBoolean("use-chestsort") == false ||chestSort == null || !(chestSort instanceof ChestSortPlugin)) {
@@ -63,12 +64,15 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		chestSortHook = new ChestSortHook(this);
+		plotSquaredHook = new PlotSquaredHook(this);
 		
 		registerCommands();
 		initUpdateChecker();
 	}
 
 	private void createConfig() {
+		
+		saveResource("groups.example.yml", true);
 
 		// This saves the config.yml included in the .jar file, but it will not
 		// overwrite an existing config.yml
@@ -103,6 +107,9 @@ public class Main extends JavaPlugin implements Listener {
 		updateCheckInterval = (int) (getConfig().getDouble("check-interval")*60*60);
 		
 		getConfig().addDefault("use-chestsort", true);
+		
+		getConfig().addDefault("plotsquared-forbid-foreign-plots", true);
+		getConfig().addDefault("plotsquared-forbid-outside-of-plots", true);
 		
 		getConfig().addDefault("spawn-particles", true); 
 		getConfig().addDefault("particle-type", "SPELL_WITCH");
@@ -162,10 +169,13 @@ public class Main extends JavaPlugin implements Listener {
 
 	public void reloadCompleteConfig() {
 		reloadConfig();
+		createConfig();
 		messages = new Messages(this);
 		updateChecker = new UpdateChecker(this);
 		blockUtils = new BlockUtils(this);
 		visualizer = new Visualizer(this);
+		File groupsFile = new File(this.getDataFolder()+File.separator+"groups.yml");
+		groupUtils = new GroupUtils(this,groupsFile);
 		
 	}
 

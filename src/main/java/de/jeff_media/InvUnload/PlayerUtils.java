@@ -10,16 +10,21 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.InventoryView;
 
+import de.jeff_media.InvUnload.Hooks.PlotSquaredHook;
+
 public class PlayerUtils {
 
 	// Calls PlayerInteractEvent to see if access is blocked by 3rd party plugins
-	static boolean canPlayerUseChest(Block block, Player player) {
+	static boolean canPlayerUseChest(Block block, Player player, Main main) {
 		PlayerInteractEvent event = new PlayerInteractEvent(player,
 				Action.RIGHT_CLICK_BLOCK, null, block, BlockFace.UP);
 		Bukkit.getPluginManager().callEvent(event);
 		if(event.useInteractedBlock() == Event.Result.DENY) {
 			return false;
-		}		
+		}
+		if(main.plotSquaredHook.isBlockedByPlotSquared(block, player)) {
+			return false;
+		}
 		return true;
 	}
 }

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.0.0</version>
+	<version>4.1.0</version>
 	<name>InvUnload</name>
 	<description>Automatically puts your stuff into the right chests!</description>
 
@@ -34,15 +34,15 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		
-				<extensions>
+
+		<extensions>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-ftp</artifactId>
 				<version>3.4.1</version>
 			</extension>
 		</extensions>
-		
+
 	</build>
 
 	<repositories>
@@ -50,14 +50,24 @@
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
+		<!-- WorldEdit -->
+		<repository>
+			<id>enginehub</id>
+			<url>https://maven.enginehub.org/repo/</url>
+		</repository>
+		<!-- PlotSquared -->
+		<repository>
+			<id>IntellectualSites</id>
+			<url>https://mvn.intellectualsites.com/content/groups/public/</url>
+		</repository>
 		<repository>
 			<id>jeff-media-repo</id>
 			<url>https://repo.jeff-media.de/maven2</url>
 		</repository>
 		<repository>
-	<id>pcgf-repo</id>
-	<url>https://repo.pcgamingfreaks.at/repository/maven-everything</url>
-</repository>
+			<id>pcgf-repo</id>
+			<url>https://repo.pcgamingfreaks.at/repository/maven-everything</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -73,17 +83,38 @@
 			<version>8.10.1</version>
 		</dependency>
 		<dependency>
-    <groupId>at.pcgamingfreaks</groupId>
-    <artifactId>Minepacks-API</artifactId>
-    <version>2.3.8</version><!-- Check api-version shield for newest version -->
-</dependency>
+			<groupId>at.pcgamingfreaks</groupId>
+			<artifactId>Minepacks-API</artifactId>
+			<version>2.3.8</version><!-- Check api-version shield for newest version -->
+		</dependency>
+		<!-- PlotSquared API -->
+		<dependency>
+			<groupId>com.plotsquared</groupId>
+			<artifactId>PlotSquared</artifactId>
+			<version>5.11.1</version>
+		</dependency>
+				<dependency>
+			<groupId>com.plotsquared</groupId>
+			<artifactId>PlotSquared-Bukkit</artifactId>
+			<version>5.11.1</version>
+			<exclusions>
+        <exclusion>
+          <groupId>com.destroystokyo.paper</groupId>
+          <artifactId>paper-api</artifactId>
+        </exclusion>
+                <exclusion>
+          <groupId>com.github.MilkBowl</groupId>
+          <artifactId>VaultAPI</artifactId>
+        </exclusion>
+      </exclusions>
+			</dependency>
 	</dependencies>
-	
-		<distributionManagement>
+
+	<distributionManagement>
 		<repository>
 			<id>jeff-ftp</id>
 			<url>ftps://ftp.jeff-media.de/maven2</url>
 		</repository>
 	</distributionManagement>
-	
+
 </project>

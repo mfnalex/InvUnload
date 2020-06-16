@@ -23,10 +23,12 @@
 
 # Players can use /unload <radius> to unload their inventory into matching
 # chests that are within that radius. Also applies to /dump <radius>
+# Can be overridden for custom groups. See groups.yml
 max-chest-radius: 20
 
 # The default radius is used when players use /unload without specifying
 # a radius. Also applies to /dump
+# Can be overridden for custom groups. See groups.yml
 default-chest-radius: 10
 
 #########################
@@ -80,15 +82,24 @@ laser-max-distance: 50
 # where your stuff went to.
 laser-moves-with-player: true
 
-#########################
-##### ChestSort    ######
-#########################
+##############################
+##### 3rd party plugins ######
+##############################
 
+##### ChestSort #####
 # When enabled, InvUnload will automatically use ChestSort
 # to sort every chest that has been affected by unloading/dumping
 # if the player has automatic sorting enabled.
 # This will only work if ChestSort (www.chestsort.de) is installed.
 use-chestsort: true
+
+##### PlotSquared #####
+# When enabled, InvUnload will not affect chests that are in a plot
+# if the player does not own this plot
+plotsquared-forbid-foreign-plots: true
+
+# When enabled, InvUnload will not affect chests that don't belong to any plot
+plotsquared-forbid-outside-of-plots: true
 
 ##########################
 ##### Update Checker #####
@@ -188,4 +199,4 @@ message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 debug: false
 
 # please do not change the following line manually!
-config-version: 12
+config-version: 14

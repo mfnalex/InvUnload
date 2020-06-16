@@ -1,4 +1,8 @@
 # Changelog
+## 4.1.0
+- Added PlotSquared support. Players will only be allowed to unload into their own plot (configurable). Players will also be disallowed to unload outside of their own plots (configurable).
+- Added groups.yml file. You can define custom max-radius and default-radius for different player groups. A player will need the invunload.groups.<groupname> permission. See the groups.example.yml file for syntax.
+
 ## 4.0.0
 Because some people wondered in which chests their stuff went into, I have added this:
 - Added a text summary that shows where all your items went. By default, it is shown every time you use /unload or /dump, but you can also disable it so that it is only shown when using /unloadinfo (or /dumpinfo).

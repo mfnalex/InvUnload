@@ -16,6 +16,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
+import net.md_5.bungee.api.ChatColor;
 
 public class CommandUnload implements CommandExecutor {
 	
@@ -32,21 +33,23 @@ public class CommandUnload implements CommandExecutor {
 		if(args.length>0 && args[0].equalsIgnoreCase("reload")) {
 			if(sender.hasPermission("invunload.reload")) {
 				main.reloadCompleteConfig();
-				sender.sendMessage("Config reloaded.");
+				sender.sendMessage(ChatColor.GREEN+"InvUnload has been reloaded.");
 			} else {
 				sender.sendMessage(main.getCommand("unload").getPermissionMessage());
 			}
 			return true;
 		}
 		
-		int radius = main.defaultChestRadius;
-		int startSlot = 9;
-		int endSlot = 35;
-		
 		if(!(sender instanceof Player)) {
 			return true;
 		}
 		Player p = (Player) sender;
+		
+		int radius = main.groupUtils.getDefaultRadiusPerPlayer(p);
+		int startSlot = 9;
+		int endSlot = 35;
+		boolean onlyMatchingStuff = false;
+
 		
 		if(args.length>0) {
 			if(!StringUtils.isNumeric(args[0])) {
@@ -54,16 +57,14 @@ public class CommandUnload implements CommandExecutor {
 				return true;
 			}
 			int customRadius = Integer.parseInt(args[0]);
-			if(customRadius > main.maxChestRadius) {
-				p.sendMessage(main.messages.MSG_RADIUS_TOO_HIGH);
+			if(customRadius > main.groupUtils.getMaxRadiusPerPlayer(p)) {
+				p.sendMessage(String.format(main.messages.MSG_RADIUS_TOO_HIGH,main.groupUtils.getMaxRadiusPerPlayer(p)));
 				return true;
 			}
 			radius = customRadius;
 		}
 		
-		boolean onlyMatchingStuff = false;
-		startSlot=9;
-		endSlot=35;
+		
 		if(command.getName().equalsIgnoreCase("unload")) {
 			onlyMatchingStuff = true;
 		} else if(command.getName().equalsIgnoreCase("dump")) {
@@ -79,7 +80,7 @@ public class CommandUnload implements CommandExecutor {
 		
 		ArrayList<Block> useableChests = new ArrayList<Block>();
 		for(Block block : chests) {
-			if(PlayerUtils.canPlayerUseChest(block, p)) {
+			if(PlayerUtils.canPlayerUseChest(block, p, main)) {
 				useableChests.add(block);
 			}
 		}

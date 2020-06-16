@@ -15,8 +15,8 @@ public class Messages {
 		MSG_COULD_NOT_UNLOAD = PREFIX + ChatColor.translateAlternateColorCodes('&', plugin.getConfig()
 				.getString("message-could-not-unload", "&7Nothing to unload: There are no chests for the remaining items."));
 		
-		MSG_RADIUS_TOO_HIGH = PREFIX + ChatColor.translateAlternateColorCodes('&', String.format(plugin.getConfig()
-				.getString("message-radius-too-high","&cError:&7 The radius cannot be higher than %d blocks."),plugin.getConfig().getInt("max-chest-radius",20)));
+		MSG_RADIUS_TOO_HIGH = PREFIX + ChatColor.translateAlternateColorCodes('&', plugin.getConfig()
+				.getString("message-radius-too-high","&cError:&7 The radius cannot be higher than %d blocks."));
 		
 		MSG_NOT_A_NUMBER = PREFIX + ChatColor.translateAlternateColorCodes('&', plugin.getConfig()
 				.getString("message-error-not-a-number", "&cError:&7 '%s' is not a valid number."));
