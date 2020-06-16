@@ -38,14 +38,30 @@ particle-count: 100
 play-sound: true
 sound-effect: ENTITY_PLAYER_LEVELUP
 
-# ChestSort can draw a guardian-like laser between the location from where the player used
-# /unload or /dump and every affected chest for a specific amount of seconds. You can also
-# run /unloadinfo later to see the laser again if you want to know where your items went.
-laser-animation: true
-laser-default-duration: 5
+##############################
+##### Laser and Summary ######
+##############################
 
-# When you use /unloadinfo to enable the laser again, you can specify how many seconds
-# it should be displayed, but not more than what is defined below.
+# Some people wonder in which chests their items went. To get an overview, InvUnload
+# can show a laser beam between yourself and the affected chests, and display a text
+# summary in the chat. By default, both is triggered by /unloadinfo (or /dumpinfo).
+# You can also enable both, the laser and the summary, to be displayed everytime you
+# do /unload or /dump.
+
+# When set to true, a text summary is printed in chat everytime the player uses /unload
+# or /dump.
+# When set to false, the summary is only shown when using /unloadinfo (or /dumpinfo).
+always-show-summary: true
+
+# When set to true, InvUnload will draw the laser beam everytime you /unload or /dump
+# When set to false, InvUnload only draws the laser beam on /unloadinfo (or /dumpinfo)
+laser-animation: false
+
+# How many seconds shall the laser be shown?
+# If you use /unloadinfo, you can override this value with /unloadinfo [duration]
+laser-default-duration: 10
+
+# Maximum time in seconds that is allowed when using /unloadingo [duration]
 laser-max-duration: 30
 
 # Disable the laser once the player is this many blocks away
@@ -53,7 +69,7 @@ laser-max-distance: 50
 
 # You can have the laser move with the player to get even better information on
 # where your stuff went to.
-laser-moves-with-player: false
+laser-moves-with-player: true
 
 #########################
 ##### ChestSort    ######
@@ -163,4 +179,4 @@ message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 debug: false
 
 # please do not change the following line manually!
-config-version: 10
+config-version: 11

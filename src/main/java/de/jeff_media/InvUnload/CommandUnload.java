@@ -106,7 +106,9 @@ public class CommandUnload implements CommandExecutor {
 				}
 			}
 		}
-		summary.print(PrintRecipient.PLAYER, p);
+		if(main.getConfig().getBoolean("always-show-summary")) {
+			summary.print(PrintRecipient.PLAYER, p);
+		}
 		
 		if(affectedChests.size()==0) {
 			p.sendMessage(main.messages.MSG_COULD_NOT_UNLOAD);

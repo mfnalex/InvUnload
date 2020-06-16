@@ -108,6 +108,8 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("particle-type", "SPELL_WITCH");
 		getConfig().addDefault("particle-count", 100);
 		
+		getConfig().addDefault("always-show-summary", true);
+		
 		getConfig().addDefault("laser-animation", true);
 		getConfig().addDefault("laser-default-duration", 5);
 		getConfig().addDefault("laser-max-distance", 30);
