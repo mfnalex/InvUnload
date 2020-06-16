@@ -23,7 +23,7 @@ commands:
     permission: invunload.use
     aliases: [dumpinfo]
 permissions:
-  invunload.unload:
-    description: Allows usage of command /unload and /dump
+  invunload.use:
+    description: Allows usage of command /unload, /dump, /unloadinfo and /dumpinfo
   invunload.reload:
     description: Allows to reload the config using /unload reload

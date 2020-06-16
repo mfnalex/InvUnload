@@ -29,8 +29,14 @@ public class CommandUnload implements CommandExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
 			@NotNull String[] args) {
 		
-		if(args.length>0 && args[0].equalsIgnoreCase("reload") && sender.hasPermission("invunload.reload")) {
-			main.reloadCompleteConfig();
+		if(args.length>0 && args[0].equalsIgnoreCase("reload")) {
+			if(sender.hasPermission("invunload.reload")) {
+				main.reloadCompleteConfig();
+				sender.sendMessage("Config reloaded.");
+			} else {
+				sender.sendMessage(main.getCommand("unload").getPermissionMessage());
+			}
+			return true;
 		}
 		
 		int radius = main.defaultChestRadius;

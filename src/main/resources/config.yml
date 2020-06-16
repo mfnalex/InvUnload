@@ -3,21 +3,30 @@
 #########################
 
 #
-# InvUnload allows players to use the commands /unload and /dump.
+# InvUnload has the following commands:
 #
 # /unload will check if nearby chests contain items you are carrying
 # outside of your hotbar. If yes, those will be put into the chest. 
 #
 # /dump will dump all your inventory contents except your hotbar into
-# nearby chests, regardless of what is inside.
+# nearby chests, regardless of what is inside, but it first try
+# to /unload them.
+#
+# /unloadinfo (or /dumpinfo) will show you in which chests your stuff
+# went into when you last used /unload or /dump.
+#
+# Players need the invunload.use permission for all regular commands.
+#
+# If you have the permission invunload.reload, you can reload the
+# config using /unload reload
 #
 
 # Players can use /unload <radius> to unload their inventory into matching
-# chests that are within that radius
+# chests that are within that radius. Also applies to /dump <radius>
 max-chest-radius: 20
 
 # The default radius is used when players use /unload without specifying
-# a radius
+# a radius. Also applies to /dump
 default-chest-radius: 10
 
 #########################
