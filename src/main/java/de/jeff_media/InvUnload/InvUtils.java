@@ -11,12 +11,9 @@ import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
 
 public class InvUtils {
 	// TODO: When using /dump, first use /unload and then /dump
-	static boolean stuffInventoryIntoAnother(Player p, Inventory destination, boolean onlyMatchingStuff, int startSlot, int endSlot) {
-		
+	static boolean stuffInventoryIntoAnother(Player p, Inventory destination, boolean onlyMatchingStuff, int startSlot, int endSlot, UnloadSummary summary) {
+
 		Inventory source = p.getInventory();
-		
-		UnloadSummary summary = new UnloadSummary();
-		Container holder = (Container) destination.getHolder();
 		
 		int start = countInventoryContents(source);
 		for(int i = startSlot; i<=endSlot; i++) {
@@ -25,17 +22,16 @@ public class InvUtils {
 			if(item == null) continue;
 			source.clear(i);
 			int amount = item.getAmount();
-			if(!onlyMatchingStuff || BlockUtils.doesChestContain(destination,item.getType())) {
+			if(onlyMatchingStuff==false || BlockUtils.doesChestContain(destination,item.getType())) {
 				for(ItemStack leftover : destination.addItem(item).values()) {
 					amount = amount - leftover.getAmount();			
 					source.setItem(i,leftover);
 				}	
-			summary.unloaded(holder.getLocation(), item.getType(), amount);
+			summary.protocolUnload(destination.getLocation(), item.getType(), amount);
 			} else {
 				source.setItem(i,item);
 			}
 		}
-		summary.print(PrintRecipient.PLAYER,p);
 		return start != countInventoryContents(source);
 	}
 	

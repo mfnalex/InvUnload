@@ -7,6 +7,9 @@ Because some people wondered in which chests their stuff went into, I have added
 - You can also overwrite the default laser default duration with /unloadinfo [duration] or /dumpinfo [duration]
 - You can also set laser-moves-with-player to true to have the lasers move when the player moves
 
+Further bugfixes:
+- /unload is properly executed before /dump 
+
 ## 3.0.1
 - Fixed: /unload now properly ignores the hotbar
 - Fixed: Prevents Minepacks bagpacks from being put into chests

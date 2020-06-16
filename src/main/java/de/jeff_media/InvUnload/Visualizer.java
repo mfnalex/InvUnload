@@ -103,9 +103,10 @@ public class Visualizer {
 		activeVisualizations.remove(p.getUniqueId());
 	}*/
 	
-	void save(Player p, ArrayList<Block> affectedChests) {
+	void save(Player p, ArrayList<Block> affectedChests, UnloadSummary summary) {
 		lastUnloads.put(p.getUniqueId(), affectedChests);
 		lastUnloadPositions.put(p.getUniqueId(),p.getLocation().add(0,0.75,0));
+		unloadSummaries.put(p.getUniqueId(), summary);
 		/*if(activeVisualizations.containsKey(p.getUniqueId())) {
 			cancelVisualization(activeVisualizations.get(p.getUniqueId()));
 			//play(p);

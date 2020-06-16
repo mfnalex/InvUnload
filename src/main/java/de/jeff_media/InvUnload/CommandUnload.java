@@ -15,6 +15,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
+
 public class CommandUnload implements CommandExecutor {
 	
 	Main main;
@@ -65,29 +67,53 @@ public class CommandUnload implements CommandExecutor {
 		}
 		BlockUtils.sortBlockListByDistance(chests, p.getLocation());
 		
+		ArrayList<Block> useableChests = new ArrayList<Block>();
+		for(Block block : chests) {
+			if(PlayerUtils.canPlayerUseChest(block, p)) {
+				useableChests.add(block);
+			}
+		}
+		chests = null;
+		
 		ArrayList<Block> affectedChests = new ArrayList<Block>();
 		
-		for(Block block : chests) {
+		/*for(Block block : chests) {
 			if(!PlayerUtils.canPlayerUseChest(block, p)) continue;
 			Inventory inv = ((Container) block.getState()).getInventory();
 			if(onlyMatchingStuff) {
-				if(InvUtils.stuffInventoryIntoAnother(p, inv, onlyMatchingStuff,startSlot,endSlot)) {
+				if(InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot)) {
 					affectedChests.add(block);
 				}
 			} else {
-				if(InvUtils.stuffInventoryIntoAnother(p, inv, false,startSlot,endSlot)
-						|| InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot)) {
+				if(InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot)
+						| InvUtils.stuffInventoryIntoAnother(p, inv, false,startSlot,endSlot)) {
+					affectedChests.add(block);
+				}
+			}
+		}*/
+		UnloadSummary summary = new UnloadSummary();
+		for(Block block : useableChests) {
+			Inventory inv = ((Container) block.getState()).getInventory();
+			if(InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot,summary)) {
+				affectedChests.add(block);
+			}
+		}
+		if(!onlyMatchingStuff) {
+			for(Block block : useableChests) {
+				Inventory inv = ((Container) block.getState()).getInventory();
+				if(InvUtils.stuffInventoryIntoAnother(p, inv, false,startSlot,endSlot,summary)) {
 					affectedChests.add(block);
 				}
 			}
 		}
+		summary.print(PrintRecipient.PLAYER, p);
 		
 		if(affectedChests.size()==0) {
 			p.sendMessage(main.messages.MSG_COULD_NOT_UNLOAD);
 			return true;
 		} 
 		
-		main.visualizer.save(p, affectedChests);
+		main.visualizer.save(p, affectedChests,summary);
 		
 		for(Block block : affectedChests) {
 			main.visualizer.chestAnimation(block,p);

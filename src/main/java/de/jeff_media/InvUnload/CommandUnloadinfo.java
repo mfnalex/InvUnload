@@ -12,6 +12,8 @@ import org.jetbrains.annotations.NotNull;
 
 import com.sun.tools.javac.code.TypeTag.NumericClasses;
 
+import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
+
 public class CommandUnloadinfo implements CommandExecutor {
 	
 	Main main;
@@ -25,7 +27,24 @@ public class CommandUnloadinfo implements CommandExecutor {
 			@NotNull String[] args) {
 		
 		if(!(sender instanceof Player)) {
-			return false;
+			if(args.length==0) {
+				sender.sendMessage("Error: On Console, you must specify a player as parameter.");
+				return true;
+			}
+			Player p = main.getServer().getPlayer(args[0]);
+			if(p==null) {
+				sender.sendMessage("Error: Player "+args[0]+" not found.");
+				return true;
+			}
+			if(main.visualizer.unloadSummaries.containsKey(p.getUniqueId())) {
+				UnloadSummary summary = main.visualizer.unloadSummaries.get(p.getUniqueId());
+				if(summary!=null) {
+					summary.print(PrintRecipient.CONSOLE, p);
+					return true;
+				}
+			}
+			sender.sendMessage("Player "+p.getName()+" did not unload or dump their inventory.");
+			return true;
 		}
 		
 		Player p = (Player) sender;
@@ -46,6 +65,12 @@ public class CommandUnloadinfo implements CommandExecutor {
 		if(lasers != null) {
 			for(Laser laser : lasers) {
 				if(laser.isStarted()) laser.stop();
+			}
+		}
+		if(main.visualizer.unloadSummaries.containsKey(p.getUniqueId())) {
+			UnloadSummary summary = main.visualizer.unloadSummaries.get(p.getUniqueId());
+			if(summary!=null) {
+				summary.print(PrintRecipient.PLAYER, p);
 			}
 		}
 		main.visualizer.activeLasers.remove(p.getUniqueId());
