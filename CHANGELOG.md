@@ -1,11 +1,14 @@
 # Changelog
-## 3.1.0
+## 4.0.0
 Because some people wondered in which chests their stuff went into, I have added this:
-- Added a "laser" beam that will point to the affected chests for a few second.
-- The laser beam can be disabled in the config.yml and the duration can be set.
-- You can view the laser later again by running /unloadinfo or /dumpinfo.
-- You can also overwrite the default laser default duration with /unloadinfo [duration] or /dumpinfo [duration]
+- Added a text summary that shows where all your items went. By default, it is shown every time you use /unload or /dump, but you can also disable it so that it is only shown when using /unloadinfo (or /dumpinfo).
+- Added a "laser" beam that will point to the affected chests for a few second. You can view the laser by running /unloadinfo or /dumpinfo. You can also set the laser to be always shown when using /unload or /dump.
+- You can also overwrite the default laser duration with /unloadinfo [duration] or /dumpinfo [duration]
 - You can also set laser-moves-with-player to true to have the lasers move when the player moves
+- Added a reload command (/unload reload) that requires the permission "invunload.reload".
+
+Further bugfixes:
+- /unload is properly executed before /dump 
 
 ## 3.0.1
 - Fixed: /unload now properly ignores the hotbar

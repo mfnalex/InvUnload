@@ -24,7 +24,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 10;
+	private int currentConfigVersion = 12;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -108,6 +108,8 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("particle-type", "SPELL_WITCH");
 		getConfig().addDefault("particle-count", 100);
 		
+		getConfig().addDefault("always-show-summary", true);
+		
 		getConfig().addDefault("laser-animation", true);
 		getConfig().addDefault("laser-default-duration", 5);
 		getConfig().addDefault("laser-max-distance", 30);
@@ -156,6 +158,15 @@ public class Main extends JavaPlugin implements Listener {
 		else if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("on-startup")) {
 			updateChecker.checkForUpdate();
 		}
+	}
+
+	public void reloadCompleteConfig() {
+		reloadConfig();
+		messages = new Messages(this);
+		updateChecker = new UpdateChecker(this);
+		blockUtils = new BlockUtils(this);
+		visualizer = new Visualizer(this);
+		
 	}
 
 }
