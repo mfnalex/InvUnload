@@ -40,7 +40,7 @@ public class GroupUtils {
 			int defaultRadius = groups.get(group).defaultRadius;
 			bestValueFound = (defaultRadius>bestValueFound) ? defaultRadius : bestValueFound;
 		}
-		return bestValueFound == -1 ? main.getConfig().getInt("default-radius") : bestValueFound;
+		return bestValueFound == -1 ? main.getConfig().getInt("default-chest-radius") : bestValueFound;
 	}
 	
 	int getMaxRadiusPerPlayer(Player p) {
@@ -53,7 +53,7 @@ public class GroupUtils {
 			int maxRadius = groups.get(group).maxRadius;
 			bestValueFound = (maxRadius>bestValueFound) ? maxRadius : bestValueFound;
 		}
-		return bestValueFound == -1 ? main.getConfig().getInt("max-radius") : bestValueFound;
+		return bestValueFound == -1 ? main.getConfig().getInt("max-chest-radius") : bestValueFound;
 	}
 	
 	class Group {
