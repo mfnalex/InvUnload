@@ -24,7 +24,12 @@ public class PlotSquaredHook {
 		
 		if(!main.getConfig().getBoolean("use-plotsquared")) return false;
 		
-		if(!(Bukkit.getPluginManager().getPlugin("PlotSquared") instanceof PlotSquared)) {
+		System.out.println(Bukkit.getPluginManager().getPlugin("PlotSquared").getClass().getName());
+		
+		if(Bukkit.getPluginManager().getPlugin("PlotSquared") == null
+				|| !Bukkit.getPluginManager().getPlugin("PlotSquared")
+				.getClass().getName().equalsIgnoreCase("com.github.intellectualsites.plotsquared.bukkit.BukkitMain")
+				|| !(Bukkit.getPluginManager().getPlugin("PlotSquared") instanceof PlotSquared)) {
 			//System.out.println("PlotSquared not installed");
 			return false;
 		}
