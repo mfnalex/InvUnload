@@ -88,6 +88,13 @@
 			<version>2.3.8</version><!-- Check api-version shield for newest version -->
 		</dependency>
 		<!-- PlotSquared API -->
+				<dependency>
+			<groupId>com.github.intellectualsites</groupId>
+			<artifactId>plotsquared</artifactId>
+			<version>4.4.495</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/PlotSquared-Bukkit-4.4.495.jar</systemPath>
+		</dependency>
 		<dependency>
 			<groupId>com.plotsquared</groupId>
 			<artifactId>PlotSquared</artifactId>

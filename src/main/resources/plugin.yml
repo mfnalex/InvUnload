@@ -6,7 +6,7 @@ description: Unloads inventory in nearby matching chests
 author: mfnalex
 prefix: InvUnload
 database: false
-softdepend: [WorldGuard, ChestSort]
+softdepend: [WorldGuard, ChestSort, PlotSquared]
 commands:
   unload:
     description: Unloads inventory in nearby matching chests

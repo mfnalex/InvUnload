@@ -15,38 +15,39 @@ import de.jeff_media.InvUnload.Main;
 public class PlotSquaredHook {
 	
 	Main main;
+	PlotSquaredUniversalHook hook;
+	//Integer version = null;
 	
 	public PlotSquaredHook(Main main) {
 		this.main=main;
+		
+		try {
+			Class.forName("com.github.intellectualsites.plotsquared.bukkit.util.BukkitUtil");
+			//version = 4;
+			main.getLogger().info("PlotSquared 4 detected, using old API");
+			hook = new PlotSquared4Hook();
+		} catch(ClassNotFoundException e) {}
+		try {
+			Class.forName("com.plotsquared.bukkit.util.BukkitUtil");
+			//version = 5;
+			main.getLogger().info("PlotSquared 5 detected, using new API");
+			hook = new PlotSquared5Hook();
+		} catch(ClassNotFoundException e) {}
+		
 	}
 	
 	public boolean isBlockedByPlotSquared(Block block, Player player) {
 		
+		if(hook==null) return false;
+		
 		if(!main.getConfig().getBoolean("use-plotsquared")) return false;
 		
-		System.out.println(Bukkit.getPluginManager().getPlugin("PlotSquared").getClass().getName());
-		
-		if(Bukkit.getPluginManager().getPlugin("PlotSquared") == null
-				|| !Bukkit.getPluginManager().getPlugin("PlotSquared")
-				.getClass().getName().equalsIgnoreCase("com.github.intellectualsites.plotsquared.bukkit.BukkitMain")
-				|| !(Bukkit.getPluginManager().getPlugin("PlotSquared") instanceof PlotSquared)) {
+		if(Bukkit.getPluginManager().getPlugin("PlotSquared") == null) {
 			//System.out.println("PlotSquared not installed");
 			return false;
 		}
 		
+		return hook.isBlockedByPlotSquared(block, player, main);
 		
-		
-		Plot plot = BukkitUtil.getLocation(block.getLocation()).getPlotAbs();
-		
-		if(!main.getConfig().getBoolean("plotsquared-allow-outside-plots")
-				&& plot == null) return true;
-		
-		if(plot.getTrusted().contains(player.getUniqueId())
-				&& main.getConfig().getBoolean("plotsquared-allow-when-trusted")) return false;
-		
-		if(!plot.isOwner(player.getUniqueId())) return true;
-		
-		return false;
 	}
-
 }
