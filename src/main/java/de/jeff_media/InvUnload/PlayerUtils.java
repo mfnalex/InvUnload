@@ -30,7 +30,6 @@ public class PlayerUtils {
 				return false;
 			}
 			
-			event.setCancelled(true);
 		}
 		if(main.plotSquaredHook.isBlockedByPlotSquared(block, player)) {
 			return false;
