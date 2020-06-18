@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.InventoryView;
 
 import de.jeff_media.InvUnload.Hooks.PlotSquaredHook;
+import de.jeff_media.InvUnload.Hooks.SpartanHook;
 
 public class PlayerUtils {
 
@@ -18,6 +19,7 @@ public class PlayerUtils {
 	static boolean canPlayerUseChest(Block block, Player player, Main main) {
 		PlayerInteractEvent event = new PlayerInteractEvent(player,
 				Action.RIGHT_CLICK_BLOCK, null, block, BlockFace.UP);
+		SpartanHook.cancelSpartanEventCancel(event);
 		Bukkit.getPluginManager().callEvent(event);
 		if(event.useInteractedBlock() == Event.Result.DENY) {
 			return false;

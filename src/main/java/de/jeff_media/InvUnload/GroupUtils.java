@@ -36,7 +36,7 @@ public class GroupUtils {
 		int bestValueFound = -1;
 		while(it.hasNext()) {
 			String group = it.next();
-			if(!p.hasPermission("invunload.groups."+group)) continue;
+			if(!p.hasPermission("invunload.group."+group)) continue;
 			int defaultRadius = groups.get(group).defaultRadius;
 			bestValueFound = (defaultRadius>bestValueFound) ? defaultRadius : bestValueFound;
 		}
@@ -49,7 +49,7 @@ public class GroupUtils {
 		int bestValueFound = -1;
 		while(it.hasNext()) {
 			String group = it.next();
-			if(!p.hasPermission("invunload.groups."+group)) continue;
+			if(!p.hasPermission("invunload.group."+group)) continue;
 			int maxRadius = groups.get(group).maxRadius;
 			bestValueFound = (maxRadius>bestValueFound) ? maxRadius : bestValueFound;
 		}

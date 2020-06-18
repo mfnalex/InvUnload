@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.1.0-SNAPSHOT3</version>
+	<version>4.1.0-SNAPSHOT5</version>
 	<name>InvUnload</name>
 	<description>Automatically puts your stuff into the right chests!</description>
 
@@ -87,8 +87,15 @@
 			<artifactId>Minepacks-API</artifactId>
 			<version>2.3.8</version><!-- Check api-version shield for newest version -->
 		</dependency>
+		<dependency>
+			<groupId>me.vagdedes</groupId>
+			<artifactId>spartan</artifactId>
+			<version>Universal</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/SpartanAPI.jar</systemPath>
+		</dependency>
 		<!-- PlotSquared API -->
-				<dependency>
+		<dependency>
 			<groupId>com.github.intellectualsites</groupId>
 			<artifactId>plotsquared</artifactId>
 			<version>4.4.495</version>
@@ -100,21 +107,21 @@
 			<artifactId>PlotSquared</artifactId>
 			<version>5.11.1</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>com.plotsquared</groupId>
 			<artifactId>PlotSquared-Bukkit</artifactId>
 			<version>5.11.1</version>
 			<exclusions>
-        <exclusion>
-          <groupId>com.destroystokyo.paper</groupId>
-          <artifactId>paper-api</artifactId>
-        </exclusion>
-                <exclusion>
-          <groupId>com.github.MilkBowl</groupId>
-          <artifactId>VaultAPI</artifactId>
-        </exclusion>
-      </exclusions>
-			</dependency>
+				<exclusion>
+					<groupId>com.destroystokyo.paper</groupId>
+					<artifactId>paper-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.github.MilkBowl</groupId>
+					<artifactId>VaultAPI</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<distributionManagement>

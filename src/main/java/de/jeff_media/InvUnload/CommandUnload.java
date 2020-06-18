@@ -102,18 +102,26 @@ public class CommandUnload implements CommandExecutor {
 				}
 			}
 		}*/
+		//int triedUnloadChests = 0;
+		//int affectedUnloadChests = 0;
 		UnloadSummary summary = new UnloadSummary();
 		for(Block block : useableChests) {
+			//triedUnloadChests++;
 			Inventory inv = ((Container) block.getState()).getInventory();
 			if(InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot,summary)) {
 				affectedChests.add(block);
+				//affectedUnloadChests++;
 			}
 		}
+		//int triedDumpChests = 0;
+		//int affectedDumpChests = 0;
 		if(!onlyMatchingStuff) {
 			for(Block block : useableChests) {
+				//triedDumpChests++;
 				Inventory inv = ((Container) block.getState()).getInventory();
 				if(InvUtils.stuffInventoryIntoAnother(p, inv, false,startSlot,endSlot,summary)) {
 					affectedChests.add(block);
+					//affectedDumpChests++;
 				}
 			}
 		}
@@ -124,7 +132,9 @@ public class CommandUnload implements CommandExecutor {
 		if(affectedChests.size()==0) {
 			p.sendMessage(main.messages.MSG_COULD_NOT_UNLOAD);
 			return true;
-		} 
+		}
+		
+		//if (main.debug) p.sendMessage(String.format("Unload: %s tried, %s affected | Dump: %s tried, %s affected", triedUnloadChests, affectedUnloadChests, triedDumpChests, affectedDumpChests));
 		
 		main.visualizer.save(p, affectedChests,summary);
 		
