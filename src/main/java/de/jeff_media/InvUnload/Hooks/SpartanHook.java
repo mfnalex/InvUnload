@@ -14,7 +14,7 @@ public class SpartanHook {
 			return;
 		}
 		
-		e.setCancelled(true);
+		e.setCancelled(false);
 		
 	}
 
