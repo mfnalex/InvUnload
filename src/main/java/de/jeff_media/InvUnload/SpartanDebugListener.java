@@ -10,7 +10,7 @@ public class SpartanDebugListener implements Listener {
 	@EventHandler
 	void onSpartan(PlayerViolationEvent e) {
 		
-		System.out.println(e.getMessage());
+		//System.out.println(e.getMessage());
 		
 	}
 

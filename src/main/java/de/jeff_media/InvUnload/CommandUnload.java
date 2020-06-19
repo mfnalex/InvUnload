@@ -30,7 +30,7 @@ public class CommandUnload implements CommandExecutor {
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
 			@NotNull String[] args) {
 		
-		long startTime = System.nanoTime();
+		//long startTime = System.nanoTime();
 		
 		if(args.length>0 && args[0].equalsIgnoreCase("reload")) {
 			if(sender.hasPermission("invunload.reload")) {
@@ -80,7 +80,7 @@ public class CommandUnload implements CommandExecutor {
 		}
 		BlockUtils.sortBlockListByDistance(chests, p.getLocation());
 		
-		ArrayList<Block> useableChests = new ArrayList<Block>();
+		ArrayList<Block> useableChests = new ArrayList<>();
 		for(Block block : chests) {
 			if(PlayerUtils.canPlayerUseChest(block, p, main)) {
 				useableChests.add(block);
@@ -89,7 +89,7 @@ public class CommandUnload implements CommandExecutor {
 		}
 		chests = null;
 		
-		ArrayList<Block> affectedChests = new ArrayList<Block>();
+		ArrayList<Block> affectedChests = new ArrayList<>();
 		
 		/*for(Block block : chests) {
 			if(!PlayerUtils.canPlayerUseChest(block, p)) continue;
@@ -152,8 +152,8 @@ public class CommandUnload implements CommandExecutor {
 			}
 		}
 		
-		long endTime = System.nanoTime();
-		System.out.println(endTime-startTime);
+		//long endTime = System.nanoTime();
+		//System.out.println(endTime-startTime);
 		
 		
 		return true;
