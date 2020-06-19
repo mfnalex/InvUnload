@@ -1,12 +1,12 @@
 main: de.jeff_media.InvUnload.Main
 name: InvUnload
-version: 4.1.0-SNAPSHOT5
+version: 4.1.0
 api-version: 1.13
 description: Unloads inventory in nearby matching chests
 author: mfnalex
 prefix: InvUnload
 database: false
-softdepend: [WorldGuard, ChestSort, PlotSquared]
+softdepend: [WorldGuard, ChestSort, PlotSquared, Spartan]
 commands:
   unload:
     description: Unloads inventory in nearby matching chests

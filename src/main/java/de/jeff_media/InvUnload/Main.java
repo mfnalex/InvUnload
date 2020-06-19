@@ -28,7 +28,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 16;
+	private int currentConfigVersion = 17;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -107,6 +107,8 @@ public class Main extends JavaPlugin implements Listener {
 		updateCheckInterval = (int) (getConfig().getDouble("check-interval")*60*60);
 		
 		getConfig().addDefault("use-chestsort", true);
+		
+		getConfig().addDefault("use-playerinteractevent", true);
 		
 		getConfig().addDefault("use-plotsquared", true);
 		getConfig().addDefault("plotsquared-allow-when-trusted", true);

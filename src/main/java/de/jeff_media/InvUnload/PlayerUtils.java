@@ -17,12 +17,19 @@ public class PlayerUtils {
 
 	// Calls PlayerInteractEvent to see if access is blocked by 3rd party plugins
 	static boolean canPlayerUseChest(Block block, Player player, Main main) {
-		PlayerInteractEvent event = new PlayerInteractEvent(player,
-				Action.RIGHT_CLICK_BLOCK, null, block, BlockFace.UP);
-		SpartanHook.cancelSpartanEventCancel(event);
-		Bukkit.getPluginManager().callEvent(event);
-		if(event.useInteractedBlock() == Event.Result.DENY) {
-			return false;
+		
+		if( main.getConfig().getBoolean("use-playerinteractevent")) { 
+			PlayerInteractEvent event = new PlayerInteractEvent(player,
+					Action.RIGHT_CLICK_BLOCK, null, block, BlockFace.UP);
+			
+			Bukkit.getPluginManager().callEvent(event);
+			
+			SpartanHook.cancelSpartanEventCancel(event);
+			
+			if(event.useInteractedBlock() == Event.Result.DENY) {
+				return false;
+			}
+			
 		}
 		if(main.plotSquaredHook.isBlockedByPlotSquared(block, player)) {
 			return false;

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.1.0-SNAPSHOT5</version>
+	<version>4.1.0</version>
 	<name>InvUnload</name>
 	<description>Automatically puts your stuff into the right chests!</description>
 
