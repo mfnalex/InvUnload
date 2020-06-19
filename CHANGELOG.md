@@ -2,6 +2,7 @@
 ## 4.1.0
 - Added PlotSquared support. Players will only be allowed to unload into their own plot (configurable). Players will also be disallowed to unload outside of their own plots (configurable).
 - Added groups.yml file. You can define custom max-radius and default-radius for different player groups. A player will need the invunload.groups.<groupname> permission. See the groups.example.yml file for syntax.
+- Added support for Spartan Anti-Cheat
 
 ## 4.0.0
 Because some people wondered in which chests their stuff went into, I have added this:
