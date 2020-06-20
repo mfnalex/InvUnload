@@ -22,6 +22,10 @@ commands:
     usage: /<command> [duration]
     permission: invunload.use
     aliases: [dumpinfo]
+  seekbert:
+    description: Searches for items in nearby chests
+    usage: /<command> <item>
+    permission: invunload.seekbert
 permissions:
   invunload.use:
     description: Allows usage of command /unload, /dump, /unloadinfo and /dumpinfo
