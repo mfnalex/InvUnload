@@ -150,7 +150,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("unload").setExecutor(commandUnload);
 		getCommand("dump").setExecutor(commandUnload);
 		getCommand("unloadinfo").setExecutor(new CommandUnloadinfo(this));
-		getCommand("searchitem").setExecutor(new CommandSeekbert(this));
+		getCommand("searchitem").setExecutor(new CommandSearchItem(this));
 	}
 	
 	private void initUpdateChecker() {

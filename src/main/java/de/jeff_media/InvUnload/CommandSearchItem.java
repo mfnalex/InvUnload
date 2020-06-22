@@ -14,11 +14,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class CommandSeekbert implements CommandExecutor {
+public class CommandSearchItem implements CommandExecutor {
 
     private final Main main;
 
-    CommandSeekbert(Main main) {
+    CommandSearchItem (Main main) {
         this.main=main;
     }
 
@@ -37,12 +37,12 @@ public class CommandSeekbert implements CommandExecutor {
         if(args.length>=2) {
             if(StringUtils.isNumeric(args[0])) {
                 radius = Integer.parseInt(args[0]);
-                if(Material.getMaterial(args[1]) != null) {
-                    mat = Material.getMaterial(args[1]);
+                if(Material.getMaterial(args[1].toUpperCase()) != null) {
+                    mat = Material.getMaterial(args[1].toUpperCase());
                 }
             } else {
-                if(Material.getMaterial(args[0]) != null) {
-                    mat = Material.getMaterial(args[0]);
+                if(Material.getMaterial(args[0].toUpperCase()) != null) {
+                    mat = Material.getMaterial(args[0].toUpperCase());
                     if(StringUtils.isNumeric(args[1])) {
                         radius = Integer.parseInt(args[1]);
                     }
@@ -57,12 +57,12 @@ public class CommandSeekbert implements CommandExecutor {
                     mat = p.getInventory().getItemInMainHand().getType();
                 }
             } else {
-                mat = Material.getMaterial(args[0]);
+                mat = Material.getMaterial(args[0].toUpperCase());
                 radius = main.groupUtils.getDefaultRadiusPerPlayer(p);
             }
         }
 
-        if(args.length==0 && p.getInventory().getItemInMainHand()!=null && !StringUtils.isNumeric(args[0])) {
+        if(args.length==0 && p.getInventory().getItemInMainHand()!=null) {
             mat = p.getInventory().getItemInMainHand().getType();
             radius = main.groupUtils.getDefaultRadiusPerPlayer(p);
         }
@@ -103,7 +103,6 @@ public class CommandSeekbert implements CommandExecutor {
         for(Block block : chests) {
             if(PlayerUtils.canPlayerUseChest(block, p, main)) {
                 useableChests.add(block);
-                //System.out.println("Found useable chest: "+block.getLocation());
             }
         }
         chests = null;
@@ -112,11 +111,9 @@ public class CommandSeekbert implements CommandExecutor {
 
         UnloadSummary summary = new UnloadSummary();
         for(Block block : useableChests) {
-            //triedUnloadChests++;
             Inventory inv = ((Container) block.getState()).getInventory();
             if(InvUtils.searchItemInContainers(mat, inv, summary)) {
                 affectedChests.add(block);
-                //affectedUnloadChests++;
             }
         }
 
@@ -125,7 +122,7 @@ public class CommandSeekbert implements CommandExecutor {
         }
 
         if(affectedChests.size()==0) {
-            p.sendMessage(main.messages.MSG_COULD_NOT_UNLOAD);
+            p.sendMessage(String.format(main.messages.MSG_NOTHING_FOUND,mat.name()));
             return true;
         }
 
@@ -144,6 +141,6 @@ public class CommandSeekbert implements CommandExecutor {
             }
         }
 
-        return false;
+        return true;
     }
 }
