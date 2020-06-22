@@ -53,4 +53,14 @@ public class InvUtils {
 		}
 		return count;
 	}
+
+	static boolean searchItemInContainers(ItemStack itemStack, Inventory destination, UnloadSummary summary) {
+		if(BlockUtils.doesChestContain(destination,itemStack.getType())) {
+			int amount = BlockUtils.doesChestContainCount(destination,itemStack.getType());
+
+			summary.protocolUnload(destination.getLocation(), itemStack.getType(), amount);
+			return true;
+		}
+		return false;
+	}
 }
