@@ -45,6 +45,9 @@ public class CommandSearchItem implements CommandExecutor {
                     mat = Material.getMaterial(args[0].toUpperCase());
                     if(StringUtils.isNumeric(args[1])) {
                         radius = Integer.parseInt(args[1]);
+                    } else {
+                        p.sendMessage("Invalid radius.");
+                        return true;
                     }
                 }
             }
@@ -105,6 +108,12 @@ public class CommandSearchItem implements CommandExecutor {
                 useableChests.add(block);
             }
         }
+
+        if(useableChests.size()==0) {
+            p.sendMessage(main.messages.MSG_NO_CHESTS_NEARBY);
+            return true;
+        }
+
         chests = null;
 
         ArrayList<Block> affectedChests = new ArrayList<>();
