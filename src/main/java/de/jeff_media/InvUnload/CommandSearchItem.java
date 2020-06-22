@@ -80,16 +80,6 @@ public class CommandSearchItem implements CommandExecutor {
             return true;
         }
 
-
-
-        if(args.length>0 && StringUtils.isNumeric(args[0])) {
-            // TODO: Check if radius is higher than allowed
-            radius = Integer.parseInt(args[0]);
-        }
-        else if(args.length>0) {
-            mat = Material.getMaterial(args[0]);
-        }
-
         if(mat==null) {
             p.sendMessage(String.format("%s is not a valid material.",args[0]));
             return true;
