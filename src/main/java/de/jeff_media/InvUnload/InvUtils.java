@@ -2,6 +2,7 @@ package de.jeff_media.InvUnload;
 
 import java.util.ArrayList;
 
+import org.bukkit.Material;
 import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -52,5 +53,15 @@ public class InvUtils {
 			count+=item.getAmount();
 		}
 		return count;
+	}
+
+	static boolean searchItemInContainers(Material mat, Inventory destination, UnloadSummary summary) {
+		if(BlockUtils.doesChestContain(destination,mat)) {
+			int amount = BlockUtils.doesChestContainCount(destination,mat);
+
+			summary.protocolUnload(destination.getLocation(), mat, amount);
+			return true;
+		}
+		return false;
 	}
 }

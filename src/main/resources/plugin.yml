@@ -1,6 +1,6 @@
 main: de.jeff_media.InvUnload.Main
 name: InvUnload
-version: 4.1.0
+version: 4.2.0-SNAPSHOT1
 api-version: 1.13
 description: Unloads inventory in nearby matching chests
 author: mfnalex
@@ -12,7 +12,7 @@ commands:
     description: Unloads inventory in nearby matching chests
     usage: /<command> [radius]
     permission: invunload.use
-    aliases: [store]
+    aliases: [store,ul]
   dump:
     description: Unloads inventory in nearby chests
     usage: /<command> [radius]
@@ -21,7 +21,12 @@ commands:
     description: Shows into which chests your last /unload or /dump went into
     usage: /<command> [duration]
     permission: invunload.use
-    aliases: [dumpinfo]
+    aliases: [dumpinfo,uli]
+  searchitem:
+    description: Searches for items in nearby chests
+    usage: /<command> <item>
+    aliases: [search]
+    permission: invunload.search
 permissions:
   invunload.use:
     description: Allows usage of command /unload, /dump, /unloadinfo and /dumpinfo

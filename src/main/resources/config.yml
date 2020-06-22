@@ -155,6 +155,7 @@ message-radius-too-high: "&cError:&7 The radius cannot be higher than %d blocks.
 message-no-chests-nearby: "&7Nothing to unload: There are no chests nearby. Adjust the radius or walk closer to your chests."
 message-error-not-a-number: "&cError:&7 '%s' is not a valid number."
 message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
+message-nothing-found: "&7Could not find any chests containing %s."
 
 ##### Chinese (Simplified)
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC

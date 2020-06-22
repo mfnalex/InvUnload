@@ -96,4 +96,15 @@ public class BlockUtils {
 		loc.add(new Vector(0.5,1,0.5));
 		return loc;
 	}
+
+	static int doesChestContainCount(Inventory inv, Material mat) {
+		int count = 0;
+		for(ItemStack item : inv.getContents()) {
+			if(item==null) continue;
+			if(item.getType() == mat) {
+				count += item.getAmount();
+			}
+		}
+		return count;
+	}
 }
