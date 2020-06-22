@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 public class Messages {
 	Main plugin;
 
-	final String PREFIX, MSG_COULD_NOT_UNLOAD, MSG_RADIUS_TOO_HIGH, MSG_NOT_A_NUMBER, MSG_NO_CHESTS_NEARBY, MSG_INVENTORY_EMPTY;
+	final String PREFIX, MSG_COULD_NOT_UNLOAD, MSG_RADIUS_TOO_HIGH, MSG_NOT_A_NUMBER, MSG_NO_CHESTS_NEARBY, MSG_INVENTORY_EMPTY, MSG_NOTHING_FOUND;
 
 	Messages(Main plugin) {
 		this.plugin = plugin;
@@ -26,7 +26,8 @@ public class Messages {
 		
 		MSG_INVENTORY_EMPTY = PREFIX+ ChatColor.translateAlternateColorCodes('&', plugin.getConfig()
 				.getString("message-inventory-empty","&7Nothing to unload: Your inventory is already empty."));
-		
+
+		MSG_NOTHING_FOUND = PREFIX+ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("message-nothing-found","&7Could not find any chests containing %s."));
 		
 	}
 }

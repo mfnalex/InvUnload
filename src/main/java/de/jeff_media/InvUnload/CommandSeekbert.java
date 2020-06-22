@@ -110,18 +110,11 @@ public class CommandSeekbert implements CommandExecutor {
 
         ArrayList<Block> affectedChests = new ArrayList<>();
 
-        ItemStack itemStack = null;
-        if(args.length>0){
-            itemStack = new ItemStack(Material.valueOf(args[0].toUpperCase()));
-        } else {
-            itemStack = p.getInventory().getItemInMainHand();
-        }
-
         UnloadSummary summary = new UnloadSummary();
         for(Block block : useableChests) {
             //triedUnloadChests++;
             Inventory inv = ((Container) block.getState()).getInventory();
-            if(InvUtils.searchItemInContainers(itemStack, inv, summary)) {
+            if(InvUtils.searchItemInContainers(mat, inv, summary)) {
                 affectedChests.add(block);
                 //affectedUnloadChests++;
             }
