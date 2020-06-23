@@ -4,8 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.2.0-SNAPSHOT1</version>
+	<version>4.2.0-SNAPSHOT3</version>
 	<name>InvUnload</name>
+	<packaging>jar</packaging>
 	<description>Automatically puts your stuff into the right chests!</description>
 
 	<properties>
@@ -13,8 +14,9 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	<build>
 
+
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -32,6 +34,19 @@
 				<configuration>
 					<finalName>InvUnload</finalName>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 
@@ -80,12 +95,20 @@
 		<dependency>
 			<groupId>de.jeff_media</groupId>
 			<artifactId>ChestSort</artifactId>
-			<version>8.10.1</version>
+			<version>8.10.5</version>
+			<!--TODO--><scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>at.pcgamingfreaks</groupId>
 			<artifactId>Minepacks-API</artifactId>
 			<version>2.3.8</version><!-- Check api-version shield for newest version -->
+			<!--TODO--><scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>19.0.0</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>me.vagdedes</groupId>
@@ -106,11 +129,19 @@
 			<groupId>com.plotsquared</groupId>
 			<artifactId>PlotSquared</artifactId>
 			<version>5.11.1</version>
+			<!--TODO--><scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.jeff_media</groupId>
+			<artifactId>PluginUpdateChecker</artifactId>
+			<version>1.0</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.plotsquared</groupId>
 			<artifactId>PlotSquared-Bukkit</artifactId>
 			<version>5.11.1</version>
+			<!--TODO--><scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>com.destroystokyo.paper</groupId>

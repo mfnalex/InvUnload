@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.plotsquared.core.configuration.Settings;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -17,6 +19,7 @@ import de.jeff_media.ChestSort.ChestSortAPI;
 import de.jeff_media.ChestSort.ChestSortPlugin;
 import de.jeff_media.InvUnload.Hooks.ChestSortHook;
 import de.jeff_media.InvUnload.Hooks.PlotSquaredHook;
+import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -38,7 +41,7 @@ public class Main extends JavaPlugin implements Listener {
 
 	public boolean usingMatchingConfig = true;
 
-	protected UpdateChecker updateChecker;
+	protected PluginUpdateChecker updateChecker;
 	protected ChestSortHook chestSortHook;
 	protected PlotSquaredHook plotSquaredHook;
 	protected Visualizer visualizer;
@@ -67,7 +70,6 @@ public class Main extends JavaPlugin implements Listener {
 		plotSquaredHook = new PlotSquaredHook(this);
 		
 		registerCommands();
-		initUpdateChecker();
 	}
 
 	private void createConfig() {
@@ -151,6 +153,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("dump").setExecutor(commandUnload);
 		getCommand("unloadinfo").setExecutor(new CommandUnloadinfo(this));
 		getCommand("searchitem").setExecutor(new CommandSearchItem(this));
+		getCommand("searchitem").setTabCompleter(new MaterialTabCompleter());
 	}
 	
 	private void initUpdateChecker() {
@@ -158,24 +161,23 @@ public class Main extends JavaPlugin implements Listener {
 		// When set to true, we check for updates right now, and every X hours (see
 		// updateCheckInterval)
 		if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("true")) {
-			Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-				@Override
-				public void run() {
-					updateChecker.checkForUpdate();
-				}
-			}, 0L, updateCheckInterval  * 20);
+		updateChecker.check(updateCheckInterval);
 
 		} // When set to on-startup, we check right now (delay 0)
 		else if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("on-startup")) {
-			updateChecker.checkForUpdate();
+			updateChecker.check();
 		}
 	}
 
 	public void reloadCompleteConfig() {
 		reloadConfig();
 		createConfig();
+		if(updateChecker != null) {
+			updateChecker.stop();
+		}
 		messages = new Messages(this);
-		updateChecker = new UpdateChecker(this);
+		updateChecker = new PluginUpdateChecker(this,"https://api.jeff-media.de/invunload/invunload-latest-version.txt","https://www.spigotmc.org/resources/1-12-1-15-invunload.60095/","https://github.com/JEFF-Media-GbR/Spigot-InvUnloadPlus/blob/master/CHANGELOG.md","https://chestsort.de/donate");
+		initUpdateChecker();
 		blockUtils = new BlockUtils(this);
 		visualizer = new Visualizer(this);
 		File groupsFile = new File(this.getDataFolder()+File.separator+"groups.yml");
