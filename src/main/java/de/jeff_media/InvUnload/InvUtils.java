@@ -9,10 +9,21 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class InvUtils {
-	// TODO: When using /dump, first use /unload and then /dump
-	static boolean stuffInventoryIntoAnother(Player p, Inventory destination, boolean onlyMatchingStuff, int startSlot, int endSlot, UnloadSummary summary) {
+	/**
+	 * Part of API. Puts everything from the player inventory inside the destination inventory.
+	 * @param p Player from whom to take the items
+	 * @param destination Destination inventory
+	 * @param onlyMatchingStuff When true, only move items that already are inside the destination inventory
+	 * @param startSlot Do not modify player inventory before this slot
+	 * @param endSlot Do not modify player inventory after this slot
+	 * @param summary UnloadSummary object. Can be null
+	 * @return
+	 */
+		public static boolean stuffInventoryIntoAnother(@NotNull  Player p, @NotNull Inventory destination, @NotNull boolean onlyMatchingStuff, @NotNull int startSlot, @NotNull int endSlot, @Nullable UnloadSummary summary) {
 
 		Inventory source = p.getInventory();
 		
@@ -28,7 +39,7 @@ public class InvUtils {
 					amount = amount - leftover.getAmount();			
 					source.setItem(i,leftover);
 				}	
-			summary.protocolUnload(destination.getLocation(), item.getType(), amount);
+			if(summary!=null) summary.protocolUnload(destination.getLocation(), item.getType(), amount);
 			} else {
 				source.setItem(i,item);
 			}

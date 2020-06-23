@@ -209,7 +209,7 @@ public class Visualizer {
 			} else {
 				final int particleCount = main.getConfig().getInt("particle-count");
 				final Particle particle = Particle.valueOf(main.getConfig().getString("particle-type").toUpperCase());
-				block.getWorld().spawnParticle(particle, loc, particleCount, 0.0, 0.0, 0.0);
+				player.spawnParticle(particle, loc, particleCount, 0.0, 0.0, 0.0);
 			}
 		}
 		

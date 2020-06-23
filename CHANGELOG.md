@@ -1,4 +1,16 @@
 # Changelog
+
+## 4.2.0
+##### SNAPSHOT3
+- Added Material tab complete for /searchitem
+- Made stuffPlayerInventoryIntoAnother() public for API access
+
+##### SNAPSHOT2
+- Added /searchitem command
+
+##### SNAPSHOT1
+- Improved UpdateChecker
+
 ## 4.1.0
 - Added PlotSquared support. Players will only be allowed to unload into their own plot (configurable). Players will also be disallowed to unload outside of their own plots (configurable).
 - Added groups.yml file. You can define custom max-radius and default-radius for different player groups. A player will need the invunload.groups.<groupname> permission. See the groups.example.yml file for syntax.

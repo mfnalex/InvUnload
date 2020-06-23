@@ -126,9 +126,7 @@ public class CommandSearchItem implements CommandExecutor {
         }
 
         //if (main.debug) p.sendMessage(String.format("Unload: %s tried, %s affected | Dump: %s tried, %s affected", triedUnloadChests, affectedUnloadChests, triedDumpChests, affectedDumpChests));
-
-        main.visualizer.save(p, affectedChests,summary);
-
+        
         for(Block block : affectedChests) {
             main.visualizer.chestAnimation(block,p);
             if(main.getConfig().getBoolean("laser-animation")) {
