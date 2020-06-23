@@ -182,7 +182,7 @@ public class Main extends JavaPlugin implements Listener {
 		visualizer = new Visualizer(this);
 		File groupsFile = new File(this.getDataFolder()+File.separator+"groups.yml");
 		groupUtils = new GroupUtils(this,groupsFile);
-		
+		getServer().getPluginManager().registerEvents(new PlayerListener(this),this);
 	}
 
 }
