@@ -17,6 +17,10 @@ public class PlayerUtils {
 
 	// Calls PlayerInteractEvent to see if access is blocked by 3rd party plugins
 	static boolean canPlayerUseChest(Block block, Player player, Main main) {
+
+		if(main.plotSquaredHook.isBlockedByPlotSquared(block, player)) {
+			return false;
+		}
 		
 		if( main.getConfig().getBoolean("use-playerinteractevent")) { 
 			PlayerInteractEvent event = new PlayerInteractEvent(player,
@@ -31,9 +35,7 @@ public class PlayerUtils {
 			}
 			
 		}
-		if(main.plotSquaredHook.isBlockedByPlotSquared(block, player)) {
-			return false;
-		}
+
 		return true;
 	}
 }
