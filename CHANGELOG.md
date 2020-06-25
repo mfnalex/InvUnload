@@ -1,4 +1,9 @@
 # Changelog
+## 4.2.2-SNAPSHOT
+- Improved PlotSquared Hook: You will no longer get messages that you cannot use a chest, instead InvUnload will just ignore chests protected by PlotSquared
+
+## 4.2.1
+- Fixed update checker again (sorry)
 
 ## 4.2.0
 - Fixed weird config update problem regarding UTF8

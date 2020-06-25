@@ -10,8 +10,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import com.sun.tools.javac.code.TypeTag.NumericClasses;
-
 import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
 
 public class CommandUnloadinfo implements CommandExecutor {
