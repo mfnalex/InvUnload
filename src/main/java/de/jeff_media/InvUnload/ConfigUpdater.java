@@ -1,9 +1,8 @@
 package de.jeff_media.InvUnload;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
@@ -27,12 +26,18 @@ public class ConfigUpdater {
 	// Don't worry! Your changes will be kept
 
 	void updateConfig() {
-		
+
+		try {
+			Files.deleteIfExists(new File(main.getDataFolder().getAbsolutePath()+File.separator+"config.old.yml").toPath());
+		} catch (IOException e) {
+
+		}
+
 		FileUtils.renameFileInPluginDir(main, "config.yml", "config.old.yml");
 		main.saveDefaultConfig();
 
 		File oldConfigFile = new File(main.getDataFolder().getAbsolutePath() + File.separator + "config.old.yml");
-		FileConfiguration oldConfig = new YamlConfiguration();
+		FileConfiguration oldConfig = YamlConfiguration.loadConfiguration(oldConfigFile);
 
 		try {
 			oldConfig.load(oldConfigFile);
@@ -47,7 +52,7 @@ public class ConfigUpdater {
 		try {
 
 			Scanner scanner = new Scanner(
-					new File(main.getDataFolder().getAbsolutePath() + File.separator + "config.yml"));
+					new File(main.getDataFolder().getAbsolutePath() + File.separator + "config.yml"),"UTF-8");
 			while (scanner.hasNextLine()) {
 				linesInDefaultConfig.add(scanner.nextLine() + "");
 			}
@@ -75,15 +80,18 @@ public class ConfigUpdater {
 					}
 				}
 			}
-			if (newline != null)
+			if (newline != null) {
 				newLines.add(newline);
+			}
 		}
 
-		FileWriter fw;
+		//FileWriter fw;
+		BufferedWriter fw;
 		String[] linesArray = newLines.toArray(new String[linesInDefaultConfig.size()]);
 		try {
-			fw = new FileWriter(main.getDataFolder().getAbsolutePath() + File.separator + "config.yml");
+			fw = Files.newBufferedWriter(new File(main.getDataFolder().getAbsolutePath(),"config.yml").toPath(),StandardCharsets.UTF_8);
 			for (int i = 0; i < linesArray.length; i++) {
+				//System.out.println("WRITING LINE: "+linesArray[i]);
 				fw.write(linesArray[i] + "\n");
 			}
 			fw.close();

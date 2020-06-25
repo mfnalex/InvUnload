@@ -31,7 +31,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 17;
+	private int currentConfigVersion = 20;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -79,8 +79,11 @@ public class Main extends JavaPlugin implements Listener {
 		// This saves the config.yml included in the .jar file, but it will not
 		// overwrite an existing config.yml
 		this.saveDefaultConfig();
-
+		reloadConfig();
+		//System.out.println("DEBUG: Current config version: "+getConfig().getInt("config-version",0));
 		if (getConfig().getInt("config-version", 0) != currentConfigVersion) {
+			//System.out.println("DEBUG: Current config version: "+getConfig().getInt("config-version",0));
+
 			showOldConfigWarning();
 			ConfigUpdater configUpdater = new ConfigUpdater(this);
 			configUpdater.updateConfig();

@@ -12,8 +12,4 @@ public class PlayerListener implements Listener {
         this.main=main;
     }
 
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        main.updateChecker.sendUpdateMessage(e.getPlayer());
-    }
 }
