@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.2.2-SNAPSHOT</version>
+	<version>4.2.2</version>
 	<name>InvUnload</name>
 	<packaging>jar</packaging>
 	<description>Automatically puts your stuff into the right chests!</description>
@@ -76,10 +76,6 @@
 			<id>coreprotect-repo</id>
 			<url>http://maven.playpro.com/</url>
 		</repository>
-		<repository>
-			<id>spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-		</repository>
 		<!-- WorldEdit -->
 		<repository>
 			<id>enginehub</id>
@@ -111,6 +107,7 @@
 			<groupId>net.coreprotect</groupId>
 			<artifactId>coreprotect</artifactId>
 			<version>2.18.2</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>at.pcgamingfreaks</groupId>
