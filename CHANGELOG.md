@@ -1,15 +1,13 @@
 # Changelog
 
 ## 4.2.0
-##### SNAPSHOT3
+- Fixed weird config update problem regarding UTF8
+- Added /searchitem command (permission: invunload.search, alias: /search)
 - Added Material tab complete for /searchitem
 - Made stuffPlayerInventoryIntoAnother() public for API access
-
-##### SNAPSHOT2
-- Added /searchitem command
-
-##### SNAPSHOT1
 - Improved UpdateChecker
+
+NOTE: This update includes a new message in the config.yml, so please send me your new translations :)
 
 ## 4.1.0
 - Added PlotSquared support. Players will only be allowed to unload into their own plot (configurable). Players will also be disallowed to unload outside of their own plots (configurable).

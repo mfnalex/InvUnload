@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.2.0-SNAPSHOT5</version>
+	<version>4.2.1</version>
 	<name>InvUnload</name>
 	<packaging>jar</packaging>
 	<description>Automatically puts your stuff into the right chests!</description>
@@ -134,7 +134,7 @@
 		<dependency>
 			<groupId>de.jeff_media</groupId>
 			<artifactId>PluginUpdateChecker</artifactId>
-			<version>1.2</version>
+			<version>1.3.1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
