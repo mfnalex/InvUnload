@@ -1,4 +1,8 @@
 # Changelog
+## 4.4.0
+- Seperate permissions for /unload and /dump
+- Updated Spanish translation
+
 ## 4.3.0
 - Added CoreProtect logging
 

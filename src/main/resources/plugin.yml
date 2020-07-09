@@ -29,6 +29,8 @@ commands:
     permission: invunload.search
 permissions:
   invunload.use:
-    description: Allows usage of command /unload, /dump, /unloadinfo and /dumpinfo
+    description: Allows usage of command /unload, /unloadinfo and /dumpinfo
+  invunload.use.dump:
+    description: Allows usage of command /dump
   invunload.reload:
     description: Allows to reload the config using /unload reload
