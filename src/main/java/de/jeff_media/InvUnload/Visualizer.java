@@ -21,7 +21,7 @@ public class Visualizer {
 	private Main main;
 	HashMap<UUID,ArrayList<Block>> lastUnloads;
 	HashMap<UUID,Location> lastUnloadPositions;
-	//HashMap<UUID,Integer> activeVisualizations;
+	HashMap<UUID,Integer> activeVisualizations;
 	HashMap<UUID,ArrayList<Laser>> activeLasers;
 	HashMap<UUID,UnloadSummary> unloadSummaries;
 
@@ -35,7 +35,7 @@ public class Visualizer {
 		this.main = main;
 		lastUnloads = new HashMap<UUID,ArrayList<Block>>();
 		lastUnloadPositions = new HashMap<UUID,Location>();
-		//activeVisualizations = new HashMap<UUID,Integer>();
+		activeVisualizations = new HashMap<UUID,Integer>();
 		activeLasers = new HashMap<UUID,ArrayList<Laser>>();
 		unloadSummaries = new HashMap<UUID,UnloadSummary>();
 		
@@ -92,16 +92,16 @@ public class Visualizer {
 		
 	}
 	
-	/*void cancelVisualization(int id) {
+	void cancelVisualization(int id) {
 		Bukkit.getScheduler().cancelTask(id);
-	}*/
+	}
 	
-	/*void cancelVisualization(Player p) {
+	void cancelVisualization(Player p) {
 		if(activeVisualizations.containsKey(p.getUniqueId())) {
 			cancelVisualization(activeVisualizations.get(p.getUniqueId()));
 		}
 		activeVisualizations.remove(p.getUniqueId());
-	}*/
+	}
 	
 	void save(Player p, ArrayList<Block> affectedChests, UnloadSummary summary) {
 		lastUnloads.put(p.getUniqueId(), affectedChests);
@@ -113,13 +113,13 @@ public class Visualizer {
 		}*/
 	}
 	
-	/*void play(Player p) {
+	void play(Player p) {
 		if(lastUnloads.containsKey(p.getUniqueId())) {
 			play(lastUnloads.get(p.getUniqueId()),p);
 		}
-	}*/
+	}
 
-	/*void play(ArrayList<Block> destinations, Player p, double interval, int count, Particle particle,double speed,int maxDistance) {
+	void play(ArrayList<Block> destinations, Player p, double interval, int count, Particle particle,double speed,int maxDistance) {
 		for(Block destination : destinations) {
 			Location start = p.getLocation();
 			Vector vec = getDirectionBetweenLocations(start, BlockUtils.getCenterOfBlock(destination).add(0, -0.5, 0));
@@ -133,9 +133,9 @@ public class Visualizer {
 	            }
             }
 		}
-	}*/
+	}
 	
-	/*void play(ArrayList<Block> affectedChests, Player p) {
+	void play(ArrayList<Block> affectedChests, Player p) {
 		// Visualize
 				
 				int task = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
@@ -155,9 +155,10 @@ public class Visualizer {
 				new BukkitRunnable() {
 					public void run() {
 						Bukkit.getServer().getScheduler().cancelTask(task);
+						activeVisualizations.remove(p.getUniqueId());
 					}
 				}.runTaskLater(main, 100);
-	}*/
+	}
 	
 	void toggleLaser(Player p,int duration) {
 		if(lastUnloads.containsKey(p.getUniqueId())
@@ -224,8 +225,8 @@ public class Visualizer {
 		}
 	}
 	
-    /*private static Vector getDirectionBetweenLocations(Location start, Location end) {
-        return end.toVector().subtract(start.toVector());
-    }*/
+	private static Vector getDirectionBetweenLocations(Location start, Location end) {
+		return end.toVector().subtract(start.toVector());
+    }
 
 }

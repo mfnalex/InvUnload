@@ -16,6 +16,8 @@ public class UnloadSummary {
 	HashMap<Location,EnumMap<Material,Integer>> unloads;
 	
 	UnloadSummary() {
+
+		//System.out.println("Creating summary");
 		unloads = new HashMap<Location,EnumMap<Material,Integer>>();
 	}
 	
@@ -64,6 +66,7 @@ public class UnloadSummary {
 	}
 	
 	void printTo(PrintRecipient recipient, Player p, String text) {
+		//System.out.println("Printing");
 		if(recipient == PrintRecipient.CONSOLE) {
 			System.out.println(text);
 		} else {

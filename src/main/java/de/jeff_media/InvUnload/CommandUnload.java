@@ -111,7 +111,7 @@ public class CommandUnload implements CommandExecutor {
 		for(Block block : useableChests) {
 			//triedUnloadChests++;
 			Inventory inv = ((Container) block.getState()).getInventory();
-			if(InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot,summary)) {
+			if(InvUtils.stuffInventoryIntoAnother(main,p, inv, true,startSlot,endSlot,summary)) {
 				affectedChests.add(block);
 				//affectedUnloadChests++;
 			}
@@ -122,7 +122,7 @@ public class CommandUnload implements CommandExecutor {
 			for(Block block : useableChests) {
 				//triedDumpChests++;
 				Inventory inv = ((Container) block.getState()).getInventory();
-				if(InvUtils.stuffInventoryIntoAnother(p, inv, false,startSlot,endSlot,summary)) {
+				if(InvUtils.stuffInventoryIntoAnother(main,p, inv, false,startSlot,endSlot,summary)) {
 					affectedChests.add(block);
 					//affectedDumpChests++;
 				}

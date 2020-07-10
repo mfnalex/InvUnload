@@ -1,6 +1,6 @@
 main: de.jeff_media.InvUnload.Main
 name: InvUnload
-version: 4.2.2
+version: 4.4.0
 api-version: 1.13
 description: Unloads inventory in nearby matching chests
 author: mfnalex
@@ -29,6 +29,6 @@ commands:
     permission: invunload.search
 permissions:
   invunload.use:
-    description: Allows usage of command /unload, /dump, /unloadinfo and /dumpinfo
+    description: Allows usage of command /unload, /dump and /unloadinfo
   invunload.reload:
     description: Allows to reload the config using /unload reload

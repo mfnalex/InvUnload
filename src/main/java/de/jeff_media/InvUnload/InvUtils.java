@@ -2,6 +2,7 @@ package de.jeff_media.InvUnload;
 
 import java.util.ArrayList;
 
+import de.jeff_media.InvUnload.Hooks.CoreProtectHook;
 import org.bukkit.Material;
 import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
@@ -23,9 +24,10 @@ public class InvUtils {
 	 * @param summary UnloadSummary object. Can be null
 	 * @return
 	 */
-		public static boolean stuffInventoryIntoAnother(@NotNull  Player p, @NotNull Inventory destination, @NotNull boolean onlyMatchingStuff, @NotNull int startSlot, @NotNull int endSlot, @Nullable UnloadSummary summary) {
+		public static boolean stuffInventoryIntoAnother(@NotNull Main main, @NotNull  Player p, @NotNull Inventory destination, @NotNull boolean onlyMatchingStuff, @NotNull int startSlot, @NotNull int endSlot, @Nullable UnloadSummary summary) {
 
 		Inventory source = p.getInventory();
+
 		
 		int start = countInventoryContents(source);
 		for(int i = startSlot; i<=endSlot; i++) {
@@ -35,6 +37,7 @@ public class InvUtils {
 			source.clear(i);
 			int amount = item.getAmount();
 			if(onlyMatchingStuff==false || BlockUtils.doesChestContain(destination,item.getType())) {
+				CoreProtectHook.logCoreProtect(main, p.getName(), destination);
 				for(ItemStack leftover : destination.addItem(item).values()) {
 					amount = amount - leftover.getAmount();			
 					source.setItem(i,leftover);

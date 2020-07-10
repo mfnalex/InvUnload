@@ -176,13 +176,12 @@ message-nothing-found: "&7Could not find any chests containing %s."
 #message-nothing-found: "&7Could not find any chests containing %s."
 
 ##### French
-##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
-#message-could-not-unload: "&7Il n'y avait rien à décharger. Peut-être qu'il n'y a pas de coffres pour les objets restants?"
-#message-radius-too-high: "&cErreur:&7 Le rayon ne peut pas être plus grand que &d blocs."
-#message-no-chests-nearby: "&7Il n'y a aucun coffres à proximité. Ajustez le rayon ou approchez-vous de vos coffres."
+#message-could-not-unload: "&7Rien à décharger: Il n'y a aucun coffre pour le restant des articles."
+#message-radius-too-high: "&cErreur:&7 Le rayon ne peut être supérieur à %d bloc(s)."
+#message-no-chests-nearby: "&7Rien à décharger: Il n'y a aucun coffre dans les environs. Ajustez le rayon ou rapprochez-vous de vos coffres."
 #message-error-not-a-number: "&cErreur:&7 '%s' n'est pas un nombre valide."
-#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
-#message-nothing-found: "&7Could not find any chests containing %s."
+#message-inventory-empty: "&7Rien à décharger: Votre inventaire est déjà vide."
+#message-nothing-found: "&7Aucun coffre contenant %s n'a été trouvé."
 
 ##### German
 #message-could-not-unload: "&7Konnte nichts abladen: Hier sind keine Kisten für die verbleibenden Items."
@@ -202,13 +201,12 @@ message-nothing-found: "&7Could not find any chests containing %s."
 #message-nothing-found: "&7Could not find any chests containing %s."
 
 ##### Spanish
-##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
-#message-could-not-unload: "&7Nada que descargar: No hay cofres para los artículos restantes."
-#message-radius-too-high: "&cError:&7 El radio no puede ser mayor a %d bloques."
-#message-no-chests-nearby: "&7Nada que descargar: No hay cofres cerca. Ajusta el radio o ponte más cerca de tus cofres."
-#message-error-not-a-number: "&cError:&7 '%s no es un número válido."
-#message-inventory-empty: "&7Nada que descargar: Tu inventario ya está vacío."
-#message-nothing-found: "&7Could not find any chests containing %s."
+#message-could-not-unload: "&7Nada para deshabilitar: No hay cofres para los items restantes."
+#message-radius-too-high: "&cError:&7 El radio no puede ser mas grande que %d bloques."
+#message-no-chests-nearby: "&7Nada para deshabilitar: No hay cofres cerca. Ajusta el radio o camina mas cerca de tus cofres."
+#message-error-not-a-number: "&cError:&7 '%s' No es un numero valido."
+#message-inventory-empty: "&7Nada para deshabilitar: Tu inventario ya esta vacio."
+#message-nothing-found: "&7No se encontraron cofres conteniendo %s."
 
 #########################
 #####     Done!     #####

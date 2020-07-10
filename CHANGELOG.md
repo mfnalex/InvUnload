@@ -1,4 +1,13 @@
 # Changelog
+
+## 4.4.0
+- Updated Spanish translation
+- Fixed items being counted twice in double chests when using /search
+- Fixed /search not working when "always-show-summary" was set to false
+
+## 4.3.0
+- Added CoreProtect logging
+
 ## 4.2.2
 - Works with 1.16
 - Improved PlotSquared Hook: You will no longer get messages that you cannot use a chest, instead InvUnload will just ignore chests protected by PlotSquared

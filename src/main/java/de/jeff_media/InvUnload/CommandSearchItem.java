@@ -4,14 +4,17 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
+import org.bukkit.block.DoubleChest;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CommandSearchItem implements CommandExecutor {
@@ -107,18 +110,29 @@ public class CommandSearchItem implements CommandExecutor {
         chests = null;
 
         ArrayList<Block> affectedChests = new ArrayList<>();
-
+        ArrayList<InventoryHolder> doubleChests = new ArrayList<>();
         UnloadSummary summary = new UnloadSummary();
         for(Block block : useableChests) {
+
             Inventory inv = ((Container) block.getState()).getInventory();
+
+            if(inv.getHolder() instanceof DoubleChest) {
+                //System.out.println("DOUBLE CHEST");
+                DoubleChest dc = (DoubleChest) inv.getHolder();
+                if(doubleChests.contains(dc.getLeftSide())) continue;
+                doubleChests.add(dc.getLeftSide());
+               // System.out.println(dc.getLeftSide().hashCode());
+            }
+
+            //System.out.println("Found chest");
+
             if(InvUtils.searchItemInContainers(mat, inv, summary)) {
                 affectedChests.add(block);
             }
         }
 
-        if(main.getConfig().getBoolean("always-show-summary")) {
-            summary.print(UnloadSummary.PrintRecipient.PLAYER, p);
-        }
+        summary.print(UnloadSummary.PrintRecipient.PLAYER, p);
+
 
         if(affectedChests.size()==0) {
             p.sendMessage(String.format(main.messages.MSG_NOTHING_FOUND,mat.name()));

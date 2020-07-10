@@ -208,7 +208,7 @@ public class Laser {
                     watcherName3 = "bA";
                     squidID = 74;
                     guardianID = 31;
-                }else if (version > 15) {
+                }else if (version == 16) {
                     watcherName1 = "T";
                     watcherName2 = "b";
                     watcherName3 = "d";
