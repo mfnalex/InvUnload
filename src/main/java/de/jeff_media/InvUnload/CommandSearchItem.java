@@ -78,8 +78,8 @@ public class CommandSearchItem implements CommandExecutor {
             return true;
         }
 
-        if(radius == null) {
-            p.sendMessage("Invalid radius.");
+        if (radius == null || radius > main.groupUtils.getMaxRadiusPerPlayer(p)) {
+            p.sendMessage(String.format(main.messages.MSG_RADIUS_TOO_HIGH, main.groupUtils.getMaxRadiusPerPlayer(p)));
             return true;
         }
 

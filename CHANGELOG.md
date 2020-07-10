@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.4.1
+- Fixed players being able to use a higher radius for /search than the defined max radius
+
 ## 4.4.0
 - Updated Spanish translation
 - Fixed items being counted twice in double chests when using /search
