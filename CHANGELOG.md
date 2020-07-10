@@ -1,7 +1,10 @@
 # Changelog
+
 ## 4.4.0
 - Seperate permissions for /unload and /dump
 - Updated Spanish translation
+- Fixed items being counted twice in double chests when using /search
+- Fixed /search not working when "always-show-summary" was set to false
 
 ## 4.3.0
 - Added CoreProtect logging
