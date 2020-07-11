@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.4.2
+- Updated Turkish translation
+
 ## 4.4.1
 - Fixed players being able to use a higher radius for /search than the defined max radius
 
