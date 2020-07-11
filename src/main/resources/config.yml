@@ -208,6 +208,14 @@ message-nothing-found: "&7Could not find any chests containing %s."
 #message-inventory-empty: "&7Nada para deshabilitar: Tu inventario ya esta vacio."
 #message-nothing-found: "&7No se encontraron cofres conteniendo %s."
 
+##### Turkish (If u found an error contact with Cazcez#0190 on discord! || Hata bulursanız discord üzerinden Cazcez#0190 ile iletişime geçiniz)
+#message-could-not-unload: "&7Boşaltılacak bir şey yok: Kalan eşya için sandık mevcut değil."
+#message-radius-too-high: "&cHata:&7 Çevre %d bloktan yüksek olamaz."
+#message-no-chests-nearby: "&7Boşaltılacak bir şey yok: Yakında sandık yok. Alanı ayarlayın veya bir sandığa yakınlaşın."
+#message-error-not-a-number: "&cHata:&7 '%s' geçerli bir sayı değil."
+#message-inventory-empty: "&7Boşaltılacak bir şey yok: Envanterin zaten boş."
+#message-nothing-found: "&7 %s içeren hiçbir sandık bulunamadı."
+
 #########################
 #####     Done!     #####
 #########################
