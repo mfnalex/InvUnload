@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.command.Command;
@@ -144,13 +145,26 @@ public class CommandUnload implements CommandExecutor {
 		for(Block block : affectedChests) {
 			main.visualizer.chestAnimation(block,p);
 			if(main.getConfig().getBoolean("laser-animation")) {
-				main.visualizer.playLaser(affectedChests, p, main.getConfig().getInt("laser-default-duration"));
+				//main.visualizer.playLaser(affectedChests, p, main.getConfig().getInt("laser-default-duration"));
+				main.visualizer.play(p);
 			}
 			if(main.chestSortHook.shouldSort(p)) {
 				main.chestSortHook.sort(block);
 				//System.out.println("Sorting "+block.getLocation());
 			}
 		}
+
+		if(main.getConfig().getBoolean("play-sound")) {
+			if(main.getConfig().getBoolean("error-sound")) {
+				main.getLogger().warning("Cannot play sound, because sound effect \""+main.getConfig().getString("sound-effect")+"\" does not exist! Please check your config.yml");
+			}
+			else {
+				final Sound sound = Sound.valueOf(main.getConfig().getString("sound-effect").toUpperCase());
+				p.playSound(p.getLocation(), sound, (float) main.getConfig().getDouble("sound-volume",1.0), 1);
+			}
+		}
+
+
 		
 		//long endTime = System.nanoTime();
 		//System.out.println(endTime-startTime);

@@ -59,27 +59,27 @@ public class CommandUnloadinfo implements CommandExecutor {
 		if(affectedChests==null || affectedChests.size()==0) {
 			return true;
 		}
-		ArrayList<Laser> lasers = main.visualizer.activeLasers.get(p.getUniqueId());
+		/*ArrayList<Laser> lasers = main.visualizer.activeLasers.get(p.getUniqueId());
 		if(lasers != null) {
 			for(Laser laser : lasers) {
 				if(laser.isStarted()) laser.stop();
 			}
-		}
+		}*/
 		if(main.visualizer.unloadSummaries.containsKey(p.getUniqueId())) {
 			UnloadSummary summary = main.visualizer.unloadSummaries.get(p.getUniqueId());
 			if(summary!=null) {
 				summary.print(PrintRecipient.PLAYER, p);
 			}
 		}
-		main.visualizer.activeLasers.remove(p.getUniqueId());
+		//main.visualizer.activeLasers.remove(p.getUniqueId());
 		for(Block block : affectedChests) {
 			main.visualizer.chestAnimation(block, p);
 		}
 
-		boolean newVisualizer=true;
+		boolean newVisualizer=false;
 		
 		if(newVisualizer) {
-			main.visualizer.playLaser(affectedChests,p,duration);
+			//main.visualizer.playLaser(affectedChests,p,duration);
 		}
 		else {
 			/*if(main.visualizer.activeVisualizations.containsKey(p.getUniqueId())) {

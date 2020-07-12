@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.5.0
+- Made laser particles configurable
+- Sound will only play once, regardless of how many chests have been affected
+
 ## 4.4.2
 - Updated ChestSortAPI to latest version (please use ChestSort 8.14.0 or higher)
 - Updated Turkish translation
