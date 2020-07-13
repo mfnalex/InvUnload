@@ -2,6 +2,7 @@ package de.jeff_media.InvUnload;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.block.DoubleChest;
@@ -144,7 +145,8 @@ public class CommandSearchItem implements CommandExecutor {
         for(Block block : affectedChests) {
             main.visualizer.chestAnimation(block,p);
             if(main.getConfig().getBoolean("laser-animation")) {
-                main.visualizer.playLaser(affectedChests, p, main.getConfig().getInt("laser-default-duration"));
+                //main.visualizer.playLaser(affectedChests, p, main.getConfig().getInt("laser-default-duration"));
+                main.visualizer.play(p);
             }
             if(main.chestSortHook.shouldSort(p)) {
                 main.chestSortHook.sort(block);

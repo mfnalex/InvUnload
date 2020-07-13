@@ -22,7 +22,7 @@ public class Visualizer {
 	HashMap<UUID,ArrayList<Block>> lastUnloads;
 	HashMap<UUID,Location> lastUnloadPositions;
 	HashMap<UUID,Integer> activeVisualizations;
-	HashMap<UUID,ArrayList<Laser>> activeLasers;
+	//HashMap<UUID,ArrayList<Laser>> activeLasers;
 	HashMap<UUID,UnloadSummary> unloadSummaries;
 
 	//ArrayList<Location> destinations;
@@ -36,11 +36,11 @@ public class Visualizer {
 		lastUnloads = new HashMap<UUID,ArrayList<Block>>();
 		lastUnloadPositions = new HashMap<UUID,Location>();
 		activeVisualizations = new HashMap<UUID,Integer>();
-		activeLasers = new HashMap<UUID,ArrayList<Laser>>();
+		//activeLasers = new HashMap<UUID,ArrayList<Laser>>();
 		unloadSummaries = new HashMap<UUID,UnloadSummary>();
 		
 		if(main.getConfig().getBoolean("laser-moves-with-player")) {
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
+		/*Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
 
 			short timer=0;
 			@Override
@@ -81,7 +81,7 @@ public class Visualizer {
 				
 			}
 			
-		}, 0, 2);
+		}, 0, 2);*/
 		}
 	}
 	
@@ -141,11 +141,12 @@ public class Visualizer {
 				int task = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
 				    public void run() {
 				    	// TODO: Move the declarations out of the Runnable
-				    	Particle particle = Particle.CRIT;
-				    	int count = 1;
-				    	int maxDistance = 128;
-				    	double interval = 0.3;
-				    	double speed = 0.001;
+						Particle particle = Particle.valueOf(main.getConfig().getString("laser-particle","CRIT").toUpperCase());
+				    	//Particle particle = Particle.CRIT;
+				    	int count = main.getConfig().getInt("laser-count",1);
+				    	int maxDistance = main.getConfig().getInt("laser-max-distance",128);
+				    	double interval = main.getConfig().getDouble("laser-interval",0.3);
+				    	double speed = main.getConfig().getDouble("laser-speed",0.001);
 				    	play(affectedChests, p, interval, count, particle,speed,maxDistance);
 				    }
 				}, 0, 2);
@@ -160,7 +161,7 @@ public class Visualizer {
 				}.runTaskLater(main, 100);
 	}
 	
-	void toggleLaser(Player p,int duration) {
+	/*void toggleLaser(Player p,int duration) {
 		if(lastUnloads.containsKey(p.getUniqueId())
 				&& lastUnloads.get(p.getUniqueId()).size()>0 
 				& !activeLasers.containsKey(p.getUniqueId())) {
@@ -168,9 +169,9 @@ public class Visualizer {
 		} else {
 			stopLaser(p.getUniqueId());
 		}
-	}
+	}*/
 	
-	void stopLaser(UUID p) {
+	/*void stopLaser(UUID p) {
 		ArrayList<Laser> lasers = activeLasers.get(p);
 		if(lasers==null) return;
 		for(Laser laser : lasers) {
@@ -179,9 +180,9 @@ public class Visualizer {
 		}
 		lasers = null;
 		activeLasers.remove(p);
-	}
+	}*/
 	
-	void playLaser(ArrayList<Block> affectedChests,Player p,int duration) {
+	/*void playLaser(ArrayList<Block> affectedChests,Player p,int duration) {
 		stopLaser(p.getUniqueId());
 		ArrayList<Laser> lasers = new ArrayList<Laser>();
 		Location loc = lastUnloadPositions.get(p.getUniqueId());
@@ -199,7 +200,7 @@ public class Visualizer {
 		if(lasers.size()>0) {
 			activeLasers.put(p.getUniqueId(), lasers);
 		}
-	}
+	}*/
 	
 	void chestAnimation(Block block, Player player) {
 		final Location loc = BlockUtils.getCenterOfBlock(block);
@@ -213,16 +214,7 @@ public class Visualizer {
 				player.spawnParticle(particle, loc, particleCount, 0.0, 0.0, 0.0);
 			}
 		}
-		
-		if(main.getConfig().getBoolean("play-sound")) {
-			if(main.getConfig().getBoolean("error-sound")) {
-				main.getLogger().warning("Cannot play sound, because sound effect \""+main.getConfig().getString("sound-effect")+"\" does not exist! Please check your config.yml");
-			}
-			else {
-				final Sound sound = Sound.valueOf(main.getConfig().getString("sound-effect").toUpperCase());
-				player.playSound(loc, sound, 1, 1);
-			}
-		}
+
 	}
 	
 	private static Vector getDirectionBetweenLocations(Location start, Location end) {

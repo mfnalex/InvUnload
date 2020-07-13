@@ -1,7 +1,13 @@
 # Changelog
 
+## 4.5.0
+- Made laser particles configurable
+- Sound will only play once, regardless of how many chests have been affected
+
 ## 4.4.2
+- Updated ChestSortAPI to latest version (please use ChestSort 8.14.0 or higher)
 - Updated Turkish translation
+- Updated Spigot-API to 1.16.1
 
 ## 4.4.1
 - Fixed players being able to use a higher radius for /search than the defined max radius

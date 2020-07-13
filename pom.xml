@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.4.1</version>
+	<version>4.5.0</version>
 	<name>InvUnload</name>
 	<packaging>jar</packaging>
 	<description>Automatically puts your stuff into the right chests!</description>
@@ -100,7 +100,7 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.15.2-R0.1-SNAPSHOT</version>
+			<version>1.16.1-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -150,9 +150,9 @@
 		</dependency>
 		<dependency>
 			<groupId>de.jeff_media</groupId>
-			<artifactId>ChestSort</artifactId>
-			<version>8.10.5</version>
-			<scope>provided</scope>
+			<artifactId>ChestSortAPI</artifactId>
+			<version>1.0.0</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.plotsquared</groupId>

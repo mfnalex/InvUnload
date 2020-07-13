@@ -1,9 +1,12 @@
+/*
 package de.jeff_media.InvUnload;
+*/
 /*
  * 
  * Taken from https://www.spigotmc.org/threads/laser-guardian-beam-1-9-1-15.348901/
  * 
- */
+ *//*
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -17,6 +20,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+*/
 /**
  * A whole class to create Guardian Beams by reflection </br>
  * Inspired by the API <a href="https://www.spigotmc.org/resources/guardianbeamapi.18329">GuardianBeamAPI</a></br>
@@ -24,8 +28,10 @@ import org.bukkit.scheduler.BukkitRunnable;
  *
  * @see <a href="https://github.com/SkytAsul/GuardianBeam">GitHub page</a>
  * @author SkytAsul
- */
+ *//*
+
 public class Laser {
+
     private final int duration;
     private final int distanceSquared;
     private Location start;
@@ -43,13 +49,15 @@ public class Laser {
     private final UUID guardianUUID;
     private BukkitRunnable run;
     private HashSet<Player> show = new HashSet<>();
-    /**
+    */
+/**
     * Create a Laser instance
     * @param start Location where laser will starts
     * @param end Location where laser will ends
     * @param duration Duration of laser in seconds (<i>-1 if infinite</i>)
     * @param distance Distance where laser will be visible
-    */
+    *//*
+
     public Laser(Location start, Location end, int duration, int distance) throws ReflectiveOperationException {
         this.start = start;
         this.end = end;
@@ -320,7 +328,9 @@ public class Laser {
                 if (version >= 15) watcherDirty.invoke(watcher, watcherObject);
             }
         }
-        /* Reflection utils */
+        */
+/* Reflection utils *//*
+
         private static Method getMethod(Class<?> clazz, String name) {
             for (Method m : clazz.getDeclaredMethods()) {
                 if (m.getName().equals(name)) return m;
@@ -339,4 +349,4 @@ public class Laser {
             return field.get(instance);
         }
     }
-}
+}*/

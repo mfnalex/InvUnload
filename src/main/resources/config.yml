@@ -47,6 +47,7 @@ particle-count: 100
 # List of sound effects: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
 # You must check that the specified sound effect is valid in your specific Minecraft version!
 play-sound: true
+sound-volume: 1.0
 sound-effect: ENTITY_PLAYER_LEVELUP
 
 ##############################
@@ -67,6 +68,14 @@ always-show-summary: true
 # When set to true, InvUnload will draw the laser beam everytime you /unload or /dump
 # When set to false, InvUnload only draws the laser beam on /unloadinfo (or /dumpinfo)
 laser-animation: false
+
+# You can change the particles used for the laser
+# List of particle types: https://minecraft.gamepedia.com/Particles#Types_of_particles
+# You must check that the specified particle type is valid in your specific Minecraft version!
+laser-particle: CRIT
+laser-count: 1
+laser-interval: 0.3
+laser-speed: 0.001
 
 # How many seconds shall the laser be shown?
 # If you use /unloadinfo, you can override this value with /unloadinfo [duration]
@@ -224,4 +233,4 @@ message-nothing-found: "&7Could not find any chests containing %s."
 debug: false
 
 # please do not change the following line manually!
-config-version: 20
+config-version: 22

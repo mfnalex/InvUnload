@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.plotsquared.core.configuration.Settings;
+import de.jeff_media.ChestSortAPI.ChestSort;
+import de.jeff_media.ChestSortAPI.ChestSortAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -15,8 +17,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
 
-import de.jeff_media.ChestSort.ChestSortAPI;
-import de.jeff_media.ChestSort.ChestSortPlugin;
 import de.jeff_media.InvUnload.Hooks.ChestSortHook;
 import de.jeff_media.InvUnload.Hooks.PlotSquaredHook;
 import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
@@ -31,7 +31,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 20;
+	private int currentConfigVersion = 22;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -58,8 +58,8 @@ public class Main extends JavaPlugin implements Listener {
 
 		reloadCompleteConfig();
 
-		ChestSortPlugin chestSort = (ChestSortPlugin) getServer().getPluginManager().getPlugin("ChestSort");
-		if (getConfig().getBoolean("use-chestsort") == false ||chestSort == null || !(chestSort instanceof ChestSortPlugin)) {
+		ChestSort chestSort = (ChestSort) getServer().getPluginManager().getPlugin("ChestSort");
+		if (getConfig().getBoolean("use-chestsort") == false ||chestSort == null) {
 			//getLogger().warning("Warning: ChestSort is not installed.");
 		} else {
 			chestSortAPI = chestSort.getAPI();
