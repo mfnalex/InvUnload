@@ -1,6 +1,6 @@
 main: de.jeff_media.InvUnload.Main
 name: InvUnload
-version: 4.6.0
+version: 4.7.0
 api-version: 1.13
 description: Unloads inventory in nearby matching chests
 author: mfnalex
@@ -10,13 +10,18 @@ softdepend: [WorldGuard, ChestSort, PlotSquared, Spartan, CoreProtect]
 commands:
   unload:
     description: Unloads inventory in nearby matching chests
-    usage: /<command> [radius]
+    usage: |
+            /<command> [radius] -- Unloads inventory in nearby matching chests
+            /<command> hotbar -- Toggles whether /<command> affects your hotbar
     permission: invunload.use
-    aliases: [store,ul]
+    aliases: [store,ul,invunload,unloadinv]
   dump:
     description: Unloads inventory in nearby matching chests and dumps the rest into the nearest chests
-    usage: /<command> [radius]
+    usage: |
+            /<command> [radius] -- Unloads inventory in nearby matching chests and dumps the rest into the nearest chests
+            /<command> hotbar -- Toggles whether /<command> affects your hotbar
     permission: invunload.use
+    aliases: [invdump,dumpinv]
   unloadinfo:
     description: Shows into which chests your last /unload or /dump went into
     usage: /<command> [duration]

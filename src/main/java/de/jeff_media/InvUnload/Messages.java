@@ -6,6 +6,7 @@ public class Messages {
     final String PREFIX, MSG_COULD_NOT_UNLOAD, MSG_RADIUS_TOO_HIGH, MSG_NOT_A_NUMBER, MSG_NO_CHESTS_NEARBY, MSG_INVENTORY_EMPTY, MSG_NOTHING_FOUND;
     //final String BL_ADDED1, BL_ADDED2, BL_ALREADYADDED1, BL_ALREADYADDED2, BL_INVALID1, BL_INVALID2, BL_REMOVED1, BL_REMOVED2, BL_NOTTHERE1, BL_NOTTHERE2; //,BL_NOTHINGSPECIFIED;
     final String BL_ADDED, BL_INVALID, BL_REMOVED, BL_NOTHINGSPECIFIED,BL_EMPTY;
+    final String MSG_WILL_USE_HOTBAR,MSG_WILL_NOT_USE_HOTBAR;
 
     Main plugin;
 
@@ -30,6 +31,9 @@ public class Messages {
                 .getString("message-inventory-empty", "&7Nothing to unload: Your inventory is already empty."));
 
         MSG_NOTHING_FOUND = PREFIX + ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("message-nothing-found", "&7Could not find any chests containing %s."));
+
+        MSG_WILL_USE_HOTBAR = getMsg("will-use-hotbar","&7%s will now use items from your hotbar.");
+        MSG_WILL_NOT_USE_HOTBAR = getMsg("will-not-use-hotbar","&7%s will no longer use items from your hotbar.");
 
         BL_EMPTY = getMsg("blacklist-empty","&7You blacklist is empty.");
         BL_ADDED = getMsg("blacklist-added","&2Added to blacklist:&7 %s");

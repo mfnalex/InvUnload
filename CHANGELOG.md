@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.7.0
+- Added per-player setting whether hotbar contents should be unloaded / dumped as well.
+  - /unload hotbar: Toggle whether hotbar contents get unloaded
+  - /dump hotbar: Toggle whether hotbar contents get dumped
+
 ## 4.6.0
 - Added per player blacklist for items that should not be unloaded
   - /blacklist: Shows your blacklist, including clickable links to delete items

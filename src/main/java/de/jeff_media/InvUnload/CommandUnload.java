@@ -1,6 +1,7 @@
 package de.jeff_media.InvUnload;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -11,6 +12,7 @@ import org.bukkit.block.Container;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -18,8 +20,9 @@ import org.jetbrains.annotations.NotNull;
 
 import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
 import net.md_5.bungee.api.ChatColor;
+import org.jetbrains.annotations.Nullable;
 
-public class CommandUnload implements CommandExecutor {
+public class CommandUnload implements CommandExecutor , TabCompleter {
 	
 	Main main;
 	
@@ -42,11 +45,27 @@ public class CommandUnload implements CommandExecutor {
 			}
 			return true;
 		}
-		
+
 		if(!(sender instanceof Player)) {
 			return true;
 		}
 		Player p = (Player) sender;
+		PlayerSetting setting = main.getPlayerSetting(p);
+
+		if(args.length>0 && args[0].equalsIgnoreCase("hotbar")) {
+			if(command.getName().equals("unload")) {
+				setting.unloadHotbar = !setting.unloadHotbar;
+				if(setting.unloadHotbar) { p.sendMessage(String.format(main.messages.MSG_WILL_USE_HOTBAR,"/"+label.toLowerCase())); }
+								else { p.sendMessage(String.format(main.messages.MSG_WILL_NOT_USE_HOTBAR,"/"+label.toLowerCase())); }
+			} else if(command.getName().equals("dump")) {
+				setting.dumpHotbar = !setting.dumpHotbar;
+				if(setting.dumpHotbar) { p.sendMessage(String.format(main.messages.MSG_WILL_USE_HOTBAR,"/"+label.toLowerCase())); }
+				else { p.sendMessage(String.format(main.messages.MSG_WILL_NOT_USE_HOTBAR,"/"+label.toLowerCase())); }
+			}
+			return true;
+		}
+		
+
 		
 		int radius = main.groupUtils.getDefaultRadiusPerPlayer(p);
 		int startSlot = 9;
@@ -70,8 +89,10 @@ public class CommandUnload implements CommandExecutor {
 		
 		if(command.getName().equalsIgnoreCase("unload")) {
 			onlyMatchingStuff = true;
+			startSlot = setting.unloadHotbar ? 0 : 9;
 		} else if(command.getName().equalsIgnoreCase("dump")) {
 			onlyMatchingStuff = false;
+			startSlot = setting.dumpHotbar ? 0 : 9;
 		}
 		
 		ArrayList<Block> chests = BlockUtils.findChestsInRadius(p.getLocation(), radius);
@@ -85,47 +106,27 @@ public class CommandUnload implements CommandExecutor {
 		for(Block block : chests) {
 			if(PlayerUtils.canPlayerUseChest(block, p, main)) {
 				useableChests.add(block);
-				//System.out.println("Found useable chest: "+block.getLocation());
 			}
 		}
 		chests = null;
 		
 		ArrayList<Block> affectedChests = new ArrayList<>();
-		
-		/*for(Block block : chests) {
-			if(!PlayerUtils.canPlayerUseChest(block, p)) continue;
-			Inventory inv = ((Container) block.getState()).getInventory();
-			if(onlyMatchingStuff) {
-				if(InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot)) {
-					affectedChests.add(block);
-				}
-			} else {
-				if(InvUtils.stuffInventoryIntoAnother(p, inv, true,startSlot,endSlot)
-						| InvUtils.stuffInventoryIntoAnother(p, inv, false,startSlot,endSlot)) {
-					affectedChests.add(block);
-				}
-			}
-		}*/
-		//int triedUnloadChests = 0;
-		//int affectedUnloadChests = 0;
 		UnloadSummary summary = new UnloadSummary();
+
+		// Unload
 		for(Block block : useableChests) {
-			//triedUnloadChests++;
 			Inventory inv = ((Container) block.getState()).getInventory();
 			if(InvUtils.stuffInventoryIntoAnother(main,p, inv, true,startSlot,endSlot,summary)) {
 				affectedChests.add(block);
-				//affectedUnloadChests++;
 			}
 		}
-		//int triedDumpChests = 0;
-		//int affectedDumpChests = 0;
+
+		//Dump
 		if(!onlyMatchingStuff) {
 			for(Block block : useableChests) {
-				//triedDumpChests++;
 				Inventory inv = ((Container) block.getState()).getInventory();
 				if(InvUtils.stuffInventoryIntoAnother(main,p, inv, false,startSlot,endSlot,summary)) {
 					affectedChests.add(block);
-					//affectedDumpChests++;
 				}
 			}
 		}
@@ -137,20 +138,16 @@ public class CommandUnload implements CommandExecutor {
 			p.sendMessage(main.messages.MSG_COULD_NOT_UNLOAD);
 			return true;
 		}
-		
-		//if (main.debug) p.sendMessage(String.format("Unload: %s tried, %s affected | Dump: %s tried, %s affected", triedUnloadChests, affectedUnloadChests, triedDumpChests, affectedDumpChests));
-		
+
 		main.visualizer.save(p, affectedChests,summary);
 		
 		for(Block block : affectedChests) {
 			main.visualizer.chestAnimation(block,p);
 			if(main.getConfig().getBoolean("laser-animation")) {
-				//main.visualizer.playLaser(affectedChests, p, main.getConfig().getInt("laser-default-duration"));
 				main.visualizer.play(p);
 			}
 			if(main.chestSortHook.shouldSort(p)) {
 				main.chestSortHook.sort(block);
-				//System.out.println("Sorting "+block.getLocation());
 			}
 		}
 
@@ -164,12 +161,16 @@ public class CommandUnload implements CommandExecutor {
 			}
 		}
 
-
-		
-		//long endTime = System.nanoTime();
-		//System.out.println(endTime-startTime);
-		
-		
 		return true;
+	}
+
+	@Override
+	public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+		if(strings.length>1) return null;
+		List<String> list = new ArrayList<String>();
+		list.add("hotbar");
+		if(strings.length==0) return list;
+		if("hotbar".startsWith(strings[0].toLowerCase())) return list;
+		return null;
 	}
 }

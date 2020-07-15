@@ -10,6 +10,8 @@ import java.util.List;
 public class PlayerSetting {
 
     BlackList blacklist;
+    boolean unloadHotbar;
+    boolean dumpHotbar;
 
     PlayerSetting() {
         blacklist = new BlackList();
@@ -22,11 +24,15 @@ public class PlayerSetting {
     PlayerSetting(File file) {
         YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
         blacklist = new BlackList(yaml.getStringList("blacklist"));
+        unloadHotbar = yaml.getBoolean("unloadHotbar",false);
+        dumpHotbar = yaml.getBoolean("dumpHotbar",false);
     }
 
     void save(File file,Main main) {
         YamlConfiguration yaml = new YamlConfiguration();
         yaml.set("blacklist",blacklist.toStringList());
+        yaml.set("unloadHotbar",unloadHotbar);
+        yaml.set("dumpHotbar",dumpHotbar);
         try {
             yaml.save(file);
         } catch (IOException e) {
