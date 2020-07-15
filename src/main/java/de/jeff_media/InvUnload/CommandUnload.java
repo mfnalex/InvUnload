@@ -35,7 +35,7 @@ public class CommandUnload implements CommandExecutor {
 		
 		if(args.length>0 && args[0].equalsIgnoreCase("reload")) {
 			if(sender.hasPermission("invunload.reload")) {
-				main.reloadCompleteConfig();
+				main.reloadCompleteConfig(true);
 				sender.sendMessage(ChatColor.GREEN+"InvUnload has been reloaded.");
 			} else {
 				sender.sendMessage(main.getCommand("unload").getPermissionMessage());

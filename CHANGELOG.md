@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.6.0
+- Added per player blacklist for items that should not be unloaded
+  - /blacklist: Shows your blacklist, including clickable links to delete items
+  - /blacklist add: Adds your currently held item to the blacklist
+  - /blacklist add <Materials...>: Adds all specified materials to the blacklist
+  - /blacklist remove: Removes your currently held item from the blacklist
+  - /blacklist remove <Materials...>: Removes all specified materials from the blacklist
+
 ## 4.5.0
 - Made laser particles configurable
 - Sound will only play once, regardless of how many chests have been affected

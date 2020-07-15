@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import com.plotsquared.core.configuration.Settings;
 import de.jeff_media.ChestSortAPI.ChestSort;
@@ -47,7 +49,14 @@ public class Main extends JavaPlugin implements Listener {
 	protected Visualizer visualizer;
 	protected GroupUtils groupUtils;
 
+	HashMap<UUID,PlayerSetting> playerSettings;
+
 	private int updateCheckInterval = 86400;
+
+	@Override
+	public void onDisable() {
+		saveAllPlayerSettings();
+	}
 
 	public void onEnable() {
 
@@ -56,7 +65,7 @@ public class Main extends JavaPlugin implements Listener {
 		tmpVersion = mcVersion.substring(mcVersion.indexOf("_") + 1);
 		mcMinorVersion = Integer.parseInt(tmpVersion.substring(0, tmpVersion.indexOf("_")));
 
-		reloadCompleteConfig();
+		reloadCompleteConfig(false);
 
 		ChestSort chestSort = (ChestSort) getServer().getPluginManager().getPlugin("ChestSort");
 		if (getConfig().getBoolean("use-chestsort") == false ||chestSort == null) {
@@ -157,6 +166,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("unloadinfo").setExecutor(new CommandUnloadinfo(this));
 		getCommand("searchitem").setExecutor(new CommandSearchItem(this));
 		getCommand("searchitem").setTabCompleter(new MaterialTabCompleter());
+		getCommand("blacklist").setExecutor(new CommandBlacklist(this));
 	}
 	
 	private void initUpdateChecker() {
@@ -172,11 +182,36 @@ public class Main extends JavaPlugin implements Listener {
 		}
 	}
 
-	public void reloadCompleteConfig() {
+	PlayerSetting getPlayerSetting(Player p) {
+		if(playerSettings.containsKey(p.getUniqueId())) {
+			return playerSettings.get(p.getUniqueId());
+		}
+
+		PlayerSetting setting;
+		if(getPlayerFile(p.getUniqueId()).exists()) {
+			setting = new PlayerSetting(getPlayerFile(p.getUniqueId()));
+		} else {
+			setting = new PlayerSetting();
+		}
+
+		playerSettings.put(p.getUniqueId(),setting);
+
+		return setting;
+	}
+
+	File getPlayerFile(UUID uuid) {
+		return new File(getDataFolder()+File.separator+"playerdata"+File.separator+uuid.toString()+".yml");
+	}
+
+	public void reloadCompleteConfig(boolean reload) {
 		reloadConfig();
 		createConfig();
-		if(updateChecker != null) {
-			updateChecker.stop();
+		new File(getDataFolder()+File.separator+"playerdata").mkdirs();
+		if(reload) {
+			if (updateChecker != null) {
+				updateChecker.stop();
+			}
+			saveAllPlayerSettings();
 		}
 		messages = new Messages(this);
 		updateChecker = new PluginUpdateChecker(this,"https://api.jeff-media.de/invunload/invunload-latest-version.txt","https://www.spigotmc.org/resources/1-12-1-15-invunload.60095/","https://github.com/JEFF-Media-GbR/Spigot-InvUnloadPlus/blob/master/CHANGELOG.md","https://chestsort.de/donate");
@@ -186,6 +221,13 @@ public class Main extends JavaPlugin implements Listener {
 		File groupsFile = new File(this.getDataFolder()+File.separator+"groups.yml");
 		groupUtils = new GroupUtils(this,groupsFile);
 		getServer().getPluginManager().registerEvents(new PlayerListener(this),this);
+		playerSettings = new HashMap<>();
+	}
+
+	private void saveAllPlayerSettings() {
+		for(Map.Entry<UUID,PlayerSetting> entry : playerSettings.entrySet()) {
+			entry.getValue().save(getPlayerFile(entry.getKey()),this);
+		}
 	}
 
 }
