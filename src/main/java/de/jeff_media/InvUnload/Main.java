@@ -1,19 +1,13 @@
 package de.jeff_media.InvUnload;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.plotsquared.core.configuration.Settings;
 import de.jeff_media.ChestSortAPI.ChestSort;
 import de.jeff_media.ChestSortAPI.ChestSortAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.configuration.file.YamlConfiguration;
+import de.jeff_media.InvUnload.Hooks.CoreProtectHook;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,8 +21,9 @@ public class Main extends JavaPlugin implements Listener {
 
 	@Nullable
 	public ChestSortAPI chestSortAPI;
+    CoreProtectHook coreProtectHook;
 
-	String mcVersion; // 1.13.2 = 1_13_R2
+    String mcVersion; // 1.13.2 = 1_13_R2
 						// 1.14.4 = 1_14_R1
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
@@ -48,6 +43,12 @@ public class Main extends JavaPlugin implements Listener {
 	protected PlotSquaredHook plotSquaredHook;
 	protected Visualizer visualizer;
 	protected GroupUtils groupUtils;
+
+	CommandUnload commandUnload;
+	CommandUnloadinfo commandUnloadInfo;
+	CommandSearchitem commandSearchitem;
+	CommandBlacklist commandBlacklist;
+	MaterialTabCompleter materialTabCompleter;
 
 	HashMap<UUID,PlayerSetting> playerSettings;
 
@@ -77,6 +78,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		chestSortHook = new ChestSortHook(this);
 		plotSquaredHook = new PlotSquaredHook(this);
+		coreProtectHook = new CoreProtectHook(this);
 		
 		registerCommands();
 	}
@@ -123,7 +125,7 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("use-chestsort", true);
 		
 		getConfig().addDefault("use-playerinteractevent", true);
-		
+		getConfig().addDefault("use-coreprotect",true);
 		getConfig().addDefault("use-plotsquared", true);
 		getConfig().addDefault("plotsquared-allow-when-trusted", true);
 		getConfig().addDefault("plotsquared-allow-outside-plots", true);
@@ -139,6 +141,8 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("laser-max-distance", 30);
 		getConfig().addDefault("laser-max-distance", 50);
 		getConfig().addDefault("laser-moves-with-player", false);
+
+		getConfig().addDefault("strict-tabcomplete",true);
 		
 		if(!EnumUtils.particleExists(getConfig().getString("particle-type"))) {
 			getLogger().warning("Specified particle type \"" + getConfig().getString("particle-type") + "\" does not exist! Please check your config.yml");
@@ -160,13 +164,18 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	private void registerCommands() {
-		CommandUnload commandUnload = new CommandUnload(this);
+		commandUnload = new CommandUnload(this);
+		commandUnloadInfo = new CommandUnloadinfo(this);
+		commandSearchitem = new CommandSearchitem(this);
+		commandBlacklist = new CommandBlacklist(this);
+		materialTabCompleter= new MaterialTabCompleter(this);
 		getCommand("unload").setExecutor(commandUnload);
 		getCommand("dump").setExecutor(commandUnload);
-		getCommand("unloadinfo").setExecutor(new CommandUnloadinfo(this));
-		getCommand("searchitem").setExecutor(new CommandSearchItem(this));
-		getCommand("searchitem").setTabCompleter(new MaterialTabCompleter());
-		getCommand("blacklist").setExecutor(new CommandBlacklist(this));
+		getCommand("unloadinfo").setExecutor(commandUnloadInfo);
+		getCommand("searchitem").setExecutor(commandSearchitem);
+		getCommand("searchitem").setTabCompleter(materialTabCompleter);
+		getCommand("blacklist").setExecutor(commandBlacklist);
+		getCommand("blacklist").setTabCompleter(commandBlacklist);
 	}
 	
 	private void initUpdateChecker() {

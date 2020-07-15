@@ -1,12 +1,12 @@
 main: de.jeff_media.InvUnload.Main
 name: InvUnload
-version: 4.6.0-SNAPSHOT
+version: 4.6.0
 api-version: 1.13
 description: Unloads inventory in nearby matching chests
 author: mfnalex
 prefix: InvUnload
 database: false
-softdepend: [WorldGuard, ChestSort, PlotSquared, Spartan]
+softdepend: [WorldGuard, ChestSort, PlotSquared, Spartan, CoreProtect]
 commands:
   unload:
     description: Unloads inventory in nearby matching chests
@@ -14,7 +14,7 @@ commands:
     permission: invunload.use
     aliases: [store,ul]
   dump:
-    description: Unloads inventory in nearby chests
+    description: Unloads inventory in nearby matching chests and dumps the rest into the nearest chests
     usage: /<command> [radius]
     permission: invunload.use
   unloadinfo:
@@ -24,12 +24,22 @@ commands:
     aliases: [dumpinfo,uli]
   searchitem:
     description: Searches for items in nearby chests
-    usage: /<command> [item]
+    usage: |
+            /<command> -- Searches for your currently held item
+            /<command> <item> -- Searches for the given item
+            /<command> <radius> -- Searches for your currently held item in the given radius
+            /<command> <item> <radius> -- Searches for the given item in the given radius
     aliases: [search]
     permission: invunload.search
   blacklist:
     description: Blacklists an item so it is ignored by /unload
-    usage: /<command> <add|remove|show> [item]
+    usage: |
+            /<command> -- Show your blacklist
+            /<command> add -- Adds your currently held item to your blacklist
+            /<command> add <items...> -- Add specified items to your blacklist
+            /<command> remove -- Removes your currently held item from your blacklist
+            /<command> remove <items...> -- Remove items from your blacklist
+            /<command> reset -- Removes all items from your blacklist
     permission: invunload.use
 permissions:
   invunload.use:

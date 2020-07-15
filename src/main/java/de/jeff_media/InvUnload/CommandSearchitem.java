@@ -18,11 +18,11 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class CommandSearchItem implements CommandExecutor {
+public class CommandSearchitem implements CommandExecutor {
 
     private final Main main;
 
-    CommandSearchItem (Main main) {
+    CommandSearchitem(Main main) {
         this.main=main;
     }
 
@@ -90,10 +90,6 @@ public class CommandSearchItem implements CommandExecutor {
         }
 
         ArrayList<Block> chests = BlockUtils.findChestsInRadius(p.getLocation(), radius);
-        if(chests.size()==0) {
-            p.sendMessage(main.messages.MSG_NO_CHESTS_NEARBY);
-            return true;
-        }
         BlockUtils.sortBlockListByDistance(chests, p.getLocation());
 
         ArrayList<Block> useableChests = new ArrayList<>();
@@ -104,7 +100,7 @@ public class CommandSearchItem implements CommandExecutor {
         }
 
         if(useableChests.size()==0) {
-            p.sendMessage(main.messages.MSG_NO_CHESTS_NEARBY);
+            p.sendMessage(main.messages.MSG_NOTHING_FOUND);
             return true;
         }
 
@@ -118,14 +114,10 @@ public class CommandSearchItem implements CommandExecutor {
             Inventory inv = ((Container) block.getState()).getInventory();
 
             if(inv.getHolder() instanceof DoubleChest) {
-                //System.out.println("DOUBLE CHEST");
                 DoubleChest dc = (DoubleChest) inv.getHolder();
                 if(doubleChests.contains(dc.getLeftSide())) continue;
                 doubleChests.add(dc.getLeftSide());
-               // System.out.println(dc.getLeftSide().hashCode());
             }
-
-            //System.out.println("Found chest");
 
             if(InvUtils.searchItemInContainers(mat, inv, summary)) {
                 affectedChests.add(block);
@@ -134,24 +126,17 @@ public class CommandSearchItem implements CommandExecutor {
 
         summary.print(UnloadSummary.PrintRecipient.PLAYER, p);
 
-
         if(affectedChests.size()==0) {
             p.sendMessage(String.format(main.messages.MSG_NOTHING_FOUND,mat.name()));
             return true;
         }
-
-        //if (main.debug) p.sendMessage(String.format("Unload: %s tried, %s affected | Dump: %s tried, %s affected", triedUnloadChests, affectedUnloadChests, triedDumpChests, affectedDumpChests));
         
         for(Block block : affectedChests) {
             main.visualizer.chestAnimation(block,p);
-            if(main.getConfig().getBoolean("laser-animation")) {
-                //main.visualizer.playLaser(affectedChests, p, main.getConfig().getInt("laser-default-duration"));
+
+            //if(main.getConfig().getBoolean("laser-animation")) { // On search, ALWAYS play the animation
                 main.visualizer.play(p);
-            }
-            if(main.chestSortHook.shouldSort(p)) {
-                main.chestSortHook.sort(block);
-                //System.out.println("Sorting "+block.getLocation());
-            }
+            //}
         }
 
         return true;

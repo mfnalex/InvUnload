@@ -5,13 +5,19 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class CommandBlacklist implements CommandExecutor {
+public class CommandBlacklist implements CommandExecutor, TabCompleter {
 
     Main main;
 
@@ -47,7 +53,7 @@ public class CommandBlacklist implements CommandExecutor {
 
         switch(option) {
             case "show":
-                b.print(p);
+                b.print(p,main);
                 return true;
             case "add":
             case "remove":
@@ -72,7 +78,7 @@ public class CommandBlacklist implements CommandExecutor {
                 }
 
 
-                for(Material mat : candidates) {
+                /*for(Material mat : candidates) {
                     if(b.contains(mat)) {
                         if (option.equals("add")) {
                             alreadyAdded.add(mat);
@@ -88,15 +94,37 @@ public class CommandBlacklist implements CommandExecutor {
                         continue;
                     }
                     alreadyAdded.add(mat);
+                }*/
+
+                for(Material mat : candidates) {
+                    successes.add(mat);
+                    if (option.equals("add")) {
+                        b.add(mat);
+                    } else {
+                        b.remove(mat);
+                    }
                 }
 
-                if(errors.size()>1) {
+
+                /*if(errors.size()>1) {
                     p.sendMessage(String.format(main.messages.BL_INVALID2,errors.size()));
                 } else if(errors.size()==1) {
                     p.sendMessage(String.format(main.messages.BL_INVALID1,errors.get(0)));
+                }*/
+                if(errors.size()>0) {
+                    p.sendMessage(String.format(main.messages.BL_INVALID,stringlist2string(errors)));
+                }
+                if(successes.size()>0) {
+                    String message;
+                    if(option.equals("add")) {
+                        message = main.messages.BL_ADDED;
+                    } else  {
+                        message = main.messages.BL_REMOVED;
+                    }
+                    p.sendMessage(String.format(message,matlist2string(successes)));
                 }
 
-                if(alreadyAdded.size()>1) {
+                /*if(alreadyAdded.size()>1) {
                     if(option.equals("add")) {
                         p.sendMessage(String.format(main.messages.BL_ALREADYADDED2,alreadyAdded.size()));
                     } else {
@@ -108,9 +136,9 @@ public class CommandBlacklist implements CommandExecutor {
                     } else {
                         p.sendMessage(String.format(main.messages.BL_NOTTHERE1,alreadyAdded.get(0).name()));
                     }
-                }
+                }*/
 
-                if(successes.size()>1) {
+                /*if(successes.size()>1) {
                     if(option.equals("add")) {
                         p.sendMessage(String.format(main.messages.BL_ADDED2,successes.size()));
                     } else {
@@ -124,10 +152,54 @@ public class CommandBlacklist implements CommandExecutor {
                         p.sendMessage(String.format(main.messages.BL_REMOVED1,successes.get(0).name()));
                     }
 
-                }
+                }*/
+                return true;
+            case "reset":
+                p.sendMessage(String.format(main.messages.BL_REMOVED,matlist2string(b.mats)));
+                b.mats.clear();
                 return true;
             default:
                 return false;
         }
+    }
+
+    private String stringlist2string(List<String> list) {
+        return String.join(", ",list);
+    }
+    private String matlist2string(List<Material> list) {
+        return list.stream()
+                .map(Material::name)
+                .collect(Collectors.joining(", "));
+    }
+
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+
+        if(!(commandSender instanceof Player)) return null;
+
+        String commands[] = { "show","add","remove","reset" };
+        if(args.length==0) return Arrays.asList(commands);
+        ArrayList<String> list = new ArrayList<>();
+
+        if(args.length==1) {
+            for(String string : commands) {
+                if(string.toLowerCase().startsWith(args[0])) list.add(string);
+            }
+            return list;
+        }
+
+        if(args.length>=2 && args[0].equalsIgnoreCase("remove")) {
+            for(Material mat : main.getPlayerSetting((Player)commandSender).getBlacklist().mats) {
+                list.add(mat.name());
+            }
+            return list;
+        }
+
+        if(args.length>=2 && args[0].equals("add")) {
+            return main.materialTabCompleter.onTabComplete(commandSender, command, s, args);
+        }
+
+        return null;
     }
 }

@@ -53,8 +53,13 @@ public class BlackList {
         return list;
     }
 
-    void print(Player p) {
-        p.sendMessage(ChatColor.GOLD+"Items on your blacklist:");
+    void print(Player p,Main main) {
+
+        if(mats.size()==0) {
+            p.sendMessage(main.messages.BL_EMPTY);
+        }
+
+        p.sendMessage(main.getConfig().getString("blacklist-title"));
 
         /*p.sendMessage("This list will be nicer in the next version :P");
         p.sendMessage("Blacklist: ");

@@ -4,9 +4,12 @@
 - Added per player blacklist for items that should not be unloaded
   - /blacklist: Shows your blacklist, including clickable links to delete items
   - /blacklist add: Adds your currently held item to the blacklist
-  - /blacklist add <Materials...>: Adds all specified materials to the blacklist
+  - /blacklist add <Items...>: Adds all specified materials to the blacklist
   - /blacklist remove: Removes your currently held item from the blacklist
-  - /blacklist remove <Materials...>: Removes all specified materials from the blacklist
+  - /blacklist remove <Items...>: Removes all specified materials from the blacklist
+- Fixed exception when using ancient versions of CoreProtect
+- Added config option to completely disable CoreProtect logging
+- Laser animation is always shown after /unloadinfo or /search
 
 ## 4.5.0
 - Made laser particles configurable

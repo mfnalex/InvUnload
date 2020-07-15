@@ -38,7 +38,7 @@ public class InvUtils {
 			source.clear(i);
 			int amount = item.getAmount();
 			if(onlyMatchingStuff==false || BlockUtils.doesChestContain(destination,item.getType())) {
-				CoreProtectHook.logCoreProtect(main, p.getName(), destination);
+				main.coreProtectHook.logCoreProtect(p.getName(), destination);
 				for(ItemStack leftover : destination.addItem(item).values()) {
 					amount = amount - leftover.getAmount();			
 					source.setItem(i,leftover);

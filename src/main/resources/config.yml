@@ -66,7 +66,7 @@ sound-effect: ENTITY_PLAYER_LEVELUP
 always-show-summary: true
 
 # When set to true, InvUnload will draw the laser beam everytime you /unload or /dump
-# When set to false, InvUnload only draws the laser beam on /unloadinfo (or /dumpinfo)
+# When set to false, InvUnload only draws the laser beam on /unloadinfo and /search
 laser-animation: false
 
 # You can change the particles used for the laser
@@ -95,18 +95,11 @@ laser-moves-with-player: true
 ##### 3rd party plugins ######
 ##############################
 
-##### Protection plugins #####
+##### Generic protection plugins #####
 # When enabled, InvUnload will call a PlayerInteractEvent upon unloading
 # or dump attempts to check if the player is allowed to use this chest.
 # If you don't know what this means, don't this config.
 use-playerinteractevent: true
-
-##### ChestSort #####
-# When enabled, InvUnload will automatically use ChestSort
-# to sort every chest that has been affected by unloading/dumping
-# if the player has automatic sorting enabled.
-# This will only work if ChestSort (www.chestsort.de) is installed.
-use-chestsort: true
 
 ##### PlotSquared #####
 # When enabled, InvUnload will check if you are using PlotSquared.
@@ -120,6 +113,28 @@ plotsquared-allow-when-trusted: true
 
 # Allows players to unload into chests that do not belong to any Plot
 plotsquared-allow-outside-plots: true
+
+##### CoreProtect #####
+# When enabled, InvUnload will tell CoreProtect what items have
+# been put into which chests, or in other words:
+# This makes /unload and /dump loggable by CoreProtect
+use-coreprotect: true
+
+##### ChestSort #####
+# When enabled, InvUnload will automatically use ChestSort
+# to sort every chest that has been affected by unloading/dumping
+# if the player has automatic sorting enabled.
+# This will only work if ChestSort (www.chestsort.de) is installed.
+use-chestsort: true
+
+##########################
+##### miscellaneous ######
+##########################
+
+# When using /search or /blacklist, InvUnload tabcompletes the item names.
+# When set to true, entering "oak" will result in suggestions for all items starting with "oak".
+# When set to false, also items beginning with "dark_oak" etc. are suggested.
+strict-tabcomplete: true
 
 ##########################
 ##### Update Checker #####
@@ -157,14 +172,27 @@ check-interval: 4
 # By default, every message sent by InvUnload has a [InvUnload] prefix.
 # You can change this if you want or set it to an empty string to disable it.
 message-prefix: "&6[InvUnload] &r"
+blacklist-title: "----- &cBlacklist&r -----"
 
-##### English
 message-could-not-unload: "&7Nothing to unload: There are no chests for the remaining items."
 message-radius-too-high: "&cError:&7 The radius cannot be higher than %d blocks."
 message-no-chests-nearby: "&7Nothing to unload: There are no chests nearby. Adjust the radius or walk closer to your chests."
 message-error-not-a-number: "&cError:&7 '%s' is not a valid number."
 message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 message-nothing-found: "&7Could not find any chests containing %s."
+message-blacklist-empty: "&7You blacklist is empty."
+message-blacklist-added: "&2Added to blacklist:&7 %s"
+message-blacklist-invalid: "&4Invalid items:&7 %s"
+message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+
+##### English
+#message-could-not-unload: "&7Nothing to unload: There are no chests for the remaining items."
+#message-radius-too-high: "&cError:&7 The radius cannot be higher than %d blocks."
+#message-no-chests-nearby: "&7Nothing to unload: There are no chests nearby. Adjust the radius or walk closer to your chests."
+#message-error-not-a-number: "&cError:&7 '%s' is not a valid number."
+#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
+#message-nothing-found: "&7Could not find any chests containing %s."
 
 ##### Chinese (Simplified)
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
