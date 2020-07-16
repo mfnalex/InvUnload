@@ -8,6 +8,7 @@ import java.util.UUID;
 import de.jeff_media.ChestSortAPI.ChestSort;
 import de.jeff_media.ChestSortAPI.ChestSortAPI;
 import de.jeff_media.InvUnload.Hooks.CoreProtectHook;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -60,6 +61,8 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public void onEnable() {
+
+		Metrics metrics = new Metrics(this,3156);
 
 		String tmpVersion = getServer().getClass().getPackage().getName();
 		mcVersion = tmpVersion.substring(tmpVersion.lastIndexOf('.') + 1);

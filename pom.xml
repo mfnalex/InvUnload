@@ -43,6 +43,10 @@
 							<pattern>de.jeff_media.PluginUpdateChecker</pattern>
 							<shadedPattern>de.jeff_media.InvUnload</shadedPattern>
 						</relocation>
+						<relocation>
+							<pattern>org.bstats</pattern>
+							<shadedPattern>de.jeff_media.InvUnload</shadedPattern>
+						</relocation>
 					</relocations>
 				</configuration>
 				<executions>
