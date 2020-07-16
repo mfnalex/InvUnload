@@ -137,16 +137,17 @@ public class Visualizer {
 	
 	void play(ArrayList<Block> affectedChests, Player p) {
 		// Visualize
+		// TODO: Move the declarations out of the Runnable
+		Particle particle = Particle.valueOf(main.getConfig().getString("laser-particle","CRIT").toUpperCase());
+		//Particle particle = Particle.CRIT;
+		int count = main.getConfig().getInt("laser-count",1);
+		int maxDistance = main.getConfig().getInt("laser-max-distance",128);
+		double interval = main.getConfig().getDouble("laser-interval",0.3);
+		double speed = main.getConfig().getDouble("laser-speed",0.001);
 				
 				int task = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
 				    public void run() {
-				    	// TODO: Move the declarations out of the Runnable
-						Particle particle = Particle.valueOf(main.getConfig().getString("laser-particle","CRIT").toUpperCase());
-				    	//Particle particle = Particle.CRIT;
-				    	int count = main.getConfig().getInt("laser-count",1);
-				    	int maxDistance = main.getConfig().getInt("laser-max-distance",128);
-				    	double interval = main.getConfig().getDouble("laser-interval",0.3);
-				    	double speed = main.getConfig().getDouble("laser-speed",0.001);
+
 				    	play(affectedChests, p, interval, count, particle,speed,maxDistance);
 				    }
 				}, 0, 2);
