@@ -1,5 +1,6 @@
 package de.jeff_media.InvUnload;
 
+import de.jeff_media.InvUnload.API.InvUnloadCheckAccessEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -23,7 +24,7 @@ public class PlayerUtils {
 		}
 		
 		if( main.getConfig().getBoolean("use-playerinteractevent")) { 
-			PlayerInteractEvent event = new PlayerInteractEvent(player,
+			PlayerInteractEvent event = new InvUnloadCheckAccessEvent(player,
 					Action.RIGHT_CLICK_BLOCK, null, block, BlockFace.UP);
 			
 			Bukkit.getPluginManager().callEvent(event);

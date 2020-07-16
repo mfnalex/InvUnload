@@ -1,4 +1,22 @@
 # Changelog
+## 4.8.0
+- Use custom event instead of PlayerInteractEvent to check if a player has access to a chest so that 3rd party plugins (especially OpenInv) can handle this properly
+
+## 4.7.0
+- Added per-player setting whether hotbar contents should be unloaded / dumped as well.
+  - /unload hotbar: Toggle whether hotbar contents get unloaded
+  - /dump hotbar: Toggle whether hotbar contents get dumped
+
+## 4.6.0
+- Added per player blacklist for items that should not be unloaded
+  - /blacklist: Shows your blacklist, including clickable links to delete items
+  - /blacklist add: Adds your currently held item to the blacklist
+  - /blacklist add <Items...>: Adds all specified materials to the blacklist
+  - /blacklist remove: Removes your currently held item from the blacklist
+  - /blacklist remove <Items...>: Removes all specified materials from the blacklist
+- Fixed exception when using ancient versions of CoreProtect
+- Added config option to completely disable CoreProtect logging
+- Laser animation is always shown after /unloadinfo or /search
 
 ## 4.5.0
 - Made laser particles configurable

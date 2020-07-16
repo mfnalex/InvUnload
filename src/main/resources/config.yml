@@ -21,6 +21,39 @@
 # config using /unload reload
 #
 
+###############################
+#######    Commands     #######
+###############################
+
+# /unload /or /ul):     Unloads items from your inventory into nearby matching chests
+# /unload hotbar:       Toggles whether /unload will also unload items from your hotbar
+# /unload reload:       Reloads the config
+
+# /dump:                Unloads items from your inventory into nearby matching chests, and puts the rest into the nearest chests
+# /dump hotbar:         Toggles whether /dump will also dump items from your hotbar
+
+# /unloadinfo (or /uli):    Shows a summary about the last /unload or /dump that lets you know which items went into which chest
+# /searchitem (or /search): Searches in nearby chests for a given item and displays the result like /unloadinfo.
+
+# /blacklist:                   Shows your per-player blacklist. Blacklisted items will not be affected by /unload or /dump.
+# /blacklist add:               Adds the item you are currently holding to your blacklist
+# /blacklist add <items...>:    Adds all given items to your blacklist
+# /blacklist remove:            Removes the item you are currently holding from your blacklist
+# /blacklist remove <items...>: Removes all given items from your blacklist
+# /blacklist reset:             Removes all items from your blacklist
+
+###############################
+#######   Permissions   #######
+###############################
+
+# invunload.use:        Allows to use the commands /unload, /dump, /unloadinfo, /blacklist
+# invunload.reload:     Allows to reload the config using /unload reload
+# invunload.search:     Allows to use the command /searchitem
+
+###############################
+####### General config  #######
+###############################
+
 # Players can use /unload <radius> to unload their inventory into matching
 # chests that are within that radius. Also applies to /dump <radius>
 # Can be overridden for custom groups. See groups.yml
@@ -66,7 +99,7 @@ sound-effect: ENTITY_PLAYER_LEVELUP
 always-show-summary: true
 
 # When set to true, InvUnload will draw the laser beam everytime you /unload or /dump
-# When set to false, InvUnload only draws the laser beam on /unloadinfo (or /dumpinfo)
+# When set to false, InvUnload only draws the laser beam on /unloadinfo and /search
 laser-animation: false
 
 # You can change the particles used for the laser
@@ -95,18 +128,11 @@ laser-moves-with-player: true
 ##### 3rd party plugins ######
 ##############################
 
-##### Protection plugins #####
+##### Generic protection plugins #####
 # When enabled, InvUnload will call a PlayerInteractEvent upon unloading
 # or dump attempts to check if the player is allowed to use this chest.
 # If you don't know what this means, don't this config.
 use-playerinteractevent: true
-
-##### ChestSort #####
-# When enabled, InvUnload will automatically use ChestSort
-# to sort every chest that has been affected by unloading/dumping
-# if the player has automatic sorting enabled.
-# This will only work if ChestSort (www.chestsort.de) is installed.
-use-chestsort: true
 
 ##### PlotSquared #####
 # When enabled, InvUnload will check if you are using PlotSquared.
@@ -120,6 +146,28 @@ plotsquared-allow-when-trusted: true
 
 # Allows players to unload into chests that do not belong to any Plot
 plotsquared-allow-outside-plots: true
+
+##### CoreProtect #####
+# When enabled, InvUnload will tell CoreProtect what items have
+# been put into which chests, or in other words:
+# This makes /unload and /dump loggable by CoreProtect
+use-coreprotect: true
+
+##### ChestSort #####
+# When enabled, InvUnload will automatically use ChestSort
+# to sort every chest that has been affected by unloading/dumping
+# if the player has automatic sorting enabled.
+# This will only work if ChestSort (www.chestsort.de) is installed.
+use-chestsort: true
+
+##########################
+##### miscellaneous ######
+##########################
+
+# When using /search or /blacklist, InvUnload tabcompletes the item names.
+# When set to true, entering "oak" will result in suggestions for all items starting with "oak".
+# When set to false, also items beginning with "dark_oak" etc. are suggested.
+strict-tabcomplete: true
 
 ##########################
 ##### Update Checker #####
@@ -157,14 +205,36 @@ check-interval: 4
 # By default, every message sent by InvUnload has a [InvUnload] prefix.
 # You can change this if you want or set it to an empty string to disable it.
 message-prefix: "&6[InvUnload] &r"
+blacklist-title: "----- &cBlacklist&r -----"
 
-##### English
 message-could-not-unload: "&7Nothing to unload: There are no chests for the remaining items."
 message-radius-too-high: "&cError:&7 The radius cannot be higher than %d blocks."
 message-no-chests-nearby: "&7Nothing to unload: There are no chests nearby. Adjust the radius or walk closer to your chests."
 message-error-not-a-number: "&cError:&7 '%s' is not a valid number."
 message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 message-nothing-found: "&7Could not find any chests containing %s."
+message-blacklist-empty: "&7You blacklist is empty."
+message-blacklist-added: "&2Added to blacklist:&7 %s"
+message-blacklist-invalid: "&4Invalid items:&7 %s"
+message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
+message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+
+##### English
+#message-could-not-unload: "&7Nothing to unload: There are no chests for the remaining items."
+#message-radius-too-high: "&cError:&7 The radius cannot be higher than %d blocks."
+#message-no-chests-nearby: "&7Nothing to unload: There are no chests nearby. Adjust the radius or walk closer to your chests."
+#message-error-not-a-number: "&cError:&7 '%s' is not a valid number."
+#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
+#message-nothing-found: "&7Could not find any chests containing %s."
+#message-blacklist-empty: "&7You blacklist is empty."
+#message-blacklist-added: "&2Added to blacklist:&7 %s"
+#message-blacklist-invalid: "&4Invalid items:&7 %s"
+#message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+#message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+#message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
+#message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 
 ##### Chinese (Simplified)
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -174,6 +244,13 @@ message-nothing-found: "&7Could not find any chests containing %s."
 #message-error-not-a-number: "&c错误:&7 '%s' 不是一个有效的数字。"
 #message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 #message-nothing-found: "&7Could not find any chests containing %s."
+#message-blacklist-empty: "&7You blacklist is empty."
+#message-blacklist-added: "&2Added to blacklist:&7 %s"
+#message-blacklist-invalid: "&4Invalid items:&7 %s"
+#message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+#message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+#message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
+#message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 
 ##### Chinese (Traditional)
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -183,14 +260,29 @@ message-nothing-found: "&7Could not find any chests containing %s."
 #message-error-not-a-number: "&c錯誤:&7 '%s' 不是一個有效的數字。"
 #message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 #message-nothing-found: "&7Could not find any chests containing %s."
+#message-blacklist-empty: "&7You blacklist is empty."
+#message-blacklist-added: "&2Added to blacklist:&7 %s"
+#message-blacklist-invalid: "&4Invalid items:&7 %s"
+#message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+#message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+#message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
+#message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 
 ##### French
+##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7Rien à décharger: Il n'y a aucun coffre pour le restant des articles."
 #message-radius-too-high: "&cErreur:&7 Le rayon ne peut être supérieur à %d bloc(s)."
 #message-no-chests-nearby: "&7Rien à décharger: Il n'y a aucun coffre dans les environs. Ajustez le rayon ou rapprochez-vous de vos coffres."
 #message-error-not-a-number: "&cErreur:&7 '%s' n'est pas un nombre valide."
 #message-inventory-empty: "&7Rien à décharger: Votre inventaire est déjà vide."
 #message-nothing-found: "&7Aucun coffre contenant %s n'a été trouvé."
+#message-blacklist-empty: "&7You blacklist is empty."
+#message-blacklist-added: "&2Added to blacklist:&7 %s"
+#message-blacklist-invalid: "&4Invalid items:&7 %s"
+#message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+#message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+#message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
+#message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 
 ##### German
 #message-could-not-unload: "&7Konnte nichts abladen: Hier sind keine Kisten für die verbleibenden Items."
@@ -199,6 +291,13 @@ message-nothing-found: "&7Could not find any chests containing %s."
 #message-error-not-a-number: "&cFehler:&7 '%s' ist keine gültige Zahl."
 #message-inventory-empty: "&7Konnte nichts abladen: Dein Inventar ist bereits leer."
 #message-nothing-found: "&7Konnte keine Kisten finden die %s beinhalten."
+#message-blacklist-empty: "&7Deine Blacklist ist leer."
+#message-blacklist-added: "&2Zur Blacklist hinzugefügt:&7 %s"
+#message-blacklist-invalid: "&4Unbekanntes Item:&7 %s"
+#message-blacklist-removed: "&2Von Blacklist entfernt:&7 %s"
+#message-blacklist-nothing-specified: "&7Du musst entweder ein Item in der Hand halten oder mindestens ein Item angeben."
+#message-will-use-hotbar: "&6%s &7benutzt ab jetzt Items aus deiner Hotbar."
+#message-will-not-use-hotbar: "&6%s &7benutzt keine Items mehr aus deiner Hotbar."
 
 ##### Japanese
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -208,22 +307,45 @@ message-nothing-found: "&7Could not find any chests containing %s."
 #message-error-not-a-number: "&cError:&7 '%s'は有効な数字ではありません。"
 #message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
 #message-nothing-found: "&7Could not find any chests containing %s."
+#message-blacklist-empty: "&7You blacklist is empty."
+#message-blacklist-added: "&2Added to blacklist:&7 %s"
+#message-blacklist-invalid: "&4Invalid items:&7 %s"
+#message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+#message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+#message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
+#message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 
 ##### Spanish
+##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7Nada para deshabilitar: No hay cofres para los items restantes."
 #message-radius-too-high: "&cError:&7 El radio no puede ser mas grande que %d bloques."
 #message-no-chests-nearby: "&7Nada para deshabilitar: No hay cofres cerca. Ajusta el radio o camina mas cerca de tus cofres."
 #message-error-not-a-number: "&cError:&7 '%s' No es un numero valido."
 #message-inventory-empty: "&7Nada para deshabilitar: Tu inventario ya esta vacio."
 #message-nothing-found: "&7No se encontraron cofres conteniendo %s."
+#message-blacklist-empty: "&7You blacklist is empty."
+#message-blacklist-added: "&2Added to blacklist:&7 %s"
+#message-blacklist-invalid: "&4Invalid items:&7 %s"
+#message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+#message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+#message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
+#message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 
 ##### Turkish
+##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7Boşaltılacak bir şey yok: Kalan eşya için sandık mevcut değil."
 #message-radius-too-high: "&cHata:&7 Çevre %d bloktan yüksek olamaz."
 #message-no-chests-nearby: "&7Boşaltılacak bir şey yok: Yakında sandık yok. Alanı ayarlayın veya bir sandığa yakınlaşın."
 #message-error-not-a-number: "&cHata:&7 '%s' geçerli bir sayı değil."
 #message-inventory-empty: "&7Boşaltılacak bir şey yok: Envanterin zaten boş."
 #message-nothing-found: "&7 %s içeren hiçbir sandık bulunamadı."
+#message-blacklist-empty: "&7You blacklist is empty."
+#message-blacklist-added: "&2Added to blacklist:&7 %s"
+#message-blacklist-invalid: "&4Invalid items:&7 %s"
+#message-blacklist-removed: "&2Removed from blacklist:&7 %s"
+#message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
+#message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
+#message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 
 #########################
 #####     Done!     #####
@@ -233,4 +355,4 @@ message-nothing-found: "&7Could not find any chests containing %s."
 debug: false
 
 # please do not change the following line manually!
-config-version: 22
+config-version: 24

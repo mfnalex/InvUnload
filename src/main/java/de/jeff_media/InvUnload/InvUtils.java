@@ -27,17 +27,18 @@ public class InvUtils {
 		public static boolean stuffInventoryIntoAnother(@NotNull Main main, @NotNull  Player p, @NotNull Inventory destination, @NotNull boolean onlyMatchingStuff, @NotNull int startSlot, @NotNull int endSlot, @Nullable UnloadSummary summary) {
 
 		Inventory source = p.getInventory();
-
+		BlackList blackList = main.getPlayerSetting(p).getBlacklist();
 		
 		int start = countInventoryContents(source);
 		for(int i = startSlot; i<=endSlot; i++) {
 			ItemStack item = source.getItem(i);
 			if(MinepacksHook.isMinepacksBackpack(item)) continue;
 			if(item == null) continue;
+			if(blackList.contains(item.getType())) continue;
 			source.clear(i);
 			int amount = item.getAmount();
 			if(onlyMatchingStuff==false || BlockUtils.doesChestContain(destination,item.getType())) {
-				CoreProtectHook.logCoreProtect(main, p.getName(), destination);
+				main.coreProtectHook.logCoreProtect(p.getName(), destination);
 				for(ItemStack leftover : destination.addItem(item).values()) {
 					amount = amount - leftover.getAmount();			
 					source.setItem(i,leftover);

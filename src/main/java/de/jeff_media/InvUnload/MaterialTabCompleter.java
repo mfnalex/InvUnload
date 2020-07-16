@@ -12,9 +12,13 @@ import java.util.List;
 
 public class MaterialTabCompleter implements TabCompleter {
 
+    Main main;
+
     ArrayList<String> mats;
 
-    MaterialTabCompleter() {
+    MaterialTabCompleter(Main main) {
+        this.main = main;
+
         mats = new ArrayList<>();
         for(Material mat : Material.values()) {
             mats.add(mat.name());
@@ -31,8 +35,10 @@ public class MaterialTabCompleter implements TabCompleter {
         String lastArg = args[args.length-1];
 
         for(String mat : mats) {
-            if(mat.toLowerCase().contains(lastArg.toLowerCase())) {
-                results.add(mat);
+            if(main.getConfig().getBoolean("strict-tabcomplete")) {
+                if(mat.startsWith(lastArg.toUpperCase())) results.add(mat);
+            } else {
+                if (mat.contains(lastArg.toUpperCase())) results.add(mat);
             }
         }
 
