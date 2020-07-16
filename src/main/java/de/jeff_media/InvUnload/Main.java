@@ -28,7 +28,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 23;
+	private int currentConfigVersion = 24;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
