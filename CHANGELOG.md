@@ -1,4 +1,6 @@
 # Changelog
+## 4.8.0
+- Use custom event instead of PlayerInteractEvent to check if a player has access to a chest so that 3rd party plugins (especially OpenInv) can handle this properly
 
 ## 4.7.0
 - Added per-player setting whether hotbar contents should be unloaded / dumped as well.
