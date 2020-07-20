@@ -237,20 +237,19 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 
 ##### Chinese (Simplified)
-##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
-#message-could-not-unload: "&7没有东西可以卸下，也许你没有给其余物品的箱子？"
-#message-radius-too-high: "&c错误:&7 范围不得高于 %d 个方块。"
+#message-could-not-unload: "&7没有东西可以卸下，也许你没有给其余物品分配箱子？"
+#message-radius-too-high: "&c错误:&7 范围不得超过 %d 个方块。"
 #message-no-chests-nearby: "&7附近没有箱子，调整范围或靠近箱子一点。"
 #message-error-not-a-number: "&c错误:&7 '%s' 不是一个有效的数字。"
-#message-inventory-empty: "&7Nothing to unload: Your inventory is already empty."
-#message-nothing-found: "&7Could not find any chests containing %s."
-#message-blacklist-empty: "&7You blacklist is empty."
-#message-blacklist-added: "&2Added to blacklist:&7 %s"
-#message-blacklist-invalid: "&4Invalid items:&7 %s"
-#message-blacklist-removed: "&2Removed from blacklist:&7 %s"
-#message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
-#message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
-#message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+#message-inventory-empty: "&7没有任何东西可以卸下: 你的物品栏已被清空."
+#message-nothing-found: "&7找不到任何包含 %s 物品的箱子."
+#message-blacklist-empty: "&7你的黑名单已被清空."
+#message-blacklist-added: "&2添加到黑名单 :&7 %s"
+#message-blacklist-invalid: "&4无效物品:&7 %s"
+#message-blacklist-removed: "&2已从黑名单中移除:&7 %s"
+#message-blacklist-nothing-specified: "&7你必须指定一个物品或者手持物品."
+#message-will-use-hotbar: "&6%s &7现在将会使用你的快捷栏中的物品."
+#message-will-not-use-hotbar: "&6%s &7不再使用你的快捷栏中的物品."
 
 ##### Chinese (Traditional)
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC

@@ -1,4 +1,7 @@
 # Changelog
+## 4.8.1
+- Updated Chinese (Simplified) translation
+
 ## 4.8.0
 - Use custom event instead of PlayerInteractEvent to check if a player has access to a chest so that 3rd party plugins (especially OpenInv) can handle this properly
 
