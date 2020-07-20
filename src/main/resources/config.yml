@@ -354,4 +354,4 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 debug: false
 
 # please do not change the following line manually!
-config-version: 24
+config-version: 25
