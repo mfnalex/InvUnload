@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.9.0
+- Added commands to add / remove all items to / from your blacklist that you currently have in your inventory / hotbar:
+  - /blacklist add inventory
+  - /blacklist remove inventory
+  - /blacklist add hotbar
+  - /blacklist remove hotbar
+
 ## 4.8.2
 - Fixed exception on startup
 

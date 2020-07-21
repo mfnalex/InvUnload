@@ -59,7 +59,7 @@ public class BlackList {
             p.sendMessage(main.messages.BL_EMPTY);
         }
 
-        p.sendMessage(main.getConfig().getString("blacklist-title"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&',main.getConfig().getString("blacklist-title")));
 
         /*p.sendMessage("This list will be nicer in the next version :P");
         p.sendMessage("Blacklist: ");

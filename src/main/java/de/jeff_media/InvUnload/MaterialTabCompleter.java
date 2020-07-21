@@ -23,6 +23,9 @@ public class MaterialTabCompleter implements TabCompleter {
         for(Material mat : Material.values()) {
             mats.add(mat.name());
         }
+        mats.add("inv");
+        mats.add("inventory");
+        mats.add("hotbar");
     }
 
 

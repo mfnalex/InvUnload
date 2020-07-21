@@ -1,6 +1,6 @@
 main: de.jeff_media.InvUnload.Main
 name: InvUnload
-version: 4.8.2
+version: 4.9.0
 api-version: 1.13
 description: Unloads inventory in nearby matching chests
 author: mfnalex
@@ -41,8 +41,12 @@ commands:
     usage: |
             /<command> -- Show your blacklist
             /<command> add -- Adds your currently held item to your blacklist
+            /<command> add inventory -- Adds all items from your inventory to your blacklist
+            /<command> add hotbar -- Adds all items from your hotbar to your blacklist
             /<command> add <items...> -- Add specified items to your blacklist
             /<command> remove -- Removes your currently held item from your blacklist
+            /<command> remove inventory -- Removes all items from your inventory from your blacklist
+            /<command> remove hotbar -- Removes all items from your hotbar from your blacklist
             /<command> remove <items...> -- Remove items from your blacklist
             /<command> reset -- Removes all items from your blacklist
     permission: invunload.use
