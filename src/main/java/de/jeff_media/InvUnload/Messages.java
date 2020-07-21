@@ -53,6 +53,8 @@ public class Messages {
 		BL_NOTTHERE1=ChatColor.YELLOW+"%s was not on your blacklist.";
 		BL_NOTTHERE2=ChatColor.YELLOW+"%d materials were not on your blacklist.";*/
 
+        plugin.getConfig().addDefault("blacklist-title","----- &cBlacklist&r -----");
+
 
     }
 

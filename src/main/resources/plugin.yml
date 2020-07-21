@@ -1,6 +1,6 @@
 main: de.jeff_media.InvUnload.Main
 name: InvUnload
-version: 4.9.0
+version: 4.9.1-SNAPSHOT
 api-version: 1.13
 description: Unloads inventory in nearby matching chests
 author: mfnalex
@@ -34,7 +34,7 @@ commands:
             /<command> <item> -- Searches for the given item
             /<command> <radius> -- Searches for your currently held item in the given radius
             /<command> <item> <radius> -- Searches for the given item in the given radius
-    aliases: [search]
+    aliases: [search,chestsearch]
     permission: invunload.search
   blacklist:
     description: Blacklists an item so it is ignored by /unload

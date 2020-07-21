@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.9.1-SNAPSHOT
+- Added /chestsearch as alias for /searchitem
+
 ## 4.9.0
 - Added commands to add / remove all items to / from your blacklist that you currently have in your inventory / hotbar:
   - /blacklist add inventory
