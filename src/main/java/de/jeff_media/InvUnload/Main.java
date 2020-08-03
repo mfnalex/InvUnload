@@ -1,9 +1,7 @@
 package de.jeff_media.InvUnload;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import de.jeff_media.ChestSortAPI.ChestSort;
 import de.jeff_media.ChestSortAPI.ChestSortAPI;
@@ -12,6 +10,7 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import de.jeff_media.InvUnload.Hooks.ChestSortHook;
@@ -29,7 +28,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 25;
+	private int currentConfigVersion = 26;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -119,7 +118,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		getConfig().addDefault("default-chest-radius", 10);
 		defaultChestRadius = getConfig().getInt("default-chest-radius");
-		
+
 		getConfig().addDefault("unload-before-dumping", true);
 		
 		getConfig().addDefault("check-interval", 4);

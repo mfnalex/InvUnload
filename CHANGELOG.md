@@ -1,6 +1,8 @@
 # Changelog
 
-## 4.9.1-SNAPSHOT
+## 4.9.1
+- InvUnload will no longer try to unload into droppers and dispensers
+- Fixed compatibility with some older versions
 - Added /chestsearch as alias for /searchitem
 
 ## 4.9.0

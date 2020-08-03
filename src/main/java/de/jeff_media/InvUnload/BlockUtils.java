@@ -51,15 +51,18 @@ public class BlockUtils {
 	
 	public static boolean isChestLikeBlock(Block block) {
 		if(!(block.getState() instanceof Container)) return false;
-		switch(block.getType()) {
-		case BLAST_FURNACE:
-		case BREWING_STAND:
-		case FURNACE:
-		case HOPPER:
-		case SMOKER:
-			return false;
-		default:
-			return true;
+		String name = block.getType().name();
+		switch(name) {
+			case "BLAST_FURNACE":
+			case "BREWING_STAND":
+			case "FURNACE":
+			case "HOPPER":
+			case "SMOKER":
+			case "DROPPER":
+			case "DISPENSER":
+				return false;
+			default:
+				return true;
 		}
 	}
 	
