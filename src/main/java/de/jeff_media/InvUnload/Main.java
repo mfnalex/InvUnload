@@ -6,6 +6,7 @@ import java.util.*;
 import de.jeff_media.ChestSortAPI.ChestSort;
 import de.jeff_media.ChestSortAPI.ChestSortAPI;
 import de.jeff_media.InvUnload.Hooks.CoreProtectHook;
+import de.jeff_media.InvUnload.Hooks.InventoryPagesHook;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -41,6 +42,7 @@ public class Main extends JavaPlugin implements Listener {
 	protected PluginUpdateChecker updateChecker;
 	protected ChestSortHook chestSortHook;
 	protected PlotSquaredHook plotSquaredHook;
+	protected InventoryPagesHook inventoryPagesHook;
 	protected Visualizer visualizer;
 	protected GroupUtils groupUtils;
 
@@ -81,6 +83,7 @@ public class Main extends JavaPlugin implements Listener {
 		chestSortHook = new ChestSortHook(this);
 		plotSquaredHook = new PlotSquaredHook(this);
 		coreProtectHook = new CoreProtectHook(this);
+		inventoryPagesHook = new InventoryPagesHook(this);
 		
 		registerCommands();
 	}

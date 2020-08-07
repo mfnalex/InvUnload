@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.9.2
+- Added InventoryPages support
+
 ## 4.9.1
 - InvUnload will no longer try to unload into droppers and dispensers
 - Fixed compatibility with some older versions

@@ -32,8 +32,9 @@ public class InvUtils {
 		int start = countInventoryContents(source);
 		for(int i = startSlot; i<=endSlot; i++) {
 			ItemStack item = source.getItem(i);
+			if(item==null) continue;
 			if(MinepacksHook.isMinepacksBackpack(item)) continue;
-			if(item == null) continue;
+			if(main.inventoryPagesHook.isButton(item)) continue;
 			if(blackList.contains(item.getType())) continue;
 			source.clear(i);
 			int amount = item.getAmount();
