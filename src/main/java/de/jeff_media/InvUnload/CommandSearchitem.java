@@ -133,7 +133,6 @@ public class CommandSearchitem implements CommandExecutor {
         
         for(Block block : affectedChests) {
             main.visualizer.chestAnimation(block,p);
-
         }
         main.visualizer.play(affectedChests, p);
 
