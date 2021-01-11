@@ -134,10 +134,8 @@ public class CommandSearchitem implements CommandExecutor {
         for(Block block : affectedChests) {
             main.visualizer.chestAnimation(block,p);
 
-            //if(main.getConfig().getBoolean("laser-animation")) { // On search, ALWAYS play the animation
-                main.visualizer.play(p);
-            //}
         }
+        main.visualizer.play(affectedChests, p);
 
         return true;
     }
