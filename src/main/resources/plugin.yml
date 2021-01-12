@@ -1,6 +1,6 @@
 main: de.jeff_media.InvUnload.Main
 name: InvUnload
-version: 4.9.2
+version: 4.9.3
 api-version: 1.13
 description: Unloads inventory in nearby matching chests
 author: mfnalex
