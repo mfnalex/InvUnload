@@ -113,7 +113,9 @@ public class CommandBlacklist implements CommandExecutor, TabCompleter {
                 for (Material mat : candidates) {
                     successes.add(mat);
                     if (option.equals("add")) {
-                        b.add(mat);
+                        if(!b.contains(mat)) {
+                            b.add(mat);
+                        }
                     } else {
                         b.remove(mat);
                     }

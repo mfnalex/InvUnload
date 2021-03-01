@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.9.5
+- Fixed: users being able to add duplicate entries to their blacklist
+
 ## 4.9.2
 - Added InventoryPages support
 

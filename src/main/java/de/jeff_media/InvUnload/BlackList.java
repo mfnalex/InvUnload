@@ -29,7 +29,11 @@ public class BlackList {
 
     void add(String string) {
         Material mat = Material.getMaterial(string);
-        if(mat!=null) mats.add(mat);
+        if(mat!=null) {
+            if(!mats.contains(mat)) {
+                mats.add(mat);
+            }
+        }
     }
 
     void add(Material mat) {
@@ -48,7 +52,9 @@ public class BlackList {
         ArrayList<String> list = new ArrayList<>();
 
         for(Material mat : mats) {
-            list.add(mat.name());
+            if(!list.contains(mat.name())) {
+                list.add(mat.name());
+            }
         }
         return list;
     }
