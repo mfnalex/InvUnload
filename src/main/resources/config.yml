@@ -220,6 +220,7 @@ message-blacklist-removed: "&2Removed from blacklist:&7 %s"
 message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
 message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 ##### English
 #message-could-not-unload: "&7Nothing to unload: There are no chests for the remaining items."
@@ -235,6 +236,7 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+#message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 ##### Chinese (Simplified)
 #message-could-not-unload: "&7没有东西可以卸下，也许你没有给其余物品分配箱子？"
@@ -250,6 +252,7 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-blacklist-nothing-specified: "&7你必须指定一个物品或者手持物品."
 #message-will-use-hotbar: "&6%s &7现在将会使用你的快捷栏中的物品."
 #message-will-not-use-hotbar: "&6%s &7不再使用你的快捷栏中的物品."
+#message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 ##### Chinese (Traditional)
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -266,6 +269,7 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+#message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 ##### French
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -282,6 +286,7 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+#message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 ##### German
 #message-could-not-unload: "&7Konnte nichts abladen: Hier sind keine Kisten für die verbleibenden Items."
@@ -297,6 +302,7 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-blacklist-nothing-specified: "&7Du musst entweder ein Item in der Hand halten oder mindestens ein Item angeben."
 #message-will-use-hotbar: "&6%s &7benutzt ab jetzt Items aus deiner Hotbar."
 #message-will-not-use-hotbar: "&6%s &7benutzt keine Items mehr aus deiner Hotbar."
+#message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 ##### Japanese
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -313,6 +319,7 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+#message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 ##### Spanish
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -329,6 +336,7 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+#message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 ##### Turkish
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -345,6 +353,7 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-blacklist-nothing-specified: "&7You must either hold an item in your hand or specify at least one item."
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
+#message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
 #########################
 #####     Done!     #####
@@ -354,4 +363,4 @@ message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 debug: false
 
 # please do not change the following line manually!
-config-version: 26
+config-version: 27

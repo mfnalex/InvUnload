@@ -135,7 +135,14 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 		}
 		
 		if(affectedChests.size()==0) {
-			p.sendMessage(main.messages.MSG_COULD_NOT_UNLOAD);
+			BlackList blackList = main.getPlayerSetting(p).getBlacklist();
+			boolean everythingBlackListed = true;
+			for(int i = startSlot; i < endSlot; i++) {
+				if(!blackList.contains(p.getInventory().getItem(i).getType())) {
+					everythingBlackListed=false;
+				}
+			}
+			p.sendMessage(everythingBlackListed ? main.messages.MSG_COULD_NOT_UNLOAD_BLACKLIST : main.messages.MSG_COULD_NOT_UNLOAD);
 			return true;
 		}
 

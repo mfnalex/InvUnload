@@ -3,7 +3,7 @@ package de.jeff_media.InvUnload;
 import org.bukkit.ChatColor;
 
 public class Messages {
-    final String PREFIX, MSG_COULD_NOT_UNLOAD, MSG_RADIUS_TOO_HIGH, MSG_NOT_A_NUMBER, MSG_NO_CHESTS_NEARBY, MSG_INVENTORY_EMPTY, MSG_NOTHING_FOUND;
+    final String PREFIX, MSG_COULD_NOT_UNLOAD, MSG_RADIUS_TOO_HIGH, MSG_NOT_A_NUMBER, MSG_NO_CHESTS_NEARBY, MSG_INVENTORY_EMPTY, MSG_NOTHING_FOUND, MSG_COULD_NOT_UNLOAD_BLACKLIST;
     //final String BL_ADDED1, BL_ADDED2, BL_ALREADYADDED1, BL_ALREADYADDED2, BL_INVALID1, BL_INVALID2, BL_REMOVED1, BL_REMOVED2, BL_NOTTHERE1, BL_NOTTHERE2; //,BL_NOTHINGSPECIFIED;
     final String BL_ADDED, BL_INVALID, BL_REMOVED, BL_NOTHINGSPECIFIED,BL_EMPTY;
     final String MSG_WILL_USE_HOTBAR,MSG_WILL_NOT_USE_HOTBAR;
@@ -17,6 +17,9 @@ public class Messages {
 
         MSG_COULD_NOT_UNLOAD = PREFIX + ChatColor.translateAlternateColorCodes('&', plugin.getConfig()
                 .getString("message-could-not-unload", "&7Nothing to unload: There are no chests for the remaining items."));
+
+        MSG_COULD_NOT_UNLOAD_BLACKLIST = PREFIX + ChatColor.translateAlternateColorCodes('&', plugin.getConfig()
+                .getString("message-could-not-unload-blacklist", "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."));
 
         MSG_RADIUS_TOO_HIGH = PREFIX + ChatColor.translateAlternateColorCodes('&', plugin.getConfig()
                 .getString("message-radius-too-high", "&cError:&7 The radius cannot be higher than %d blocks."));

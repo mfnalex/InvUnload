@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.10.0
+- Added new message to show when all items in the inventory are blacklisted
+
 ## 4.9.5
 - Fixed: users being able to add duplicate entries to their blacklist
 
