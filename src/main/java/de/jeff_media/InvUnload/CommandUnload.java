@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -15,6 +16,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
@@ -138,7 +140,9 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 			BlackList blackList = main.getPlayerSetting(p).getBlacklist();
 			boolean everythingBlackListed = true;
 			for(int i = startSlot; i < endSlot; i++) {
-				if(!blackList.contains(p.getInventory().getItem(i).getType())) {
+				ItemStack item = p.getInventory().getItem(i);
+				if(item==null || item.getAmount()==0 || item.getType()== Material.AIR) continue;
+				if(!blackList.contains(item.getType())) {
 					everythingBlackListed=false;
 				}
 			}
