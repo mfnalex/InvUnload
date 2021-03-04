@@ -139,10 +139,11 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 		if(affectedChests.size()==0) {
 			BlackList blackList = main.getPlayerSetting(p).getBlacklist();
 			boolean everythingBlackListed = true;
-			for(int i = startSlot; i < endSlot; i++) {
+			for(int i = startSlot; i <= endSlot; i++) {
 				ItemStack item = p.getInventory().getItem(i);
 				if(item==null || item.getAmount()==0 || item.getType()== Material.AIR) continue;
 				if(!blackList.contains(item.getType())) {
+					System.out.println("NOT everything blacklisted: "+item.getType());
 					everythingBlackListed=false;
 				}
 			}

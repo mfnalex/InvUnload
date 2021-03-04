@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.10.1
+- Fixed blacklist message
+
 ## 4.10.0
 - Added new message to show when all items in the inventory are blacklisted
 
