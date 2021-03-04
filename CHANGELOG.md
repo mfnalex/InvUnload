@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.10.3
+- Fixed /search command showing "%s" instead of the material name
+
 ## 4.10.1
 - Fixed blacklist message
 

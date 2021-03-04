@@ -100,7 +100,7 @@ public class CommandSearchitem implements CommandExecutor {
         }
 
         if(useableChests.size()==0) {
-            p.sendMessage(main.messages.MSG_NOTHING_FOUND);
+            p.sendMessage(String.format(main.messages.MSG_NOTHING_FOUND,mat.name()));
             return true;
         }
 
