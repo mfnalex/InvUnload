@@ -143,7 +143,6 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 				ItemStack item = p.getInventory().getItem(i);
 				if(item==null || item.getAmount()==0 || item.getType()== Material.AIR) continue;
 				if(!blackList.contains(item.getType())) {
-					System.out.println("NOT everything blacklisted: "+item.getType());
 					everythingBlackListed=false;
 				}
 			}
