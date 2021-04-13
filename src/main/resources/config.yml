@@ -160,6 +160,11 @@ use-coreprotect: true
 # This will only work if ChestSort (www.chestsort.de) is installed.
 use-chestsort: true
 
+# You can also sort all affected chests regardless of whether the
+# user has ChestSort enabled and even if the user doesn't have the
+# chestsort.use permission.
+force-chestsort: false
+
 ##########################
 ##### miscellaneous ######
 ##########################
@@ -363,4 +368,4 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 debug: false
 
 # please do not change the following line manually!
-config-version: 27
+config-version: 28

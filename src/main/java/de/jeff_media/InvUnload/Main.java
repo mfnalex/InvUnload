@@ -29,7 +29,7 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 27;
+	private int currentConfigVersion = 28;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -121,6 +121,8 @@ public class Main extends JavaPlugin implements Listener {
 		
 		getConfig().addDefault("default-chest-radius", 10);
 		defaultChestRadius = getConfig().getInt("default-chest-radius");
+
+		getConfig().addDefault("force-chestsort",false);
 
 		getConfig().addDefault("unload-before-dumping", true);
 		

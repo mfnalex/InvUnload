@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.11.0
+- Added "force-chestsort" to sort chests even if the user has ChestSort disabled
+
 ## 4.10.3
 - Fixed /search command showing "%s" instead of the material name
 

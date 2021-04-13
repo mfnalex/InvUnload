@@ -18,6 +18,7 @@ public class ChestSortHook {
 	
 	public boolean shouldSort(Player p) {
 		if(main.chestSortAPI == null) return false;
+		if(main.getConfig().getBoolean("force-chestsort")) return true;
 		return main.chestSortAPI.sortingEnabled(p);
 	}
 	
