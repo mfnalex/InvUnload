@@ -4,7 +4,6 @@ import de.jeff_media.InvUnload.Main;
 import net.coreprotect.CoreProtect;
 import org.bukkit.Location;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 public class CoreProtectHook {

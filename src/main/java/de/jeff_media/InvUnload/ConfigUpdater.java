@@ -47,7 +47,7 @@ public class ConfigUpdater {
 		Map<String, Object> oldValues = oldConfig.getValues(false);
 
 		// Read default config to keep comments
-		ArrayList<String> linesInDefaultConfig = new ArrayList<String>();
+		ArrayList<String> linesInDefaultConfig = new ArrayList<>();
 		try {
 
 			Scanner scanner = new Scanner(
@@ -60,7 +60,7 @@ public class ConfigUpdater {
 			e.printStackTrace();
 		}
 
-		ArrayList<String> newLines = new ArrayList<String>();
+		ArrayList<String> newLines = new ArrayList<>();
 		for (String line : linesInDefaultConfig) {
 			String newline = line;
 			if (line.startsWith("config-version:")) {
@@ -89,9 +89,9 @@ public class ConfigUpdater {
 		String[] linesArray = newLines.toArray(new String[linesInDefaultConfig.size()]);
 		try {
 			fw = Files.newBufferedWriter(new File(main.getDataFolder().getAbsolutePath(),"config.yml").toPath(),StandardCharsets.UTF_8);
-			for (int i = 0; i < linesArray.length; i++) {
+			for (String s : linesArray) {
 				//System.out.println("WRITING LINE: "+linesArray[i]);
-				fw.write(linesArray[i] + "\n");
+				fw.write(s + "\n");
 			}
 			fw.close();
 		} catch (IOException e) {

@@ -4,12 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import com.plotsquared.bukkit.util.BukkitUtil;
-import com.plotsquared.core.PlotSquared;
-import com.plotsquared.core.location.Location;
-import com.plotsquared.core.plot.Plot;
-import com.plotsquared.core.plot.PlotManager;
-
 import de.jeff_media.InvUnload.Main;
 
 public class PlotSquaredHook {

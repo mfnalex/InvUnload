@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
@@ -17,7 +15,6 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
@@ -178,7 +175,7 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 	@Override
 	public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
 		if(strings.length>1) return null;
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		list.add("hotbar");
 		if(strings.length==0) return list;
 		if("hotbar".startsWith(strings[0].toLowerCase())) return list;

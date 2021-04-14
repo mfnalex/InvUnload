@@ -1,6 +1,5 @@
 package de.jeff_media.InvUnload;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -9,7 +8,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class UnloadSummary {
 	
@@ -18,7 +16,7 @@ public class UnloadSummary {
 	UnloadSummary() {
 
 		//System.out.println("Creating summary");
-		unloads = new HashMap<Location,EnumMap<Material,Integer>>();
+		unloads = new HashMap<>();
 	}
 	
 	void protocolUnload(Location loc, Material mat, int amount) {

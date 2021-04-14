@@ -149,7 +149,7 @@ public class CommandBlacklist implements CommandExecutor, TabCompleter {
 
         if (!(commandSender instanceof Player)) return null;
 
-        String commands[] = {"show", "add", "remove", "reset"};
+        String[] commands = {"show", "add", "remove", "reset"};
         if (args.length == 0) return Arrays.asList(commands);
         ArrayList<String> list = new ArrayList<>();
 

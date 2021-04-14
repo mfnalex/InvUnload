@@ -1,22 +1,18 @@
 package de.jeff_media.InvUnload;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
+import de.jeff_media.InvUnload.Hooks.ItemsAdderWrapper;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Container;
 import org.bukkit.block.DoubleChest;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.DoubleChestInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+
+import java.util.ArrayList;
 
 public class BlockUtils {
 	
@@ -27,7 +23,7 @@ public class BlockUtils {
 	}
 	
 	static ArrayList<Block> findBlocksInRadius(Location loc, int radius) {
-		ArrayList<Block> blocks = new ArrayList<Block>();
+		ArrayList<Block> blocks = new ArrayList<>();
 		for (int x = loc.getBlockX()-radius; x<= loc.getBlockX()+radius;x++) {
 			for (int y = loc.getBlockY()-radius; y<= loc.getBlockY()+radius;y++) {
 				for (int z = loc.getBlockZ()-radius; z<= loc.getBlockZ()+radius;z++) {
@@ -40,7 +36,7 @@ public class BlockUtils {
 	}
 	
 	static ArrayList<Block> findChestsInRadius(Location loc, int radius) {
-		ArrayList<Block> chests = new ArrayList<Block>();
+		ArrayList<Block> chests = new ArrayList<>();
 		for(Block block : findBlocksInRadius(loc, radius)) {
 			if(isChestLikeBlock(block)) {
 				chests.add(block);
@@ -65,26 +61,53 @@ public class BlockUtils {
 				return true;
 		}
 	}
-	
-	static boolean doesChestContain(Inventory inv, Material mat) {
-		for(ItemStack item : inv.getContents()) {
-			if(item==null) continue;
-			if(item.getType() == mat) {
-				return true;
+
+	static boolean doesChestContain(Inventory inv, ItemStack item) {
+		ItemsAdderWrapper itemsAdder = Main.getInstance().getItemsAdderWrapper();
+		boolean useItemsAdder = Main.getInstance().getConfig().getBoolean("use-itemsadder");
+		for (ItemStack otherItem : inv.getContents()) {
+			if (otherItem == null) continue;
+			if (otherItem.getType() == item.getType()) {
+
+				if (!useItemsAdder) return true;
+
+				// Item ist NOT ItemsAdder item
+				if (!itemsAdder.isItemsAdderItem(item)) {
+
+					// Only return true if otherItem also is NOT ItemsAdder item
+					if (itemsAdder.isItemsAdderItem(otherItem)) {
+						continue;
+					} else {
+						return true;
+					}
+				}
+
+				// Item IS ItemsAdder item
+				else {
+					// But other Item is not
+					if (!itemsAdder.isItemsAdderItem(otherItem)) {
+						continue;
+					}
+					// Both are ItemsAdder items
+					else {
+						if (itemsAdder.getItemsAdderName(item).equals(itemsAdder.getItemsAdderName(otherItem))) {
+							return true;
+						} else {
+							continue;
+						}
+					}
+				}
 			}
 		}
 		return false;
 	}
-	
+
 	static void sortBlockListByDistance(ArrayList<Block> blocks, Location loc) {
-		Collections.sort(blocks, new Comparator<Block>() {
-			@Override
-			public int compare(Block b1, Block b2) {
-				if(b1.getLocation().distance(loc) > b2.getLocation().distance(loc)) {
-					return 1;
-				}
-				return -1;
+		blocks.sort((b1, b2)->{
+			if (b1.getLocation().distance(loc) > b2.getLocation().distance(loc)) {
+				return 1;
 			}
+			return -1;
 		});
 	}
 	

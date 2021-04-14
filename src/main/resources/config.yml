@@ -165,6 +165,10 @@ use-chestsort: true
 # chestsort.use permission.
 force-chestsort: false
 
+##### ItemsAdder #####
+# When enabled, InvUnload will detect custom items from ItemsAdder
+use-itemsadder: true
+
 ##########################
 ##### miscellaneous ######
 ##########################
@@ -368,4 +372,4 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 debug: false
 
 # please do not change the following line manually!
-config-version: 28
+config-version: 29

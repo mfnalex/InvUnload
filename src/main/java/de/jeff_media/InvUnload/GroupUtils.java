@@ -1,8 +1,6 @@
 package de.jeff_media.InvUnload;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
@@ -21,12 +19,12 @@ public class GroupUtils {
 			return;
 		}
 		this.yaml=YamlConfiguration.loadConfiguration(yamlFile);
-		groups = new LinkedHashMap<String,Group>();
+		groups = new LinkedHashMap<>();
 		
 		for(String groupName : yaml.getKeys(true)) {
 			int defaultRadius = yaml.getInt(groupName+".default-chest-radius",-1);
 			int maxRadius = yaml.getInt(groupName+".max-chest-radius",-1);
-			groups.put(groupName, new Group(defaultRadius,maxRadius));
+			groups.put(groupName, new Group(defaultRadius, maxRadius));
 		}
 	}
 	
@@ -56,7 +54,7 @@ public class GroupUtils {
 		return bestValueFound == -1 ? main.getConfig().getInt("max-chest-radius") : bestValueFound;
 	}
 	
-	class Group {
+	static class Group {
 		int defaultRadius;
 		int maxRadius;
 		

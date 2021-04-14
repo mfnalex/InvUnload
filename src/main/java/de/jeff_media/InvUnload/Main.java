@@ -1,22 +1,19 @@
 package de.jeff_media.InvUnload;
 
-import java.io.File;
-import java.util.*;
-
 import de.jeff_media.ChestSortAPI.ChestSort;
 import de.jeff_media.ChestSortAPI.ChestSortAPI;
-import de.jeff_media.InvUnload.Hooks.CoreProtectHook;
-import de.jeff_media.InvUnload.Hooks.InventoryPagesHook;
+import de.jeff_media.InvUnload.Hooks.*;
+import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import de.jeff_media.InvUnload.Hooks.ChestSortHook;
-import de.jeff_media.InvUnload.Hooks.PlotSquaredHook;
-import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -29,7 +26,8 @@ public class Main extends JavaPlugin implements Listener {
 						// 1.8.0 = 1_8_R1
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
-	private int currentConfigVersion = 28;
+	@SuppressWarnings("FieldCanBeLocal")
+	private final int currentConfigVersion = 29;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
@@ -52,18 +50,36 @@ public class Main extends JavaPlugin implements Listener {
 	CommandBlacklist commandBlacklist;
 	MaterialTabCompleter materialTabCompleter;
 
-	HashMap<UUID,PlayerSetting> playerSettings;
+	private static Main instance;
 
 	private int updateCheckInterval = 86400;
+	HashMap<UUID, PlayerSetting> playerSettings;
+	private ItemsAdderWrapper itemsAdderWrapper;
+
+	public static Main getInstance() {
+		return instance;
+	}
+
+	public ItemsAdderWrapper getItemsAdderWrapper() {
+		if (itemsAdderWrapper == null) {
+
+			itemsAdderWrapper = ItemsAdderWrapper.init(this);
+		}
+
+		return itemsAdderWrapper;
+	}
 
 	@Override
 	public void onDisable() {
 		saveAllPlayerSettings();
 	}
 
+	@Override
 	public void onEnable() {
 
-		Metrics metrics = new Metrics(this,3156);
+		instance = this;
+
+		Metrics metrics = new Metrics(this, 3156);
 
 		String tmpVersion = getServer().getClass().getPackage().getName();
 		mcVersion = tmpVersion.substring(tmpVersion.lastIndexOf('.') + 1);
@@ -79,12 +95,12 @@ public class Main extends JavaPlugin implements Listener {
 			chestSortAPI = chestSort.getAPI();
 			getLogger().info("Succesfully hooked into ChestSort");
 		}
-		
+
 		chestSortHook = new ChestSortHook(this);
 		plotSquaredHook = new PlotSquaredHook(this);
 		coreProtectHook = new CoreProtectHook(this);
 		inventoryPagesHook = new InventoryPagesHook(this);
-		
+
 		registerCommands();
 	}
 
@@ -118,26 +134,26 @@ public class Main extends JavaPlugin implements Listener {
 		// for every missing option.
 		getConfig().addDefault("max-chest-radius", 20);
 		maxChestRadius = getConfig().getInt("max-chest-radius");
-		
+
 		getConfig().addDefault("default-chest-radius", 10);
 		defaultChestRadius = getConfig().getInt("default-chest-radius");
 
-		getConfig().addDefault("force-chestsort",false);
-
 		getConfig().addDefault("unload-before-dumping", true);
-		
+
 		getConfig().addDefault("check-interval", 4);
-		updateCheckInterval = (int) (getConfig().getDouble("check-interval")*60*60);
-		
+		updateCheckInterval = (int) (getConfig().getDouble("check-interval") * 60 * 60);
+
 		getConfig().addDefault("use-chestsort", true);
-		
+		getConfig().addDefault("force-chestsort", false);
+		getConfig().addDefault("use-itemsadder", true);
+
 		getConfig().addDefault("use-playerinteractevent", true);
-		getConfig().addDefault("use-coreprotect",true);
+		getConfig().addDefault("use-coreprotect", true);
 		getConfig().addDefault("use-plotsquared", true);
 		getConfig().addDefault("plotsquared-allow-when-trusted", true);
 		getConfig().addDefault("plotsquared-allow-outside-plots", true);
-		
-		getConfig().addDefault("spawn-particles", true); 
+
+		getConfig().addDefault("spawn-particles", true);
 		getConfig().addDefault("particle-type", "SPELL_WITCH");
 		getConfig().addDefault("particle-count", 100);
 		

@@ -2,13 +2,11 @@ package de.jeff_media.InvUnload;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -18,7 +16,7 @@ import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
 
 public class Visualizer {
 	
-	private Main main;
+	private final Main main;
 	HashMap<UUID,ArrayList<Block>> lastUnloads;
 	HashMap<UUID,Location> lastUnloadPositions;
 	HashMap<UUID,Integer> activeVisualizations;
@@ -33,11 +31,11 @@ public class Visualizer {
 	
 	protected Visualizer(Main main) {
 		this.main = main;
-		lastUnloads = new HashMap<UUID,ArrayList<Block>>();
-		lastUnloadPositions = new HashMap<UUID,Location>();
-		activeVisualizations = new HashMap<UUID,Integer>();
+		lastUnloads = new HashMap<>();
+		lastUnloadPositions = new HashMap<>();
+		activeVisualizations = new HashMap<>();
 		//activeLasers = new HashMap<UUID,ArrayList<Laser>>();
-		unloadSummaries = new HashMap<UUID,UnloadSummary>();
+		unloadSummaries = new HashMap<>();
 		
 		if(main.getConfig().getBoolean("laser-moves-with-player")) {
 		/*Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
@@ -145,12 +143,7 @@ public class Visualizer {
 		double interval = main.getConfig().getDouble("laser-interval",0.3);
 		double speed = main.getConfig().getDouble("laser-speed",0.001);
 				
-				int task = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
-				    public void run() {
-
-				    	play(affectedChests, p, interval, count, particle,speed,maxDistance);
-				    }
-				}, 0, 2);
+				int task = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(main, ()->play(affectedChests, p, interval, count, particle,speed,maxDistance), 0, 2);
 				
 				activeVisualizations.put(p.getUniqueId(), task);
 				

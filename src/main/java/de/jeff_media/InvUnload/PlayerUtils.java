@@ -7,11 +7,8 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.InventoryView;
 
-import de.jeff_media.InvUnload.Hooks.PlotSquaredHook;
 import de.jeff_media.InvUnload.Hooks.SpartanHook;
 
 public class PlayerUtils {
