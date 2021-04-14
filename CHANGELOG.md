@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.12.0-SNAPSHOT
+- Added ItemsAdder support, seems to be working fine for now
+
 ## 4.11.0
 - Added "force-chestsort" to sort chests even if the user has ChestSort disabled
 
