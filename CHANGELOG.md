@@ -1,10 +1,11 @@
 # Changelog
 
-## 4.12.0-SNAPSHOT
+## 4.12.0
 - Added ItemsAdder support, seems to be working fine for now
 - Added two new config options to control behaviour regarding enchantments
   - "match-enchantments": Only unload items when all enchantments are the same
   - "match-enchantments-on-books": When "match-enchantments" is false, you can anyway have enchanted books only be put into matching chests
+- Fixed warning regarding CoreProtect being to old when CoreProtect isn't installed
 
 ## 4.11.0
 - Added "force-chestsort" to sort chests even if the user has ChestSort disabled

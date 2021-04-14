@@ -16,23 +16,31 @@ public class EnchantmentUtils {
 
     public boolean hasMatchingEnchantments(ItemStack first, ItemStack second) {
 
-        if(!main.getConfig().getBoolean("match-enchantments")) {
-            if(first.getType() == Material.ENCHANTED_BOOK) {
-                if(!main.getConfig().getBoolean("match-enchantments-on-books")) {
-                    return true;
-                }
+        if(!main.getConfig().getBoolean("match-enchantments") && !main.getConfig().getBoolean("match-enchantments-on-books")) {
+            System.out.println(1);
+            return true;
+        }
+
+        if(!main.getConfig().getBoolean("match-enchantments") && main.getConfig().getBoolean("match-enchantments-on-books")) {
+            if(first.getType() != Material.ENCHANTED_BOOK) {
+                System.out.println(2);
+                return true;
             }
         }
 
-        if(!first.hasItemMeta() && !second.hasItemMeta()) return true;
 
+        System.out.println(4);
+        if(!first.hasItemMeta() && !second.hasItemMeta()) return true;
+        System.out.println(5);
         ItemMeta firstMeta = first.hasItemMeta() ? first.getItemMeta() : Bukkit.getItemFactory().getItemMeta(first.getType());
         ItemMeta secondMeta = second.hasItemMeta() ? second.getItemMeta() : Bukkit.getItemFactory().getItemMeta(second.getType());
-
+        System.out.println(6);
         if(!firstMeta.hasEnchants() && !secondMeta.hasEnchants()) return true;
-
+        System.out.println(7);
         if(firstMeta.hasEnchants() && !secondMeta.hasEnchants()) return false;
+        System.out.println(8);
         if(!firstMeta.hasEnchants() && secondMeta.hasEnchants()) return false;
+        System.out.println(9);
 
         return firstMeta.getEnchants().equals(secondMeta.getEnchants());
     }

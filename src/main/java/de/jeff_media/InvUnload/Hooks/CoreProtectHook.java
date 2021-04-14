@@ -2,6 +2,7 @@ package de.jeff_media.InvUnload.Hooks;
 
 import de.jeff_media.InvUnload.Main;
 import net.coreprotect.CoreProtect;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
@@ -23,6 +24,12 @@ public class CoreProtectHook {
         if(!main.getConfig().getBoolean("use-coreprotect")) return;
 
         if(!skipReflection) {
+
+            if(Bukkit.getPluginManager().getPlugin("CoreProtect") == null) {
+                disabled = true;
+                return;
+            }
+
             try {
                 Class.forName("net.coreprotect.CoreProtectAPI").getMethod("logContainerTransaction", String.class, Location.class);
                 skipReflection = true;
