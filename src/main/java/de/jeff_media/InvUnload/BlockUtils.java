@@ -63,11 +63,14 @@ public class BlockUtils {
 	}
 
 	static boolean doesChestContain(Inventory inv, ItemStack item) {
-		ItemsAdderWrapper itemsAdder = Main.getInstance().getItemsAdderWrapper();
-		boolean useItemsAdder = Main.getInstance().getConfig().getBoolean("use-itemsadder");
+		Main main = Main.getInstance();
+		ItemsAdderWrapper itemsAdder = main.getItemsAdderWrapper();
+		boolean useItemsAdder = main.getConfig().getBoolean("use-itemsadder");
 		for (ItemStack otherItem : inv.getContents()) {
 			if (otherItem == null) continue;
 			if (otherItem.getType() == item.getType()) {
+
+				if(!main.getEnchantmentUtils().hasMatchingEnchantments(item,otherItem)) continue;
 
 				if (!useItemsAdder) return true;
 

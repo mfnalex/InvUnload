@@ -3,6 +3,7 @@ package de.jeff_media.InvUnload;
 import de.jeff_media.ChestSortAPI.ChestSort;
 import de.jeff_media.ChestSortAPI.ChestSortAPI;
 import de.jeff_media.InvUnload.Hooks.*;
+import de.jeff_media.InvUnload.utils.EnchantmentUtils;
 import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.entity.Player;
@@ -52,6 +53,12 @@ public class Main extends JavaPlugin implements Listener {
 
 	private static Main instance;
 
+	public EnchantmentUtils getEnchantmentUtils() {
+		return enchantmentUtils;
+	}
+
+	private EnchantmentUtils enchantmentUtils;
+
 	private int updateCheckInterval = 86400;
 	HashMap<UUID, PlayerSetting> playerSettings;
 	private ItemsAdderWrapper itemsAdderWrapper;
@@ -100,6 +107,7 @@ public class Main extends JavaPlugin implements Listener {
 		plotSquaredHook = new PlotSquaredHook(this);
 		coreProtectHook = new CoreProtectHook(this);
 		inventoryPagesHook = new InventoryPagesHook(this);
+		enchantmentUtils = new EnchantmentUtils(this);
 
 		registerCommands();
 	}
@@ -146,6 +154,8 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("use-chestsort", true);
 		getConfig().addDefault("force-chestsort", false);
 		getConfig().addDefault("use-itemsadder", true);
+		getConfig().addDefault("match-enchantments-on-books",false);
+		getConfig().addDefault("match-enchantments",false);
 
 		getConfig().addDefault("use-playerinteractevent", true);
 		getConfig().addDefault("use-coreprotect", true);

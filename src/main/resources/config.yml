@@ -64,6 +64,14 @@ max-chest-radius: 20
 # Can be overridden for custom groups. See groups.yml
 default-chest-radius: 10
 
+# When true, only items with the exact same enchantments and levels will
+# be taken into account when using /unload
+match-enchantments: false
+
+# When you set "match-enchantments" to false, you can enable it for
+# enchanted books anyway.
+match-enchantments-on-books: false
+
 #########################
 ##### Animations   ######
 #########################
