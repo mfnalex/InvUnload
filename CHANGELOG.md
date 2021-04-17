@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.12.1
+- Removed forgotten debug messages
+
 ## 4.12.0
 - Added ItemsAdder support, seems to be working fine for now
 - Added two new config options to control behaviour regarding enchantments
