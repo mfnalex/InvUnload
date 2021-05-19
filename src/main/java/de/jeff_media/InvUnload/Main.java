@@ -1,10 +1,9 @@
 package de.jeff_media.InvUnload;
 
-import de.jeff_media.ChestSortAPI.ChestSort;
-import de.jeff_media.ChestSortAPI.ChestSortAPI;
 import de.jeff_media.InvUnload.Hooks.*;
 import de.jeff_media.InvUnload.utils.EnchantmentUtils;
 import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
+import de.jeff_media.chestsort.ChestSortAPI;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -19,7 +18,7 @@ import java.util.UUID;
 public class Main extends JavaPlugin implements Listener {
 
 	@Nullable
-	public ChestSortAPI chestSortAPI;
+	public boolean useChestSort;
     CoreProtectHook coreProtectHook;
 
     String mcVersion; // 1.13.2 = 1_13_R2
@@ -95,11 +94,10 @@ public class Main extends JavaPlugin implements Listener {
 
 		reloadCompleteConfig(false);
 
-		ChestSort chestSort = (ChestSort) getServer().getPluginManager().getPlugin("ChestSort");
-		if (getConfig().getBoolean("use-chestsort") == false ||chestSort == null) {
-			//getLogger().warning("Warning: ChestSort is not installed.");
+		if (getConfig().getBoolean("use-chestsort") == false || !ChestSortAPI.isChestSortInstalled()) {
+			useChestSort = false;
 		} else {
-			chestSortAPI = chestSort.getAPI();
+			useChestSort = true;
 			getLogger().info("Succesfully hooked into ChestSort");
 		}
 

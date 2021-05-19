@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.12.1</version>
+	<version>4.13.0</version>
 	<name>InvUnload</name>
 	<packaging>jar</packaging>
 	<description>Automatically puts your stuff into the right chests!</description>
@@ -173,7 +173,7 @@
 		<dependency>
 			<groupId>de.jeff_media</groupId>
 			<artifactId>ChestSortAPI</artifactId>
-			<version>2.0.0</version>
+			<version>3.0.0</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
