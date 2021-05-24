@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.13.2
+- Fixed ChestSort compatibility
+
 ## 4.13.1
 - Updated to newest ChestSort API version. If you have ChestSort installed, you MUST use at least ChestSort version 10.0.0!
 
