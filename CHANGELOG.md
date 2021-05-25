@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.13.3
+- Fixed ChestSort compatibility (again, sorry for the trouble)
+
 ## 4.13.2
 - Fixed ChestSort compatibility
 
