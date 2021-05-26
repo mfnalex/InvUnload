@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.13.4
+- Improved performance and memory consumption
+- Updated Turkish translation
+
 ## 4.13.3
 - Fixed ChestSort compatibility (again, sorry for the trouble)
 

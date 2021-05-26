@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 public class CommandBlacklist implements CommandExecutor, TabCompleter {
 
-    Main main;
+    final Main main;
 
     CommandBlacklist(Main main) {
         this.main = main;

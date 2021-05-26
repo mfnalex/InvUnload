@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BlackList {
 
-    List<Material> mats;
+    final List<Material> mats;
 
     BlackList(List<String> strings) {
         mats = new ArrayList<>();

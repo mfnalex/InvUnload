@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class GroupUtils {
 	
-	Main main;
+	final Main main;
 	YamlConfiguration yaml;
 	LinkedHashMap<String,Group> groups;
 	GroupUtils(Main main,File yamlFile) {
@@ -55,8 +55,8 @@ public class GroupUtils {
 	}
 	
 	static class Group {
-		int defaultRadius;
-		int maxRadius;
+		final int defaultRadius;
+		final int maxRadius;
 		
 		Group(int defaultRadius, int maxRadius) {
 			this.defaultRadius = defaultRadius;

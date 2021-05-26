@@ -17,11 +17,11 @@ import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
 public class Visualizer {
 	
 	private final Main main;
-	HashMap<UUID,ArrayList<Block>> lastUnloads;
-	HashMap<UUID,Location> lastUnloadPositions;
-	HashMap<UUID,Integer> activeVisualizations;
+	final HashMap<UUID,ArrayList<Block>> lastUnloads;
+	final HashMap<UUID,Location> lastUnloadPositions;
+	final HashMap<UUID,Integer> activeVisualizations;
 	//HashMap<UUID,ArrayList<Laser>> activeLasers;
-	HashMap<UUID,UnloadSummary> unloadSummaries;
+    final HashMap<UUID,UnloadSummary> unloadSummaries;
 
 	//ArrayList<Location> destinations;
 	//Player p;

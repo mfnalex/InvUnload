@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class UnloadSummary {
 	
-	HashMap<Location,EnumMap<Material,Integer>> unloads;
+	final HashMap<Location,EnumMap<Material,Integer>> unloads;
 	
 	UnloadSummary() {
 

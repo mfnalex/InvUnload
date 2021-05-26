@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class BlockUtils {
 	
-	Main main;
+	final Main main;
 	
 	BlockUtils(Main main) {
 		this.main=main;

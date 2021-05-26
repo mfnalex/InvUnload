@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class PlayerSetting {
 
-    BlackList blacklist;
+    final BlackList blacklist;
     boolean unloadHotbar;
     boolean dumpHotbar;
 

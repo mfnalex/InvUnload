@@ -14,7 +14,7 @@ import de.jeff_media.InvUnload.UnloadSummary.PrintRecipient;
 
 public class CommandUnloadinfo implements CommandExecutor {
 	
-	Main main;
+	final Main main;
 	
 	CommandUnloadinfo(Main main) {
 		this.main=main;

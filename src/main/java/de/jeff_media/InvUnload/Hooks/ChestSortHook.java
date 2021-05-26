@@ -11,7 +11,7 @@ import de.jeff_media.InvUnload.Main;
 
 public class ChestSortHook {
 	
-	Main main;
+	final Main main;
 	
 	public ChestSortHook(Main main) {
 		this.main=main;

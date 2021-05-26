@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 
 public class PlayerListener implements Listener {
 
-    Main main;
+    final Main main;
 
     PlayerListener(Main main) {
         this.main=main;

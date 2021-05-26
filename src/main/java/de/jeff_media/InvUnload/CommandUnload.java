@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class CommandUnload implements CommandExecutor , TabCompleter {
 	
-	Main main;
+	final Main main;
 	
 	public CommandUnload(Main main) {
 		this.main=main;

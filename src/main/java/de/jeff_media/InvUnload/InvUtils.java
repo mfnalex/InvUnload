@@ -63,7 +63,7 @@ public class InvUtils {
 			if (blackList.contains(item.getType())) continue;
 			source.clear(i);
 			int amount = item.getAmount();
-			if (onlyMatchingStuff == false || BlockUtils.doesChestContain(destination, item)) {
+			if (!onlyMatchingStuff || BlockUtils.doesChestContain(destination, item)) {
 				main.coreProtectHook.logCoreProtect(p.getName(), destination);
 				for (ItemStack leftover : destination.addItem(item).values()) {
 					amount = amount - leftover.getAmount();

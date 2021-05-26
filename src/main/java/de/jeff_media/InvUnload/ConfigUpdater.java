@@ -14,7 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class ConfigUpdater {
 
-	Main main;
+	final Main main;
 
 	public ConfigUpdater(Main plugin) {
 		this.main = plugin;
@@ -28,7 +28,7 @@ public class ConfigUpdater {
 
 		try {
 			Files.deleteIfExists(new File(main.getDataFolder().getAbsolutePath()+File.separator+"config.old.yml").toPath());
-		} catch (IOException e) {
+		} catch (IOException ignored) {
 
 		}
 

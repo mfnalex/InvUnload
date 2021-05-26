@@ -12,9 +12,9 @@ import java.util.List;
 
 public class MaterialTabCompleter implements TabCompleter {
 
-    Main main;
+    final Main main;
 
-    ArrayList<String> mats;
+    final ArrayList<String> mats;
 
     MaterialTabCompleter(Main main) {
         this.main = main;

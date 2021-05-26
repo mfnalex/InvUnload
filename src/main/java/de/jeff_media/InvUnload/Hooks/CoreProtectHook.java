@@ -9,7 +9,7 @@ import org.bukkit.plugin.Plugin;
 
 public class CoreProtectHook {
 
-    Main main;
+    final Main main;
     boolean skipReflection = false;
     boolean disabled = false;
 

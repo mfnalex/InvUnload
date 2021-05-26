@@ -8,7 +8,7 @@ public class Messages {
     final String BL_ADDED, BL_INVALID, BL_REMOVED, BL_NOTHINGSPECIFIED,BL_EMPTY;
     final String MSG_WILL_USE_HOTBAR,MSG_WILL_NOT_USE_HOTBAR;
 
-    Main plugin;
+    final Main plugin;
 
     Messages(Main plugin) {
         this.plugin = plugin;

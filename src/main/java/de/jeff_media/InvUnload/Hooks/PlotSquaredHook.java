@@ -8,7 +8,7 @@ import de.jeff_media.InvUnload.Main;
 
 public class PlotSquaredHook {
 	
-	Main main;
+	final Main main;
 	PlotSquaredUniversalHook hook;
 	//Integer version = null;
 	
@@ -20,13 +20,13 @@ public class PlotSquaredHook {
 			//version = 4;
 			main.getLogger().info("PlotSquared 4 detected, using old API");
 			hook = new PlotSquared4Hook();
-		} catch(ClassNotFoundException e) {}
+		} catch(ClassNotFoundException ignored) {}
 		try {
 			Class.forName("com.plotsquared.bukkit.util.BukkitUtil");
 			//version = 5;
 			main.getLogger().info("PlotSquared 5 detected, using new API");
 			hook = new PlotSquared5Hook();
-		} catch(ClassNotFoundException e) {}
+		} catch(ClassNotFoundException ignored) {}
 		
 	}
 	

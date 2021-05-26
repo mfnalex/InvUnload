@@ -94,7 +94,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		reloadCompleteConfig(false);
 
-		if (getConfig().getBoolean("use-chestsort") == false || !ChestSortAPI.isChestSortInstalled()) {
+		if (!getConfig().getBoolean("use-chestsort") || !ChestSortAPI.isChestSortInstalled()) {
 			useChestSort = false;
 		} else {
 			useChestSort = true;
