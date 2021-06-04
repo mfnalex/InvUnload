@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.13.5
+- Fixed InvUnload not enabling when ChestSort is not installed
+
 ## 4.13.4
 - Improved performance and memory consumption
 - Updated Turkish translation
