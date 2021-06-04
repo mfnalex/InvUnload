@@ -20,6 +20,8 @@ public class PlotSquared6Hook implements PlotSquaredUniversalHook {
     private Class plotClass;
     private Method getTrustedMethod;
     private Method isOwnerMethod;
+    private Class locationClass;
+    private Method getPlotAbsMethod;
 
     public PlotSquared6Hook() {
         try {
@@ -28,6 +30,8 @@ public class PlotSquared6Hook implements PlotSquaredUniversalHook {
             plotClass = Class.forName("com.plotsquared.core.plot.Plot");
             getTrustedMethod = plotClass.getMethod("getTrusted");
             isOwnerMethod = plotClass.getMethod("isOwner", UUID.class);
+            locationClass = Class.forName("com.plotsquared.core.location.Location");
+            getPlotAbsMethod = locationClass.getMethod("getPlotAbs");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,7 +40,8 @@ public class PlotSquared6Hook implements PlotSquaredUniversalHook {
     @Override
     public boolean isBlockedByPlotSquared(Block block, Player player, Main main) {
         try {
-            Object plot = adaptMethod.invoke(null,block.getLocation());
+            Object location = adaptMethod.invoke(null,block.getLocation());
+            Object plot = getPlotAbsMethod.invoke(location);
             if(plot == null) return !main.getConfig().getBoolean("plotsquared-allow-outside-plots");
             HashSet<UUID> trustedUUIDs = (HashSet<UUID>) getTrustedMethod.invoke(plot);
             if(trustedUUIDs.contains(player.getUniqueId()) && main.getConfig().getBoolean("plotsquared-allow-when-trusted")) return false;
