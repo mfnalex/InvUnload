@@ -46,7 +46,7 @@ public class PlotSquared6Hook implements PlotSquaredUniversalHook {
             HashSet<UUID> trustedUUIDs = (HashSet<UUID>) getTrustedMethod.invoke(plot);
             if(trustedUUIDs.contains(player.getUniqueId()) && main.getConfig().getBoolean("plotsquared-allow-when-trusted")) return false;
             boolean isOwner = (boolean) isOwnerMethod.invoke(plot, player.getUniqueId());
-            if(isOwner) return true;
+            if(!isOwner) return true;
             return false;
         } catch (Exception e) {
             e.printStackTrace();
