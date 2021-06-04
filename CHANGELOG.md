@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.14.0
+- Added support for PlotSquared 6 API (why do they change their API on every new major release? >.<)
+
 ## 4.13.5
 - Fixed InvUnload not enabling when ChestSort is not installed
 
