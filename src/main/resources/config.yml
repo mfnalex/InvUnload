@@ -288,6 +288,22 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
+##### Dutch
+#message-could-not-unload: "&7Niks om uit te laden: Er zijn geen kisten voor de resterende items."
+#message-radius-too-high: "&cFout:&7 De straal kan niet hoger zijn dan %d blokken."
+#message-no-chests-nearby: "&7Niks om uit te laden: Er zijn geen kisten dichtbij. Pas de straal aan of loop dichter naar je kisten."
+#message-error-not-a-number: "&cFout:&7 '%s' is niet een geldig cijfer."
+#message-inventory-empty: "&7Niks om uit te laden: Je inventaris is al leeg."
+#message-nothing-found: "&7Kon geen kisten vinden die %s bevatten."
+#message-blacklist-empty: "&7Je zwarte lijst is leeg."
+#message-blacklist-added: "&2Toegevoegd aan zwarte lijst:&7 %s"
+#message-blacklist-invalid: "&4Ongeldige items:&7 %s"
+#message-blacklist-removed: "&2Verwijderd van zwarte lijst:&7 %s"
+#message-blacklist-nothing-specified: "&7Je moet een item vasthouden of er ten minste één specificeren."
+#message-will-use-hotbar: "&6%s &7zal nu alle items in je hotbar gebruiken."
+#message-will-not-use-hotbar: "&6%s &7zal niet langer items uit je hotbar gebruiken."
+#message-could-not-unload-blacklist: "&7Niks om uit te laden: Alle item in je inventaris staan op de zwarte lijst. Type /blacklist om ze te zien."
+
 ##### French
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7Rien à décharger: Il n'y a aucun coffre pour le restant des articles."
