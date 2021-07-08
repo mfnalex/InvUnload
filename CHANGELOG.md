@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.15.1
+- Updated Spanish translation
+
+## 4.15.0
+- Updated ChestSortAPI to version 11.0.0.
+
 ## 4.14.0
 - Added support for PlotSquared 6 API (why do they change their API on every new major release? >.<)
 

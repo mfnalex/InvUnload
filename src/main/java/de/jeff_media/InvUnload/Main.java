@@ -3,7 +3,6 @@ package de.jeff_media.InvUnload;
 import de.jeff_media.InvUnload.Hooks.*;
 import de.jeff_media.InvUnload.utils.EnchantmentUtils;
 import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
-import de.jeff_media.chestsort.ChestSortAPI;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -98,8 +97,13 @@ public class Main extends JavaPlugin implements Listener {
 		if (!getConfig().getBoolean("use-chestsort") || Bukkit.getPluginManager().getPlugin("ChestSort") == null) {
 			useChestSort = false;
 		} else {
-			useChestSort = true;
-			getLogger().info("Succesfully hooked into ChestSort");
+			try {
+				Class.forName("de.jeff_media.chestsort.api.ChestSortAPI");
+				useChestSort = true;
+				getLogger().info("Succesfully hooked into ChestSort");
+			} catch (ClassNotFoundException e) {
+				getLogger().warning("Your version of ChestSort is too old, disabling ChestSort integration. Please upgrade ChestSort to version 11.0.0 or later.");
+			}
 		}
 
 		chestSortHook = new ChestSortHook(this);

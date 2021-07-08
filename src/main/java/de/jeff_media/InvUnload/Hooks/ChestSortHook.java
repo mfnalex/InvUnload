@@ -1,6 +1,5 @@
 package de.jeff_media.InvUnload.Hooks;
 
-import de.jeff_media.chestsort.ChestSortAPI;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
@@ -20,14 +19,14 @@ public class ChestSortHook {
 	public boolean shouldSort(Player p) {
 		if(!main.useChestSort) return false;
 		if(main.getConfig().getBoolean("force-chestsort")) return true;
-		return ChestSortAPI.sortingEnabled(p);
+		return de.jeff_media.chestsort.api.ChestSortAPI.hasSortingEnabled(p);
 	}
 	
 	public void sort(Block block) {
 		if(!main.useChestSort) return;
 		if(!BlockUtils.isChestLikeBlock(block)) return;
 		Inventory inv = ((Container) block.getState()).getInventory();
-		ChestSortAPI.sortInventory(inv);
+		de.jeff_media.chestsort.api.ChestSortAPI.sortInventory(inv);
 	}
 
 }
