@@ -1,6 +1,7 @@
 # Changelog
 
 ## 4.15.1
+- Added Dutch translation
 - Updated Spanish translation
 
 ## 4.15.0
