@@ -354,6 +354,23 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
+##### Russian
+#blacklist-title: "----- &cЧерный список&r -----"
+#message-could-not-unload: "&7Нечего выгружать: Нет сундуков для оставшихся предметов."
+#message-radius-too-high: "&cОшибка:&7 Радиус не может быть больше %d блоков."
+#message-no-chests-nearby: "&7Нечего выгружать: Нет сундуков поблизости. Измените радиус или подойдите ближе к сундукам."
+#message-error-not-a-number: "&cОшибка:&7 '%s' недопустимое число."
+#message-inventory-empty: "&7Нечего выгружать: Ваш инвентарь уже пуст."
+#message-nothing-found: "&7Не удалось найти сундуки, содержащие %s."
+#message-blacklist-empty: "&7Ваш черный список пуст."
+#message-blacklist-added: "&2Добавлено в черный список:&7 %s"
+#message-blacklist-invalid: "&4Недопустимые предметы:&7 %s"
+#message-blacklist-removed: "&2Удалено из черного списка:&7 %s"
+#message-blacklist-nothing-specified: "&7Вы должны указать хотя бы один предмет, либо держать его в руке."
+#message-will-use-hotbar: "&6%s &7теперь будет использовать предметы в вашей панели быстрого доступа."
+#message-will-not-use-hotbar: "&6%s &7больше не будет использовать предметы в вашей панели быстрого доступа."
+#message-could-not-unload-blacklist: "&7Нечего выгружать: Все предметы в вашем инвентаре находятся в черном списке. Введите /blacklist, чтобы просмотреть его."
+
 ##### Spanish Spain (es_ES)
 #message-prefix: "&6[Inventario] &r"
 #blacklist-title: "----- &cLista Negra&r -----"
