@@ -27,7 +27,7 @@ public class Main extends JavaPlugin implements Listener {
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
 	@SuppressWarnings("FieldCanBeLocal")
-	private final int currentConfigVersion = 30;
+	private final int currentConfigVersion = 31;
 
 	protected Messages messages;
 	protected BlockUtils blockUtils;
