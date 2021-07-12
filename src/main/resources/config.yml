@@ -354,6 +354,22 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 
+##### Polish
+#message-could-not-unload: "&7Nie można wyładować: Dla pozostałych przedmiotów nie ma skrzyń."
+#message-radius-too-high: "&cBłąd:&7 Promień nie może być większy, niż %d bloków."
+#message-no-chests-nearby: "&7Nie można wyładować: Nie ma skrzyń w pobliżu. Dopasuj promień lub podejdź bliżej do skrzyń."
+#message-error-not-a-number: "&cBłąd:&7 '%s' nie jest poprawną liczbą."
+#message-inventory-empty: "&7Nie można wyładować: Twój ekwipunek jest już pusty."
+#message-nothing-found: "&7Nie znaleziono skrzyń zawierających %s."
+#message-blacklist-empty: "&7Twoja czarna lista jest pusta."
+#message-blacklist-added: "&2Dodano do czarnej listy:&7 %s"
+#message-blacklist-invalid: "&4Niepoprawne przedmioty:&7 %s"
+#message-blacklist-removed: "&2Usunięto z czarnej listy:&7 %s"
+#message-blacklist-nothing-specified: "&7Musisz trzymać przedmiot w swoim ręku lub sprecyzować, o który przedmiot chodzi."
+#message-will-use-hotbar: "&6%s &7będzie od teraz używać przedmiotów z paska szybkiego wyboru."
+#message-will-not-use-hotbar: "&6%s &7nie będzie od teraz używać przedmiotów z paska szybkiego wyboru."
+#message-could-not-unload-blacklist: "&7Nie można wyładować: Wszystkie przedmioty w twoim ekwipunku znajdują się na czarnej liście. Wpisz /blacklist by ją przejrzeć."
+
 ##### Russian
 #blacklist-title: "----- &cЧерный список&r -----"
 #message-could-not-unload: "&7Нечего выгружать: Нет сундуков для оставшихся предметов."
@@ -413,4 +429,4 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 debug: false
 
 # please do not change the following line manually!
-config-version: 31
+config-version: 32

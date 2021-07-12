@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.15.4
+- Added Polish translation
+
 ## 4.15.1
 - Added Dutch translation
 - Updated Spanish translation
