@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.15.5
+- Unload summary shows chest names instead of CHEST, DOUBLECHEST etc. when set
+
 ## 4.15.4
 - Added Polish translation
 
