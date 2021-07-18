@@ -7,6 +7,8 @@ import java.util.Map.Entry;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 
 public class UnloadSummary {
@@ -37,8 +39,15 @@ public class UnloadSummary {
 		int x = loc.getBlockX();
 		int y = loc.getBlockY();
 		int z = loc.getBlockZ();
-		Material type = loc.getBlock().getType();
-		return String.format(ChatColor.LIGHT_PURPLE + "§l%s   §a§lX: §f%d §a§lY: §f%d §a§lZ: §f%d", type.name(),x,y,z);
+		String name = loc.getBlock().getType().name();
+		BlockState state = loc.getWorld().getBlockAt(x,y,z).getState();
+		if(state instanceof Container) {
+			Container container = (Container) state;
+			if(container.getCustomName() != null) {
+				name = container.getCustomName();
+			}
+		}
+		return String.format(ChatColor.LIGHT_PURPLE + "§l%s   §r§a§lX: §f%d §a§lY: §f%d §a§lZ: §f%d", name,x,y,z);
 	}
 	
 	String amount2str(int amount) {
