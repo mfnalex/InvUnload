@@ -139,7 +139,7 @@ laser-moves-with-player: true
 ##### Generic protection plugins #####
 # When enabled, InvUnload will call a PlayerInteractEvent upon unloading
 # or dump attempts to check if the player is allowed to use this chest.
-# If you don't know what this means, don't this config.
+# If you don't know what this means, don't change this config.
 use-playerinteractevent: true
 
 ##### PlotSquared #####
@@ -219,7 +219,7 @@ check-interval: 4
 # &l Bold         &o Italic
 # &n Underline    &r Reset
 
-# By default, every message sent by InvUnload has a [InvUnload] prefix.
+# By default, every message sent by InvUnload has an [InvUnload] prefix.
 # You can change this if you want or set it to an empty string to disable it.
 message-prefix: "&6[InvUnload] &r"
 blacklist-title: "----- &cBlacklist&r -----"
