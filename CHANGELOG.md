@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.16.0
+- Improved unloading for enchanted books (see option "match-enchantments-on-books")
+
 ## 4.15.5
 - Unload summary shows chest names instead of CHEST, DOUBLECHEST etc. when set
 
