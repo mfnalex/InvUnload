@@ -7,6 +7,7 @@ public class Messages {
     //final String BL_ADDED1, BL_ADDED2, BL_ALREADYADDED1, BL_ALREADYADDED2, BL_INVALID1, BL_INVALID2, BL_REMOVED1, BL_REMOVED2, BL_NOTTHERE1, BL_NOTTHERE2; //,BL_NOTHINGSPECIFIED;
     final String BL_ADDED, BL_INVALID, BL_REMOVED, BL_NOTHINGSPECIFIED,BL_EMPTY;
     final String MSG_WILL_USE_HOTBAR,MSG_WILL_NOT_USE_HOTBAR;
+    public final String MSG_COOLDOWN;
 
     final Main plugin;
 
@@ -37,6 +38,8 @@ public class Messages {
 
         MSG_WILL_USE_HOTBAR = getMsg("will-use-hotbar","&7%s will now use items from your hotbar.");
         MSG_WILL_NOT_USE_HOTBAR = getMsg("will-not-use-hotbar","&7%s will no longer use items from your hotbar.");
+
+        MSG_COOLDOWN = getMsg("message-cooldown","&cPlease wait a moment before running the command again.");
 
         BL_EMPTY = getMsg("blacklist-empty","&7You blacklist is empty.");
         BL_ADDED = getMsg("blacklist-added","&2Added to blacklist:&7 %s");

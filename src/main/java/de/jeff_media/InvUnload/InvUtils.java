@@ -1,6 +1,8 @@
 package de.jeff_media.InvUnload;
 
+import de.jeff_media.InvUnload.utils.ShulkerUtils;
 import org.bukkit.Material;
+import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -61,6 +63,13 @@ public class InvUtils {
 			if (MinepacksHook.isMinepacksBackpack(item)) continue;
 			if (main.inventoryPagesHook.isButton(item)) continue;
 			if (blackList.contains(item.getType())) continue;
+
+			if(ShulkerUtils.isShulkerBox(item)) {
+				if(destination.getHolder()!=null && destination.getHolder() instanceof ShulkerBox) {
+					continue;
+				}
+			}
+
 			source.clear(i);
 			int amount = item.getAmount();
 			if (!onlyMatchingStuff || BlockUtils.doesChestContain(destination, item)) {

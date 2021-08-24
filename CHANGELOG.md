@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.17.0
+- Added Cooldown for /unload and /dump
+- Fixed /dump command putting shulkerboxes inside shulkerboxes
+- Fixed "All your items are blacklisted" message being shown when there are no remaining chests for non-blacklisted items
+
 ## 4.16.0
 - Improved unloading for enchanted books (see option "match-enchantments-on-books")
 

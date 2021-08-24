@@ -72,6 +72,10 @@ match-enchantments: false
 # enchanted books anyway.
 match-enchantments-on-books: false
 
+# Amount of seconds players have to wait between each unload/dump attempt.
+# Set to 0 to disable.
+cooldown: 0
+
 #########################
 ##### Animations   ######
 #########################
@@ -238,6 +242,7 @@ message-blacklist-nothing-specified: "&7You must either hold an item in your han
 message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
+message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### English
 #message-could-not-unload: "&7Nothing to unload: There are no chests for the remaining items."
@@ -254,6 +259,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### Chinese (Simplified)
 #message-could-not-unload: "&7没有东西可以卸下，也许你没有给其余物品分配箱子？"
@@ -270,6 +276,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7现在将会使用你的快捷栏中的物品."
 #message-will-not-use-hotbar: "&6%s &7不再使用你的快捷栏中的物品."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### Chinese (Traditional)
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -287,6 +294,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### Dutch
 #message-could-not-unload: "&7Niks om uit te laden: Er zijn geen kisten voor de resterende items."
@@ -303,6 +311,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7zal nu alle items in je hotbar gebruiken."
 #message-will-not-use-hotbar: "&6%s &7zal niet langer items uit je hotbar gebruiken."
 #message-could-not-unload-blacklist: "&7Niks om uit te laden: Alle item in je inventaris staan op de zwarte lijst. Type /blacklist om ze te zien."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### French
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -320,6 +329,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### German
 #message-could-not-unload: "&7Konnte nichts abladen: Hier sind keine Kisten für die verbleibenden Items."
@@ -336,6 +346,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7benutzt ab jetzt Items aus deiner Hotbar."
 #message-will-not-use-hotbar: "&6%s &7benutzt keine Items mehr aus deiner Hotbar."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### Japanese
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
@@ -353,6 +364,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7will now use items from your hotbar."
 #message-will-not-use-hotbar: "&6%s &7will no longer use items from your hotbar."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### Polish
 #message-could-not-unload: "&7Nie można wyładować: Dla pozostałych przedmiotów nie ma skrzyń."
@@ -369,6 +381,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7będzie od teraz używać przedmiotów z paska szybkiego wyboru."
 #message-will-not-use-hotbar: "&6%s &7nie będzie od teraz używać przedmiotów z paska szybkiego wyboru."
 #message-could-not-unload-blacklist: "&7Nie można wyładować: Wszystkie przedmioty w twoim ekwipunku znajdują się na czarnej liście. Wpisz /blacklist by ją przejrzeć."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### Russian
 #blacklist-title: "----- &cЧерный список&r -----"
@@ -386,6 +399,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&6%s &7теперь будет использовать предметы в вашей панели быстрого доступа."
 #message-will-not-use-hotbar: "&6%s &7больше не будет использовать предметы в вашей панели быстрого доступа."
 #message-could-not-unload-blacklist: "&7Нечего выгружать: Все предметы в вашем инвентаре находятся в черном списке. Введите /blacklist, чтобы просмотреть его."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### Spanish Spain (es_ES)
 #message-prefix: "&6[Inventario] &r"
@@ -404,6 +418,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&7Ahora también se descargarán los objetos del cinturón."
 #message-will-not-use-hotbar: "&7Ya no se descargarán los objetos del cinturón."
 #message-could-not-unload-blacklist: "&7No hay nada que descargar: Todos los objetos del inventario están en la lista negra. Introduce &8/blacklist &7para mostrarlos."
+#message-cooldown: "&cPlease wait a moment before running the command again."
 
 ##### Turkish
 #message-could-not-unload: "&7Boşaltılacak bir şey yok: Kalan eşya için sandık mevcut değil."
@@ -420,6 +435,7 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 #message-will-use-hotbar: "&7Artık &6%s &7hotbar'dan eşyaları kullanacak."
 #message-will-not-use-hotbar: "&7Artık &6%s &7hotbar'dan eşyaları kullanılmayacak."
 #message-could-not-unload-blacklist: "&7Boşaltacak bir şey yok: Envanterindeki bütün eşyalar kara listede. Görüntülemek için /blacklist yaz."
+#message-cooldown: "&cLütfen bu komutu tekrar çalıştırmadan önce biraz bekleyiniz."
 
 #########################
 #####     Done!     #####
@@ -429,4 +445,4 @@ message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inve
 debug: false
 
 # please do not change the following line manually!
-config-version: 32
+config-version: 34

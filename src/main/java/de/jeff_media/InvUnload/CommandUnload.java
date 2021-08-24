@@ -3,6 +3,7 @@ package de.jeff_media.InvUnload;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.jeff_media.InvUnload.utils.CoolDown;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -48,6 +49,11 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 		if(!(sender instanceof Player)) {
 			return true;
 		}
+
+		if(!CoolDown.check(sender)) {
+			return true;
+		}
+
 		Player p = (Player) sender;
 		PlayerSetting setting = main.getPlayerSetting(p);
 
@@ -135,7 +141,9 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 		
 		if(affectedChests.size()==0) {
 			BlackList blackList = main.getPlayerSetting(p).getBlacklist();
-			boolean everythingBlackListed = true;
+			// TODO: Fix this. Right now the blacklist message is disabled
+			//boolean everythingBlackListed = true;
+			boolean everythingBlackListed = false;
 			for(int i = startSlot; i <= endSlot; i++) {
 				ItemStack item = p.getInventory().getItem(i);
 				if(item==null || item.getAmount()==0 || item.getType()== Material.AIR) continue;

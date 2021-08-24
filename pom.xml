@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>4.16.0</version>
+	<version>4.17.0</version>
 	<name>InvUnload</name>
 	<packaging>jar</packaging>
 	<description>Automatically puts your stuff into the right chests!</description>
@@ -154,6 +154,11 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.20</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.jeff_media</groupId>
+			<artifactId>JeffLib</artifactId>
+			<version>4.0.0-SNAPSHOT</version>
 		</dependency>
 		<!--<dependency>
 			<groupId>org.jetbrains</groupId>
