@@ -348,6 +348,22 @@ message-cooldown: "&cPlease wait a moment before running the command again."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 #message-cooldown: "&cPlease wait a moment before running the command again."
 
+##### Hungarian
+# message-could-not-unload: "&7Nincs mit kirakni: A maradék tételhez már nem maradt láda."
+# message-radius-too-high: "&cHiba:&7 A sugár nem lehet magasabb, mint %d blokk."
+# message-no-chests-nearby: "&7Nincs mit kirakni: Nincs láda a közelben. Növeld a sugarat, vagy menj közelebb a ládához."
+# message-error-not-a-number: "&cHiba:&7 '%s' nem egy érvényes szám."
+# message-inventory-empty: "&7Nincs mit kirakni: Az eszköztárad már üres."
+# message-nothing-found: "&7Nincs láda, ami tartalmazná a(z) %s tételeket."
+# message-blacklist-empty: "&7A feketelistád üres."
+# message-blacklist-added: "&2Hozzáadva a feketelistához:&7 %s"
+# message-blacklist-invalid: "&4Helytelen tételek:&7 %s"
+# message-blacklist-removed: "&2Eltávolítva a feketelistáról:&7 %s"
+# message-blacklist-nothing-specified: "&7Egy tételt tartanod kell a kezedben, vagy meg kell határoznod legalább egyet."
+# message-will-use-hotbar: "&6%s &7most a HotBar tételeket használja."
+# message-will-not-use-hotbar: "&6%s &7már nem használja a HotBar tételeket."
+# message-could-not-unload-blacklist: "&7Nincs mit kirakni: Az eszköztárad összes tétele feketelistás. Írd be a /blacklist parancsot, hogy megnézd."
+
 ##### Japanese
 ##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7荷物が下ろせません。目印になるアイテムがチェストにありますか？"
