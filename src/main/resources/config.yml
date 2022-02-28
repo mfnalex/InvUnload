@@ -279,7 +279,6 @@ message-cooldown: "&cPlease wait a moment before running the command again."
 #message-cooldown: "&c请稍后使用此命令."
 
 ##### Chinese (Traditional)
-##### Note: Some messages are still untranslated. Please send me your translation at SpigotMC
 #message-could-not-unload: "&7沒有東西可以卸下，也許你沒有給其餘物品的箱子？"
 #message-radius-too-high: "&c錯誤:&7 範圍不得高於 %d 個方塊。"
 #message-no-chests-nearby: "&7附近沒有箱子，調整範圍或靠近箱子一點。"
