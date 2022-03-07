@@ -1,8 +1,9 @@
 package de.jeff_media.InvUnload;
 
+import com.jeff_media.updatechecker.UpdateCheckSource;
+import com.jeff_media.updatechecker.UpdateChecker;
 import de.jeff_media.InvUnload.Hooks.*;
 import de.jeff_media.InvUnload.utils.EnchantmentUtils;
-import de.jeff_media.PluginUpdateChecker.PluginUpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -39,12 +40,13 @@ public class Main extends JavaPlugin implements Listener {
 
 	public boolean usingMatchingConfig = true;
 
-	protected PluginUpdateChecker updateChecker;
 	protected ChestSortHook chestSortHook;
 	protected PlotSquaredHook plotSquaredHook;
 	protected InventoryPagesHook inventoryPagesHook;
 	protected Visualizer visualizer;
 	protected GroupUtils groupUtils;
+
+	private UpdateChecker updateChecker;
 
 	CommandUnload commandUnload;
 	CommandUnloadinfo commandUnloadInfo;
@@ -58,7 +60,7 @@ public class Main extends JavaPlugin implements Listener {
 
 	private EnchantmentUtils enchantmentUtils;
 
-	private int updateCheckInterval = 86400;
+	private double updateCheckInterval = 4;
 	HashMap<UUID, PlayerSetting> playerSettings;
 	private ItemsAdderWrapper itemsAdderWrapper;
 
@@ -152,7 +154,7 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("unload-before-dumping", true);
 
 		getConfig().addDefault("check-interval", 4);
-		updateCheckInterval = (int) (getConfig().getDouble("check-interval") * 60 * 60);
+		updateCheckInterval = getConfig().getDouble("check-interval");
 
 		getConfig().addDefault("use-chestsort", true);
 		getConfig().addDefault("force-chestsort", false);
@@ -215,15 +217,23 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	private void initUpdateChecker() {
+
+		if(updateChecker != null) updateChecker.stop();
+
 		// Check for updates (async, of course)
 		// When set to true, we check for updates right now, and every X hours (see
 		// updateCheckInterval)
+		updateChecker = new UpdateChecker(this, UpdateCheckSource.CUSTOM_URL,"https://api.jeff-media.com/invunload/latest-version.txt")
+				.suppressUpToDateMessage(true)
+				.setDonationLink("https://paypal.me/mfnalex")
+				.setDownloadLink(60095)
+				.setChangelogLink(60095);
 		if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("true")) {
-		updateChecker.check(updateCheckInterval);
+			updateChecker.checkNow().checkEveryXHours(updateCheckInterval);
 
 		} // When set to on-startup, we check right now (delay 0)
 		else if (getConfig().getString("check-for-updates", "true").equalsIgnoreCase("on-startup")) {
-			updateChecker.check();
+			updateChecker.checkNow();
 		}
 	}
 
@@ -259,7 +269,6 @@ public class Main extends JavaPlugin implements Listener {
 			saveAllPlayerSettings();
 		}
 		messages = new Messages(this);
-		updateChecker = new PluginUpdateChecker(this,"https://api.jeff-media.de/invunload/invunload-latest-version.txt","https://www.spigotmc.org/resources/1-12-1-15-invunload.60095/","https://github.com/JEFF-Media-GbR/Spigot-InvUnloadPlus/blob/master/CHANGELOG.md","https://chestsort.de/donate");
 		initUpdateChecker();
 		blockUtils = new BlockUtils(this);
 		visualizer = new Visualizer(this);

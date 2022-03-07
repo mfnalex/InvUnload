@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.jeff_media.InvUnload.utils.CoolDown;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -33,6 +34,15 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
 			@NotNull String[] args) {
+
+/*		if(args.length > 1 && sender.hasPermission("invunload.others")) {
+			Player player = Bukkit.getPlayer(args[1]);
+			if(player == null) {
+				sender.sendMessage("Could not find player " + args[1]);
+				Bukkit.dispatchCommand(player,command.getName() + " " + args[0]);
+				return true;
+			}
+		}*/
 		
 		//long startTime = System.nanoTime();
 		

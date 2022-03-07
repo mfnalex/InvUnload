@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.17.1
+- Full 1.18.2 support
+- Improved UpdateChecker
+
 ## 4.17.0
 - Added Cooldown for /unload and /dump
 - Fixed /dump command putting shulkerboxes inside shulkerboxes
