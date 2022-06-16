@@ -1,20 +1,34 @@
 package de.jeff_media.InvUnload;
 
 import de.jeff_media.InvUnload.Hooks.ItemsAdderWrapper;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.Chest;
-import org.bukkit.block.Container;
-import org.bukkit.block.DoubleChest;
+import de.jeff_media.jefflib.EnumUtils;
+import org.bukkit.*;
+import org.bukkit.block.*;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.DoubleChestInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.BlockVector;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class BlockUtils {
+
+	private static final EnumSet<Material> CONTAINER_TYPES;
+	private static final List<String> CONTAINER_NAMES = Arrays.asList("^BARREL$", "^CHEST$", "^SHULKER_BOX$", "^(.*)_SHULKER_BOX$");
+
+	static {
+		CONTAINER_TYPES = EnumUtils.getEnumsFromRegexList(Material.class, CONTAINER_NAMES);
+	}
 	
 	final Main main;
 	
@@ -22,44 +36,39 @@ public class BlockUtils {
 		this.main=main;
 	}
 	
-	static ArrayList<Block> findBlocksInRadius(Location loc, int radius) {
-		ArrayList<Block> blocks = new ArrayList<>();
-		for (int x = loc.getBlockX()-radius; x<= loc.getBlockX()+radius;x++) {
-			for (int y = loc.getBlockY()-radius; y<= loc.getBlockY()+radius;y++) {
-				for (int z = loc.getBlockZ()-radius; z<= loc.getBlockZ()+radius;z++) {
-					Block block = loc.getWorld().getBlockAt(x, y, z);
-					blocks.add(block);
+	static List<Block> findBlocksInRadius(Location loc, int radius) {
+		BoundingBox box = BoundingBox.of(loc,radius,radius,radius);
+		//List<BlockVector> blocks = de.jeff_media.jefflib.BlockUtils.getBlocks(loc.getWorld(), box, true, blockData -> isChestLikeBlock(blockData.getMaterial()));
+		List<Chunk> chunks = de.jeff_media.jefflib.BlockUtils.getChunks(loc.getWorld(), box,true);
+		List<Block> blocks = new ArrayList<>();
+		for(Chunk chunk : chunks) {
+			for(BlockState state : chunk.getTileEntities()) {
+				if(state instanceof Container && isChestLikeBlock(state.getType())) {
+					if(state.getLocation().distanceSquared(loc) <= radius*radius) {
+
+						// Only chests that can be opened
+						if(Main.getInstance().getConfig().getBoolean("ignore-blocked-chests",false)) {
+							Block above = state.getBlock().getRelative(BlockFace.UP);
+							if(state.getType() == Material.CHEST && above.getType().isSolid() && above.getType().isOccluding()) {
+								continue;
+							}
+						}
+
+						blocks.add(state.getBlock());
+					}
 				}
 			}
 		}
 		return blocks;
 	}
 	
-	static ArrayList<Block> findChestsInRadius(Location loc, int radius) {
-		ArrayList<Block> chests = new ArrayList<>();
-		for(Block block : findBlocksInRadius(loc, radius)) {
-			if(isChestLikeBlock(block)) {
-				chests.add(block);
-			}
-		}
-		return chests;
+	static List<Block> findChestsInRadius(Location loc, int radius) {
+		// Todo
+		return findBlocksInRadius(loc, radius);
 	}
-	
-	public static boolean isChestLikeBlock(Block block) {
-		if(!(block.getState() instanceof Container)) return false;
-		String name = block.getType().name();
-		switch(name) {
-			case "BLAST_FURNACE":
-			case "BREWING_STAND":
-			case "FURNACE":
-			case "HOPPER":
-			case "SMOKER":
-			case "DROPPER":
-			case "DISPENSER":
-				return false;
-			default:
-				return true;
-		}
+
+	public static boolean isChestLikeBlock(Material material) {
+		return CONTAINER_TYPES.contains(material);
 	}
 
 	static boolean doesChestContain(Inventory inv, ItemStack item) {
@@ -105,7 +114,7 @@ public class BlockUtils {
 		return false;
 	}
 
-	static void sortBlockListByDistance(ArrayList<Block> blocks, Location loc) {
+	static void sortBlockListByDistance(List<Block> blocks, Location loc) {
 		blocks.sort((b1, b2)->{
 			if (b1.getLocation().distance(loc) > b2.getLocation().distance(loc)) {
 				return 1;

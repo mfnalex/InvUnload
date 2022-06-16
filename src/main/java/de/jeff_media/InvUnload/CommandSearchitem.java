@@ -14,6 +14,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CommandSearchitem implements CommandExecutor {
 
@@ -86,7 +87,7 @@ public class CommandSearchitem implements CommandExecutor {
             return true;
         }
 
-        ArrayList<Block> chests = BlockUtils.findChestsInRadius(p.getLocation(), radius);
+        List<Block> chests = BlockUtils.findChestsInRadius(p.getLocation(), radius);
         BlockUtils.sortBlockListByDistance(chests, p.getLocation());
 
         ArrayList<Block> useableChests = new ArrayList<>();

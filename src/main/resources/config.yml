@@ -76,6 +76,9 @@ match-enchantments-on-books: false
 # Set to 0 to disable.
 cooldown: 0
 
+# When true, InvUnload will consider chests with a block on top to be inaccessible
+ignore-blocked-chests: false
+
 #########################
 ##### Animations   ######
 #########################
@@ -460,4 +463,4 @@ message-cooldown: "&cPlease wait a moment before running the command again."
 debug: false
 
 # please do not change the following line manually!
-config-version: 34
+config-version: 35

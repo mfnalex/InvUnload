@@ -24,7 +24,7 @@ public class ChestSortHook {
 	
 	public void sort(Block block) {
 		if(!main.useChestSort) return;
-		if(!BlockUtils.isChestLikeBlock(block)) return;
+		if(!BlockUtils.isChestLikeBlock(block.getType())) return;
 		Inventory inv = ((Container) block.getState()).getInventory();
 		de.jeff_media.chestsort.api.ChestSortAPI.sortInventory(inv);
 	}

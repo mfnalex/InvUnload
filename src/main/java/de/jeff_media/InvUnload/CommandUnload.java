@@ -110,7 +110,7 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 			startSlot = setting.dumpHotbar ? 0 : 9;
 		}
 		
-		ArrayList<Block> chests = BlockUtils.findChestsInRadius(p.getLocation(), radius);
+		List<Block> chests = BlockUtils.findChestsInRadius(p.getLocation(), radius);
 		if(chests.size()==0) {
 			p.sendMessage(main.messages.MSG_NO_CHESTS_NEARBY);
 			return true;
