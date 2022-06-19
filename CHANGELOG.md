@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.0.0
+- Full 1.19 support
+- **HUGE performance improvements**! You could now easily use a radius of 200 blocks without ANY lag.
+- Added config option "ignore-blocked-chests"
+
 ## 4.17.1
 - Full 1.18.2 support
 - Improved UpdateChecker

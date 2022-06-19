@@ -77,7 +77,7 @@ match-enchantments-on-books: false
 cooldown: 0
 
 # When true, InvUnload will consider chests with a block on top to be inaccessible
-ignore-blocked-chests: false
+ignore-blocked-chests: true
 
 #########################
 ##### Animations   ######
