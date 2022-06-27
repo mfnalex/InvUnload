@@ -1,5 +1,8 @@
 # Changelog
 
+## 5.0.1
+- Improved performance when using a huge radius and having "use-playerinteractevent" enabled.
+
 ## 5.0.0
 - Full 1.19 support
 - **HUGE performance improvements**! You could now easily use a radius of 200 blocks without ANY lag.
