@@ -264,7 +264,7 @@ message-cooldown: "&cPlease wait a moment before running the command again."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 #message-cooldown: "&cPlease wait a moment before running the command again."
 
-##### Bulgarian - InvUnload
+##### Bulgarian
 #message-could-not-unload: "&7Нищо за разтоварване: Няма налични сандъци за оставащите предмети."
 #message-radius-too-high: "&cГрешка:&7 Радиусът не може да бъде по-голям от %d блока."
 #message-no-chests-nearby: "&7Нищо за разтоварване: Няма налични сандъци наоколо. Регулирайте радиусът или се доближете до Вашите сандъци."
