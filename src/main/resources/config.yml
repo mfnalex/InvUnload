@@ -264,6 +264,23 @@ message-cooldown: "&cPlease wait a moment before running the command again."
 #message-could-not-unload-blacklist: "&7Nothing to unload: All items in your inventory are blacklisted. Type /blacklist to see it."
 #message-cooldown: "&cPlease wait a moment before running the command again."
 
+##### Bulgarian - InvUnload
+#message-could-not-unload: "&7Нищо за разтоварване: Няма налични сандъци за оставащите предмети."
+#message-radius-too-high: "&cГрешка:&7 Радиусът не може да бъде по-голям от %d блока."
+#message-no-chests-nearby: "&7Нищо за разтоварване: Няма налични сандъци наоколо. Регулирайте радиусът или се доближете до Вашите сандъци."
+#message-error-not-a-number: "&cГрешка:&7 '%s' не е валидно число."
+#message-inventory-empty: "&7Нищо за разтоварване: Вашият инвентар е вече празен."
+#message-nothing-found: "&7Не можахме да намерим сандъци, които да съдържат %s."
+#message-blacklist-empty: "&7Вашият черен списък е празен."
+#message-blacklist-added: "&2Добавено към черния списък:&7 %s"
+#message-blacklist-invalid: "&4Невалидни предмети:&7 %s"
+#message-blacklist-removed: "&2Премахнато от черния списък:&7 %s"
+#message-blacklist-nothing-specified: "&7Вие трябва или да държите предмет в ръката си или да посочите поне един предмет."
+#message-will-use-hotbar: "&6%s &7вече ще използва предмети от Вашият хотбар."
+#message-will-not-use-hotbar: "&6%s &7вече няма да използва предмети от Вашият хотбар."
+#message-could-not-unload-blacklist: "&7Нищо за разтоварване: Всички предмети във Вашият инвентар са в черният списък. Напишете /blacklist, за да го видите."
+#message-cooldown: "&cМоля изчакайте, преди да използвате командата отново."
+
 ##### Chinese (Simplified)
 #message-could-not-unload: "&7没有东西可以卸下，也许你没有给其余物品分配箱子？"
 #message-radius-too-high: "&c错误:&7 范围不得超过 %d 个方块。"
