@@ -416,7 +416,7 @@ message-cooldown: "&cPlease wait a moment before running the command again."
 #message-will-use-hotbar: "&6%s &7będzie od teraz używać przedmiotów z paska szybkiego wyboru."
 #message-will-not-use-hotbar: "&6%s &7nie będzie od teraz używać przedmiotów z paska szybkiego wyboru."
 #message-could-not-unload-blacklist: "&7Nie można wyładować: Wszystkie przedmioty w twoim ekwipunku znajdują się na czarnej liście. Wpisz /blacklist by ją przejrzeć."
-#message-cooldown: "&cPlease wait a moment before running the command again."
+#message-cooldown: "&cPoczekaj chwilę przed ponownym uruchomieniem polecenia."
 
 ##### Portuguese (pt_BR)
 #message-prefix: "&6[InvUnload] &r"
