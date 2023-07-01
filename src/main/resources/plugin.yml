@@ -13,19 +13,19 @@ commands:
     usage: |
             /<command> [radius] -- Unloads inventory in nearby matching chests
             /<command> hotbar -- Toggles whether /<command> affects your hotbar
-    permission: invunload.use
+    permission: invunload.unload
     aliases: [store,ul,invunload,unloadinv]
   dump:
     description: Unloads inventory in nearby matching chests and dumps the rest into the nearest chests
     usage: |
             /<command> [radius] -- Unloads inventory in nearby matching chests and dumps the rest into the nearest chests
             /<command> hotbar -- Toggles whether /<command> affects your hotbar
-    permission: invunload.use
+    permission: invunload.dump
     aliases: [invdump,dumpinv]
   unloadinfo:
     description: Shows into which chests your last /unload or /dump went into
     usage: /<command> [duration]
-    permission: invunload.use
+    permission: invunload.unloadinfo
     aliases: [dumpinfo,uli]
   searchitem:
     description: Searches for items in nearby chests
@@ -49,10 +49,23 @@ commands:
             /<command> remove hotbar -- Removes all items from your hotbar from your blacklist
             /<command> remove <items...> -- Remove items from your blacklist
             /<command> reset -- Removes all items from your blacklist
-    permission: invunload.use
+    permission: invunload.blacklist
 permissions:
+  invunload.unload:
+    description: Allows usage of the /unload command
+  invunload.dump:
+    description: Allows usage of the /dump command
+  invunload.unloadinfo:
+    description: Allows usage of the /unloadinfo command
+  invunload.blacklist:
+    description: Allows usage of the /blacklist command
   invunload.use:
     description: Allows usage of command /unload, /dump, /unloadinfo and /blacklist
+    children:
+      invunload.unload: true
+      invunload.dump: true
+      invunload.unloadinfo: true
+      invunload.blacklist: true
   invunload.search:
     description: Allows usage of the /searchitem command
   invunload.reload:

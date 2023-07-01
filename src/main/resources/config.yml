@@ -47,6 +47,10 @@
 ###############################
 
 # invunload.use:        Allows to use the commands /unload, /dump, /unloadinfo, /blacklist
+# invunload.unload:     Allows to use the command /unload
+# invunload.dump:       Allows to use the command /dump
+# invunload.unloadinfo: Allows to use the command /unloadinfo
+# invunload.blacklist:  Allows to use the command /blacklist
 # invunload.reload:     Allows to reload the config using /unload reload
 # invunload.search:     Allows to use the command /searchitem
 
