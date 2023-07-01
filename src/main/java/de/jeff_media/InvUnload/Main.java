@@ -6,6 +6,8 @@ import de.jeff_media.InvUnload.Hooks.*;
 import de.jeff_media.InvUnload.utils.EnchantmentUtils;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,7 +32,7 @@ public class Main extends JavaPlugin implements Listener {
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
 	@SuppressWarnings("FieldCanBeLocal")
-	private final int currentConfigVersion = 34;
+	private final int currentConfigVersion = 37;
 
 	public Messages messages;
 	protected BlockUtils blockUtils;
@@ -173,6 +175,7 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("particle-count", 100);
 		
 		getConfig().addDefault("always-show-summary", true);
+		getConfig().addDefault("show-coordinates", "default");
 		
 		getConfig().addDefault("laser-animation", true);
 		getConfig().addDefault("laser-default-duration", 5);
@@ -282,6 +285,30 @@ public class Main extends JavaPlugin implements Listener {
 		for(Map.Entry<UUID,PlayerSetting> entry : playerSettings.entrySet()) {
 			entry.getValue().save(getPlayerFile(entry.getKey()),this);
 		}
+	}
+
+	/**
+	 * Determines if given command sender can see coordinates of the chests in command output.
+	 */
+	public boolean canSeeCoordinates(CommandSender commandSender) {
+		if (commandSender.hasPermission("invunload.coordinates")) {
+			return true;
+		}
+
+		// Get reducedDebugInfo gamerule value.
+		boolean reducedDebugInfo = false;
+		if (commandSender instanceof Player) {
+			reducedDebugInfo = ((Player) commandSender).getWorld().getGameRuleValue(GameRule.REDUCED_DEBUG_INFO);
+		}
+
+		// By default, use reducedDebugInfo gamerule to decide if coordinates should be displayed.
+		if (this.getConfig().getString("show-coordinates").equals("default")) {
+			return !reducedDebugInfo;
+		}
+
+		// If show-coordinates config value is not set to 'default'
+		// ignore the gamerule and use configured boolean value.
+		return this.getConfig().getBoolean("show-coordinates");
 	}
 
 }

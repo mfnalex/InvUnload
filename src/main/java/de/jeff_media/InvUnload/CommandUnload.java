@@ -145,7 +145,7 @@ public class CommandUnload implements CommandExecutor , TabCompleter {
 				}
 			}
 		}
-		if(main.getConfig().getBoolean("always-show-summary")) {
+		if(main.getConfig().getBoolean("always-show-summary") && main.canSeeCoordinates(p)) {
 			summary.print(PrintRecipient.PLAYER, p);
 		}
 		

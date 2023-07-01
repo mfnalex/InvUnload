@@ -122,7 +122,9 @@ public class CommandSearchitem implements CommandExecutor {
             }
         }
 
-        summary.print(UnloadSummary.PrintRecipient.PLAYER, p);
+        if (main.canSeeCoordinates(p)) {
+            summary.print(UnloadSummary.PrintRecipient.PLAYER, p);
+        }
 
         if(affectedChests.size()==0) {
             p.sendMessage(String.format(main.messages.MSG_NOTHING_FOUND,mat.name()));

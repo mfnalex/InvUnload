@@ -57,3 +57,5 @@ permissions:
     description: Allows usage of the /searchitem command
   invunload.reload:
     description: Allows to reload the config using /unload reload
+  invunload.coordinates:
+    descrition: Allows to see coordinates even when they are disabled in configuration.
