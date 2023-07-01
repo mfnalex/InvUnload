@@ -85,6 +85,9 @@ public class Visualizer {
 	}
 	
 	void printSummaryToPlayer(Player p) {
+		if (!main.canSeeCoordinates(p)) {
+			return;
+		}
 		UnloadSummary summary = unloadSummaries.get(p.getUniqueId());
 		if(summary==null) return;
 		summary.print(PrintRecipient.PLAYER, p);

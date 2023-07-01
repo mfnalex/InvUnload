@@ -46,9 +46,10 @@
 #######   Permissions   #######
 ###############################
 
-# invunload.use:        Allows to use the commands /unload, /dump, /unloadinfo, /blacklist
-# invunload.reload:     Allows to reload the config using /unload reload
-# invunload.search:     Allows to use the command /searchitem
+# invunload.use:         Allows to use the commands /unload, /dump, /unloadinfo, /blacklist
+# invunload.reload:      Allows to reload the config using /unload reload
+# invunload.search:      Allows to use the command /searchitem
+# invunload.coordinates: Allows to always see coordinates even when they are disabled in configuration
 
 ###############################
 ####### General config  #######
@@ -112,6 +113,13 @@ sound-effect: ENTITY_PLAYER_LEVELUP
 # or /dump.
 # When set to false, the summary is only shown when using /unloadinfo (or /dumpinfo).
 always-show-summary: true
+
+# Determines if coordinates should be shown in the text summaries and the output of the /searchitem command.
+# Can be overridden for specific player/group by granting 'invunload.coordinates' permission.
+# When set to default coordinates will be shown/hidden based on the reducedDebugInfo gamerule value.
+# When set to true the gamerule will be ignored and coordinates will be shown.
+# When set to false the gamerule will be ignored and coordinates will be hidden.
+show-coordinates: default
 
 # When set to true, InvUnload will draw the laser beam everytime you /unload or /dump
 # When set to false, InvUnload only draws the laser beam on /unloadinfo and /search
@@ -499,4 +507,4 @@ message-cooldown: "&cPlease wait a moment before running the command again."
 debug: false
 
 # please do not change the following line manually!
-config-version: 35
+config-version: 37

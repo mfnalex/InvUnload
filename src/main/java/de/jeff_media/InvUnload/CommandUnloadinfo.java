@@ -65,7 +65,7 @@ public class CommandUnloadinfo implements CommandExecutor {
 				if(laser.isStarted()) laser.stop();
 			}
 		}*/
-		if(main.visualizer.unloadSummaries.containsKey(p.getUniqueId())) {
+		if(main.visualizer.unloadSummaries.containsKey(p.getUniqueId()) && main.canSeeCoordinates(p)) {
 			UnloadSummary summary = main.visualizer.unloadSummaries.get(p.getUniqueId());
 			if(summary!=null) {
 				summary.print(PrintRecipient.PLAYER, p);
