@@ -1,5 +1,6 @@
 package de.jeff_media.InvUnload;
 
+import com.jeff_media.jefflib.data.McVersion;
 import com.jeff_media.updatechecker.UpdateCheckSource;
 import com.jeff_media.updatechecker.UpdateChecker;
 import de.jeff_media.InvUnload.Hooks.*;
@@ -164,7 +165,7 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("plotsquared-allow-outside-plots", true);
 
 		getConfig().addDefault("spawn-particles", true);
-		getConfig().addDefault("particle-type", "SPELL_WITCH");
+		getConfig().addDefault("particle-type", "WITCH");
 		getConfig().addDefault("particle-count", 100);
 		
 		getConfig().addDefault("always-show-summary", true);
@@ -176,6 +177,14 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("laser-moves-with-player", false);
 
 		getConfig().addDefault("strict-tabcomplete",true);
+
+		if(McVersion.current().isAtLeast(1,20,6) && getConfig().getString("particle-type","").equalsIgnoreCase("WITCH_SPELL")) {
+			getConfig().set("particle-type","WITCH");
+		}
+
+		if(!McVersion.current().isAtLeast(1,20,6) && getConfig().getString("particle-type","").equalsIgnoreCase("WITCH")) {
+			getConfig().set("particle-type","WITCH_SPELL");
+		}
 		
 		if(!EnumUtils.particleExists(getConfig().getString("particle-type"))) {
 			getLogger().warning("Specified particle type \"" + getConfig().getString("particle-type") + "\" does not exist! Please check your config.yml");

@@ -88,8 +88,9 @@ ignore-blocked-chests: true
 
 # List of particle types: https://minecraft.gamepedia.com/Particles#Types_of_particles
 # You must check that the specified particle type is valid in your specific Minecraft version!
+# Default: WITCH (On 1.20.4 and lower, use "SPELL_WITCH")
 spawn-particles: true
-particle-type: SPELL_WITCH
+particle-type: WITCH
 particle-count: 100
 
 # List of sound effects: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
