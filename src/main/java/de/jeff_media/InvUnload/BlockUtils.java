@@ -1,7 +1,7 @@
 package de.jeff_media.InvUnload;
 
 import de.jeff_media.InvUnload.Hooks.ItemsAdderWrapper;
-import de.jeff_media.jefflib.EnumUtils;
+import com.jeff_media.jefflib.EnumUtils;
 import org.bukkit.*;
 import org.bukkit.block.*;
 import org.bukkit.block.data.BlockData;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class BlockUtils {
 
 	private static final EnumSet<Material> CONTAINER_TYPES;
-	private static final List<String> CONTAINER_NAMES = Arrays.asList("^BARREL$", "^CHEST$", "^SHULKER_BOX$", "^(.*)_SHULKER_BOX$");
+	private static final List<String> CONTAINER_NAMES = Arrays.asList("(.*)BARREL$", "(.*)CHEST$", "^SHULKER_BOX$", "^(.*)_SHULKER_BOX$");
 
 	static {
 		CONTAINER_TYPES = EnumUtils.getEnumsFromRegexList(Material.class, CONTAINER_NAMES);
@@ -39,7 +39,7 @@ public class BlockUtils {
 	static List<Block> findBlocksInRadius(Location loc, int radius) {
 		BoundingBox box = BoundingBox.of(loc,radius,radius,radius);
 		//List<BlockVector> blocks = de.jeff_media.jefflib.BlockUtils.getBlocks(loc.getWorld(), box, true, blockData -> isChestLikeBlock(blockData.getMaterial()));
-		List<Chunk> chunks = de.jeff_media.jefflib.BlockUtils.getChunks(loc.getWorld(), box,true);
+		List<Chunk> chunks = com.jeff_media.jefflib.BlockUtils.getChunks(loc.getWorld(), box,true);
 		List<Block> blocks = new ArrayList<>();
 		for(Chunk chunk : chunks) {
 			for(BlockState state : chunk.getTileEntities()) {

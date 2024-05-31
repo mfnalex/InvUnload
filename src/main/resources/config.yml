@@ -463,4 +463,4 @@ message-cooldown: "&cPlease wait a moment before running the command again."
 debug: false
 
 # please do not change the following line manually!
-config-version: 35
+config-version: 36

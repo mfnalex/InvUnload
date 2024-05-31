@@ -30,7 +30,7 @@ public class Main extends JavaPlugin implements Listener {
 	int mcMinorVersion; // 14 for 1.14, 13 for 1.13, ...
 
 	@SuppressWarnings("FieldCanBeLocal")
-	private final int currentConfigVersion = 34;
+	private final int currentConfigVersion = 36;
 
 	public Messages messages;
 	protected BlockUtils blockUtils;
@@ -88,11 +88,6 @@ public class Main extends JavaPlugin implements Listener {
 		instance = this;
 
 		Metrics metrics = new Metrics(this, 3156);
-
-		String tmpVersion = getServer().getClass().getPackage().getName();
-		mcVersion = tmpVersion.substring(tmpVersion.lastIndexOf('.') + 1);
-		tmpVersion = mcVersion.substring(mcVersion.indexOf("_") + 1);
-		mcMinorVersion = Integer.parseInt(tmpVersion.substring(0, tmpVersion.indexOf("_")));
 
 		reloadCompleteConfig(false);
 
