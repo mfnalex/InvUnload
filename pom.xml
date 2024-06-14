@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>5.0.3</version>
+	<version>5.1.0</version>
 	<name>InvUnload</name>
 	<packaging>jar</packaging>
 	<description>Automatically puts your stuff into the right chests!</description>
@@ -159,7 +159,7 @@
 		<dependency>
 			<groupId>com.jeff-media.jefflib</groupId>
 			<artifactId>jefflib</artifactId>
-			<version>14.0.5</version>
+			<version>14.1.0</version>
 			<scope>compile</scope>
 		</dependency>
 		<!--<dependency>
