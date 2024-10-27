@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jeff_media</groupId>
 	<artifactId>InvUnload</artifactId>
-	<version>5.1.0</version>
+	<version>5.2.0</version>
 	<name>InvUnload</name>
 	<packaging>jar</packaging>
 	<description>Automatically puts your stuff into the right chests!</description>
@@ -129,7 +129,7 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.16.5-R0.1-SNAPSHOT</version>
+			<version>1.21.3-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -159,7 +159,7 @@
 		<dependency>
 			<groupId>com.jeff-media.jefflib</groupId>
 			<artifactId>jefflib</artifactId>
-			<version>14.1.0</version>
+			<version>14.2.3</version>
 			<scope>compile</scope>
 		</dependency>
 		<!--<dependency>
